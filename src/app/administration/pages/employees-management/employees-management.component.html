@@ -1,0 +1,172 @@
+<mat-card>
+  <div mat-dialog-action [align]="'start'" class="example-button-row">
+  <button mat-raised-button color="primary" (click)="onPayAll()">Pay All Employee</button>
+ <button mat-raised-button color="primary" routerLink="/administration/create/new/employee">+ New Employee</button>
+ </div>
+
+ <div class="mat-elevation-z8">
+  <div *ngIf="loading">
+    <p><small>Loading, please wait...</small></p>
+    <p>
+      <mat-progress-bar mode="query"></mat-progress-bar>
+    </p>
+  </div>
+  <div class="row table-action-row">
+    <div class="on-mobile-hide col-md-6 col-sm-12">
+      <div>
+        <button class="table-main-action-btn" color="accent" mat-raised-button (click)="
+                    exporter.exportTable('csv', {
+                      fileName: 'Exported Data'
+                    })
+                  ">
+          <i class="fas fa-file-csv"></i> CSV
+        </button>
+        <button class="table-main-action-btn" color="primary" mat-raised-button (click)="
+                    exporter.exportTable('xlsx', {
+                      fileName: 'Exported Data'
+                    })
+                  ">
+          <i class="fas fa-file-excel"></i>Excel
+        </button>
+        <button class="table-main-action-btn" color="warn" mat-raised-button (click)="
+                    exporter.exportTable('json', {
+                      fileName: 'Exported Data'
+                    })
+                  ">
+          <i class="fas fa-file-code"></i> JSON
+        </button>
+        <button class="table-main-action-btn bg-secondary text-white" mat-raised-button (click)="
+                    exporter.exportTable('txt', {
+                      fileName: 'Exported Data'
+                    })
+                  ">
+          <i class="fas fa-file-alt"></i> TEXT
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input />
+    </div>
+  </div>
+  <br />
+  <table mat-table [dataSource]="dataSource" matTableExporter matSort #exporter="matTableExporter">
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="PFNO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        PF NO
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.emp_no}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="FullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Full Name
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.firstName }} {{ row.lastName }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="IDNUmber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        ID NUmber
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.nationalId}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Occupation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Occupation
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.occupation}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="GrossPAY">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Gross PAY
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.gross_salary| currency: 'KSH' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Service">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Service
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-icon color="primary" (click)="editMainTopic(row)">update</mat-icon> &nbsp;
+        <mat-icon class="text-success" (click)="manageMainTopic(row.id)">open_in_new</mat-icon>&nbsp;
+        <mat-icon color="accent" (click)="deletemainTopic(row.id)">delete_forever</mat-icon>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No employee data matches "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page of compliance">
+  </mat-paginator>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead>
+    <tr> 
+      <th>PF NO</th>
+      <th>Employee Name</th>
+      <th>Employee Phone</th>
+      <th>Employee Email</th>
+      <th>Employee Occupation</th>
+      <th>Employee Gross Pay</th>
+      <th>Operations</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of employeeData">
+      <td>{{item.emp_no}}</td>
+      <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+      <td>{{item.personalPhone}}</td>
+      <td>{{item.personalEmail}}</td>
+      <td>Customer Service</td>
+      <td><span class="grossPay">{{item.grossPay | currency : 'Ksh'}}</span></td>
+      <td>
+            <a class="update"  matTooltip="View Employee Payroll" color="black"  [routerLink]="['/administration/employee/salary/', item.id]" ><mat-icon>account_balance</mat-icon></a>
+            <a class="update"  matTooltip="Update Data" color="accent"  [routerLink]="['/administration/employee/detail/', item.id]" ><mat-icon>launch</mat-icon></a>
+            <a class="update"  color="accent"  (click)="onCreateAccount(item.id)" ><mat-icon>account_circle</mat-icon></a>
+            <a class="update btn btn-sm"  color="accent"  (click)="onPayIndividual(item.id)" >Pay</a>
+            <a class="danger"  color="accent"  (click)="onDelete(item.id)" routerLinkActive="list-item-active" ><mat-icon>delete_outline</mat-icon></a>
+      </td>
+    </tr>
+    </tbody>
+    </table> -->
+</mat-card>
+
+
+
+

@@ -1,0 +1,214 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-5 col-sm-12">
+      <h3>Salary Expenses Per Year</h3>
+        <ngx-charts-pie-chart
+        [results]="this.resNewData"
+        [legendTitle]="'Monthly Payroll'"
+        [labels]="true"
+        [results]="single"
+        [gradient]="gradient"
+        [labels]="showLabels"
+        [legend]="true"
+        [doughnut]="isDoughnut"
+        >
+         >
+
+    </ngx-charts-pie-chart>
+    </div>
+    <div class="col-md-7 col-sm-12">
+    <h3>Total Monthly Salary  Per Year</h3>
+      <ngx-charts-bar-vertical
+      [results]="this.resData"
+      [xAxisLabel]="'Months'"
+      [yAxisLabel]="'Salary'"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+      [gradient]="true">
+    </ngx-charts-bar-vertical>
+    </div>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <h2>Employee Info</h2>
+    <br>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <mat-card class="info-table">
+          <a  class="action-button" mat-button [matMenuTriggerFor]="employee_status">
+            Filter By Status
+            <mat-icon>arrow_drop_down</mat-icon>
+          </a>
+    <mat-menu #employee_status="matMenu">
+        <mat-nav-list *ngFor="let item of  employeeActiveStatusArray"  >
+        <a mat-list-item routerLinkActive="list-item-active" (click)="getEmployeesData(item)">
+            {{item}}
+          </a>
+        </mat-nav-list>
+    </mat-menu>
+          <a  [routerLink]="['/administration/employees/active']"> <h3  matBadge="{{this.employeeCount}}" matBadgePosition="after" matBadgeColor="accent"> Employees Status : <strong>{{this.selected_status}}</strong> </h3></a>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of employeeData">
+                <td><small>{{item.firstName}} {{item.middleName}} {{item.lastName}}</small></td>
+                <td><small>{{item.departmentName}}</small></td>
+              </tr>
+              </tbody>
+              </table>
+             <a  [routerLink]="['/administration/employees/active']">Read more...</a>
+          </mat-card>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-card class="info-table">
+          <a  class="action-button" mat-button [matMenuTriggerFor]="modify">
+            Filter By Leave Status
+            <mat-icon>arrow_drop_down</mat-icon>
+          </a>
+    <mat-menu #modify="matMenu">
+        <mat-nav-list *ngFor="let item of employeeLeaveStatusArray"  >
+        <a mat-list-item routerLinkActive="list-item-active" (click)="getEmployeesOnLeaves(item)">
+            {{item}}
+          </a>
+        </mat-nav-list>
+    </mat-menu>
+            <a  [routerLink]="['/administration/leaves']"> <h3  matBadge="{{this.employeeLeavesDataCount}}" matBadgePosition="after" matBadgeColor="accent">Employees on Leave : <strong>{{this.leave_status}}</strong> </h3></a>
+          <p><small>All employees who are on variouse leaves.</small></p>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Leave Type</th>
+                <th>Started On</th>
+                <th>End on</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.employeeLeavesData">
+                <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+                <td>{{item.leave_type}}</td>
+                <td>{{item.start_date | date}}</td>
+                <td>{{item.end_date | date}}</td>
+              </tr>
+              </tbody>
+              </table>
+             <a  [routerLink]="['/administration/leaves']">Read more...</a>
+          </mat-card>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-card class="info-table">
+          <a  class="action-button" mat-button [matMenuTriggerFor]="attendance">
+            Filter By Attendance
+            <mat-icon>arrow_drop_down</mat-icon>
+          </a>
+    <mat-menu #attendance="matMenu">
+        <mat-nav-list *ngFor="let item of  attedanceStatusArray"  >
+        <a mat-list-item routerLinkActive="list-item-active" (click)="getAttendance(item)">
+            {{item}}
+          </a>
+        </mat-nav-list>
+    </mat-menu>
+
+          <a  [routerLink]="['/administration/employee/timesheet']"> <h3  matBadge="{{this.attendanceCount}}" matBadgePosition="after" matBadgeColor="accent">Employees Todays Attendance :  {{this.attendance_status}} </h3></a>
+
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Occupation</th>
+                <th>Department</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.attendanceData">
+                <td><small>{{item.firstname}} {{item.middlename}} {{item.lastname}}</small></td>
+                <td><small>{{item.occupation}}</small></td>
+                <td><small>{{item.departmentname}}</small></td>
+              </tr>
+              </tbody>
+              </table>
+             <a  [routerLink]="['/administration/employee/timesheet']">Read more...</a>
+
+          </mat-card>
+      </div>
+      </div>
+      <br>
+      <mat-divider></mat-divider>
+      <h2>Salary Info</h2>
+      <br>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <mat-card class="info-table">
+          <a  [routerLink]="['/administration/pending/salary']"> <h3  matBadge="{{this.dummyCount}}" matBadgePosition="after" matBadgeColor="accent">Dummy Payroll </h3></a>
+          <p><small>It offers a flexibility for alteration before bank transfers.</small></p>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Basic Salary</th>
+                  <th>Netpay</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of this.dummyData">
+                  <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+                  <td>{{item.basic_salary | currency : 'Ksh'}}</td>
+                  <td>{{item.netPay | currency : 'Ksh'}}</td>
+                </tr>
+                </tbody>
+                </table>
+               <a  [routerLink]="['/administration/pending/salary']">Read more...</a>
+            </mat-card>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <mat-card class="info-table">
+          <a  [routerLink]="['/administration/employee/advance/salary']"> <h3  matBadge="{{this.advanceCount}}" matBadgePosition="after" matBadgeColor="accent">Advance Loans</h3></a>
+          <p><small>Employee active advance loans.</small></p>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Department</th>
+                  <th>Advance Amount</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of this.advanceData">
+                  <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+                  <td>{{item.departmentName}}</td>
+                  <td>{{item.salary_amount}}</td>
+                </tr>
+                </tbody>
+                </table>
+               <a  [routerLink]="['/administration/employee/advance/salary']">Read more...</a>
+            </mat-card>
+        </div>
+
+
+        <div class="col-md-4 col-sm-12">
+          <mat-card class="info-table">
+          <a  [routerLink]="['/administration/employees/bank_transfer']"> <h3  matBadge="{{this.currentMonthlyDataCount}}" matBadgePosition="after" matBadgeColor="accent">Bank Transfer </h3></a>
+          <p><small>A payroll to be transfered to bank for this particular month</small></p>
+            <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th>Employee Name</th>
+                  <th>Basic Salary</th>
+                  <th>Netpay</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of this.currentMonthlyData">
+                  <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+                  <td>{{item.basic_salary | currency : 'Ksh'}}</td>
+                  <td>{{item.netPay | currency : 'Ksh'}}</td>
+                </tr>
+                </tbody>
+                </table>
+               <a  [routerLink]="['/administration/employees/bank_transfer']">Read more...</a>
+            </mat-card>
+        </div>
+        </div>
+    </div>
+     -->

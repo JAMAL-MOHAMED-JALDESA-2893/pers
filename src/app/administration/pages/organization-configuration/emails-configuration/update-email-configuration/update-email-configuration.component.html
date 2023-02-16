@@ -1,0 +1,130 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/set/email" skipLocationChange>E-Mail / </a>
+   Update E-Mail Configurations
+  </div>
+</mat-card-header>
+<mat-card>
+  <mat-card-title>Update E-mail Configurations</mat-card-title>
+  <form class="form" [formGroup]="formData" (ngSubmit)="submitData()" #resetRequestsForm="ngForm" novalidate>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Select Email Type</mat-label>
+          <mat-select formControlName="email_type" required>
+            <mat-option [value]="emailType" *ngFor="let emailType of emailTypeArray">{{emailType}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Salutation</mat-label>
+          <input matInput placeholder="Enter Email Salutation" formControlName="email_salutation" required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Subject</mat-label>
+          <input matInput placeholder="Enter Email Subject" formControlName="email_subject" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Heading</mat-label>
+          <input matInput placeholder="Enter Email Heading" formControlName="email_heading" required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Message</mat-label>
+          <textarea matInput placeholder="Enter Email Message" formControlName="email_message" required></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Remarks</mat-label>
+          <input matInput placeholder="Enter Email Remarks" formControlName="email_remarks" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Regards From</mat-label>
+          <input matInput placeholder="Enter Email Regards From" formControlName="email_regards_from" required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Name</mat-label>
+          <input matInput placeholder="Enter Email Organization Name" formControlName="email_organization_name"
+            required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Phone</mat-label>
+          <input matInput placeholder="Enter Email Organization Phone" formControlName="email_organization_phone"
+            required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Mail</mat-label>
+          <input matInput placeholder="Enter Email Organization Phone" formControlName="email_organization_mail"
+            required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Address</mat-label>
+          <input matInput placeholder="Enter Email Organization Address" formControlName="email_organization_address"
+            required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Location</mat-label>
+          <input matInput placeholder="Enter Email Organization Location" formControlName="email_organization_location"
+            required>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Email Organization Website</mat-label>
+          <input matInput placeholder="Enter Email Organization Website" formControlName="email_organization_website"
+            required>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="col-md-4 col-sm-12">
+        <button class="pull-right" mat-raised-button color="primary" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Submit
+        </button>
+      </div>-->
+    </div>
+    <mat-divider></mat-divider>
+    <div [align]="'center'">
+      <div class="col-md-4 col-sm-12">
+        <button class="add-mail-btn" mat-raised-button color="primary" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          UPDATE
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>

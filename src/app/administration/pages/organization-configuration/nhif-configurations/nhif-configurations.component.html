@@ -1,0 +1,210 @@
+<mat-divider></mat-divider> 
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>
+    <a routerLink="/administration/configurations/nhif/" skipLocationChange>NHIF / </a>NHIF Configured
+  </div>
+</mat-card-header> 
+
+
+<div class="mat-elevation-z8">
+  <div *ngIf="loading">
+    <p><small>Loading, please wait...</small></p>
+    <p>
+      <mat-progress-bar mode="query"></mat-progress-bar>
+    </p>
+  </div>
+  <div class="row table-action-row">
+    <div class="on-mobile-hide col-md-6 col-sm-12">
+      <div>
+        <button class="table-main-action-btn bg-primary text-white"
+          routerLink="/administration/configurations/nhif/add/" skipLocationChange="" mat-raised-button><i
+            class="fa fa-plus" aria-hidden="true"></i> &nbsp; CREATE NHIF
+        </button>
+        <button class="table-main-action-btn" color="accent" mat-raised-button (click)="
+                          exporter.exportTable('csv', {
+                            fileName: 'Exported Data'
+                          })
+                        ">
+          <i class="fas fa-file-csv"></i> CSV
+        </button>
+        <button class="table-main-action-btn" color="primary" mat-raised-button (click)="
+                          exporter.exportTable('xlsx', {
+                            fileName: 'Exported Data'
+                          })
+                        ">
+          <i class="fas fa-file-excel"></i>EXCEL
+        </button>
+        <button class="table-main-action-btn" color="warn" mat-raised-button (click)="
+                          exporter.exportTable('json', {
+                            fileName: 'Exported Data'
+                          })
+                        ">
+          <i class="fas fa-file-code"></i> JSON
+        </button>
+        <button class="table-main-action-btn bg-secondary text-white" mat-raised-button (click)="
+                          exporter.exportTable('txt', {
+                            fileName: 'Exported Data'
+                          })
+                        ">
+          <i class="fas fa-file-alt"></i> TEXT
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input />
+    </div>
+  </div>
+  <br />
+  <table mat-table [dataSource]="dataSource" matTableExporter matSort #exporter="matTableExporter">
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="tax_band">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Tax Band
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.tax_band }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="min_threshold">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        MIN Amount
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.min_threshold | currency: 'Ksh.' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="max_threshold">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        MAX Amount
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.max_threshold | currency: 'Ksh.' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="nhif_deduction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        NHIF Deductions
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.nhif_deduction | currency: 'Ksh.' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Status
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.status }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="updated_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Updated at
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.updated_at | date }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Action
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-icon color="primary" [routerLink]="['/administration/configurations/nhif/update/', row.id]" matTooltip="Update NHIF">update</mat-icon> &nbsp;
+        <mat-icon color="primary" (click)="manageNHIF(row.id)" matTooltip="Approve NHIF">open_in_new</mat-icon> &nbsp;
+        <mat-icon color="accent" (click)="deleteNHIF(row.id)" matTooltip="Delete NHIF">delete_forever</mat-icon> &nbsp;
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No main compliance data matches "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page of compliance">
+  </mat-paginator>
+</div>
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="container-fluid">
+      <mat-card>
+        <div *ngIf="loading">
+          <p><small>Loading, please wait...</small></p>
+          <p>
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </p>
+        </div>
+        <div class="row table-action-row">
+          <div class="on-mobile-hide col-md-6 col-sm-12">
+            <div>
+              <button class="table-main-action-btn bg-primary text-white"
+                routerLink="/administration/configurations/nhif/add/" skipLocationChange="" mat-raised-button><i
+                  class="fa fa-plus" aria-hidden="true"></i> &nbsp; ADD NHIF TAX
+              </button>
+              <button class="table-main-action-btn" color="accent" mat-raised-button>
+                <i class="fas fa-file-csv"></i> CSV
+              </button>
+              <button class="table-main-action-btn" color="primary" mat-raised-button>
+                <i class="fas fa-file-excel"></i>EXCEL
+              </button>
+              <button class="table-main-action-btn" color="warn" mat-raised-button>
+                <i class="fas fa-file-code"></i> JSON
+              </button>
+              <button class="table-main-action-btn bg-secondary text-white" mat-raised-button>
+                <i class="fas fa-file-alt"></i> TEXT
+              </button>
+            </div>
+          </div>
+        </div>
+        <br>
+        <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable
+          [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Tax Band</th>
+              <th>Min Amount</th>
+              <th>Max Amount</th>
+              <th>NHIF Deduction</th>
+              <th>Created On</th>
+              <th>Operations</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.data">
+              <td>No.{{item.id}}</td>
+              <td>{{item.tax_band}}</td>
+              <td>{{item.min_threshold | currency : 'Ksh'}}</td>
+              <td>{{item.max_threshold | currency : 'Ksh'}}</td>
+              <td>{{item.nhif_deduction| currency : 'Ksh'}}</td>
+              <td>{{item.updated_at | date}}</td>
+              <td>
+                <a class="update" color="accent" matTooltip="Update Configuration"
+                  [routerLink]="['/administration/configurations/nhif/update/', item.id]">
+                  <mat-icon>launch</mat-icon>
+                </a>
+                <a class="danger" color="accent" matTooltip="Delete Configuration" (click)="onDelete(item.id)"
+                  routerLinkActive="list-item-active">
+                  <mat-icon>delete_forever</mat-icon>
+                </a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
+
+    </div>
+  </div>
+</div> -->

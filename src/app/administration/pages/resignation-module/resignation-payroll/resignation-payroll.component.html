@@ -1,0 +1,142 @@
+<mat-card>
+  <mat-card-header>
+    <p>Home / Resignation Payroll</p>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+        <mat-card class="table-data">
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+
+                <th> Employee Name</th>
+                <th> Employee Department</th>
+                <th> Employee Occupation</th>
+                <th> Resignation Monitored from</th>
+                <th> Resignation Date</th>
+                <th> Resignation Notice</th>
+
+                <th> Monthly Grosspay</th>
+                <th> Total Grosspay</th>
+                <th> Total Netpay</th>
+                <th> Payment Status</th>
+                <!-- <th> Resignation Status</th> -->
+    
+                <th>Month</th>
+                <th>Year</th>
+                <th>Operations</th>
+
+      
+            </thead>
+            <tbody>        
+              <tr *ngFor="let item of this.resignationData">
+                <td>{{item.firstname}} {{item.middlename}} {{item.lastname}}</td>
+                <td>{{item.departmentname}}</td>
+                <td>{{item.occupation }}</td>
+                <td>{{item.created_at | date }}</td>
+                <td>{{item.exit_date}}</td>
+                <td>{{item.resignation_notice}} days</td>
+                <td>{{item.grosssalary | currency : 'Ksh'}}</td>
+
+                <td>{{item.gross_pay | currency : 'Ksh'}}</td>
+                <td>{{item.net_pay | currency : 'Ksh'}}</td>
+                <td>{{item.paid}}</td>
+                <!-- <td>{{item.ex}}</td> -->
+                <td>{{item.month}}</td>
+                <td>{{item.year}}</td>   
+                
+                <td *ngIf="!item.paid" >   
+                  <button  mat-raised-button color="primary"    class="action-button green" (click)="pay(item.resignationamtId)">Pay</button>
+                 </td>
+                 <td *ngIf="item.paid" >   
+                  <button [disabled]="item.paid" mat-raised-button class="action-button green">Paid</button>
+                 </td>
+              </tr>
+              </tbody>
+              </table>
+         </mat-card>
+  </mat-card>
+
+
+  <!-- 
+    Employee Name
+    Employee Department
+    Employee Occupation
+    Resignation Monitored from
+    Resignation Date
+    Monthly Grosspay
+    Total Grosspay
+    Total Netpay
+    Payment Status
+    Resignation Status
+    More
+   -->
+<!-- 
+
+advanced_deductions: 0
+allowance_custom: 0
+allowance_field: 0
+allowance_overtime: 0
+allowance_per_deam: 0
+bankaccount: "12020920192"
+bankname: "KCB"
+basic_salary: 182233.3333333333
+chargeable_pay: 182233.3333333333
+clearence_status: "Approved"
+created_at: "2022-01-23T12:10:41"
+dcrs_actual_e2: 0
+dcrs_e1: 54669.99999999999
+dcrs_fixed_e3: 20000
+deleted: null
+deleted_at: "2022-01-23T12:10:41"
+department_id: 3
+departmentname: "Administration Department"
+employee_id: 2
+exit_date: "2022-02-16"
+firstname: "Dennis"
+gross_pay: 182233.3333333333
+grosssalary: 77000
+helb_deductions: 0
+id: 1
+is_approved: true
+is_commited: false
+is_pay_btn_enabled: false
+krano: "A010291021H"
+lastname: "Kimani"
+leave_deduction: 0
+middlename: "K."
+month: "JANUARY"
+monthly_basic_salary: 77000
+nationalid: "34423553"
+net_pay: 132399.98333333334
+nhif_deductions: 1700
+nhifno: "12323"
+nssf_deductions: 1080
+nssfno: "11122"
+occupation: "Human Resource Manager"
+owner_occupied_interests: 0
+paid: true
+paid_on: "2022-01-23T12:20:07"
+paye_deductions: 47053.34999999999
+pension: 0
+personalphone: "7289230232"
+relief_insurance: 0
+relief_personal: 0
+resignation_notice: "71"
+retirement_and_owner_occupied_interests: 0
+sacco_contributions: 0
+tax_charged: 49453.34999999999
+taxable_income: 182233.3333333333
+total_non_cash_benefit: 0
+total_relief: 2400
+updated_at: "2022-01-23T12:20:07"
+value_of_quarters: 0
+year: "2022"
+
+-->
+
+  
+  
+  
+  
+  

@@ -1,0 +1,36 @@
+<mat-card-header class="breadcrumb">
+    Custom Allowance Benefits Status
+</mat-card-header>
+<div *ngIf="loading">
+    <p><small>Loading, please wait...</small></p>
+    <p>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+    </p>
+</div>
+<mat-divider></mat-divider>
+<br />
+<mat-label>Select the Approval Status</mat-label>
+<mat-form-field appearance="outline">
+    <mat-label>Select Status</mat-label>
+    <mat-select (selectionChange)="onSelectSatus($event)">
+        <mat-option *ngFor="let approval of  approvalStatus" value="{{approval.value}}">
+            {{ approval.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<div *ngIf="showRejectField">
+    <form [formGroup]="formData">
+        <mat-label>Provide a Reason For Rejecting </mat-label>
+        <mat-form-field appearance="outline">
+            <textarea matInput formControlName="rejection_reason_director"
+                placeholder="e.g Not in our database"></textarea>
+        </mat-form-field>
+        <div mat-dialog-action [align]="'end'" class="example-button-row">
+            <button mat-raised-button color="warn" mat-dialog-close >CANCEL</button>
+            <button mat-raised-button color="primary" (click)="submitData()">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+                </span>UPDATE
+            </button>
+        </div>
+    </form>
+</div>

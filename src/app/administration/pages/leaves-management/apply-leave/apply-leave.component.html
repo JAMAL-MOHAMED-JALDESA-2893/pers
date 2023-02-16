@@ -1,0 +1,168 @@
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <mat-card>
+          <form
+            class="form"
+            [formGroup]="requestData"
+            (ngSubmit)="submitData()"
+            #resetRequestsForm="ngForm"
+            novalidate
+          >
+          <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="full-width"  appearance="fill"
+              >
+              <mat-label>Leave Request Type</mat-label>
+              <mat-select formControlName="leave_type_id">
+                <mat-option [value]="leave.id" *ngFor="let leave of this.dataArray"
+                  >{{ leave.leaveType }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="handleError('leave_type_id', 'required')">
+                You must Select<strong>Leave Type </strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          </div>
+
+          
+          <div class="row">
+          <div class="col-md-12">
+  
+           <mat-form-field appearance="fill">
+          <mat-label>Kindly select your leave period</mat-label>
+          <mat-date-range-input [min]="minDate" [max]="maxDate"  [formGroup]="requestData" [rangePicker]="picker">
+            <input matStartDate formControlName="start_date" placeholder="Start date">
+            <input matEndDate formControlName="end_date" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+  
+          <mat-error *ngIf="requestData.controls.start_date.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="requestData.controls.end_date.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+           <mat-hint>Hint:Kindly click on the icon and select two dates. </mat-hint>
+        </mat-form-field>
+  
+        </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12">
+          <mat-form-field appearance="fill">
+          <mat-label>Reason for Leave</mat-label>
+          <textarea matInput formControlName="employee_reason_for_leave"></textarea>
+  
+              <mat-error *ngIf="handleError('employee_reason_for_leave', 'required')">
+                Enter description please
+              </mat-error>
+        </mat-form-field>
+          </div>
+          </div>
+  
+            <button class="pull-right" mat-raised-button color="primary" type="submit">
+              <span
+                *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"
+              ></span>
+              Submit
+            </button>
+  
+            <br>
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><mat-icon>warning</mat-icon> {{ error }}</div>
+            <br />
+          </form>
+        </mat-card>
+  
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-card>
+          <h1><b>Q&A</b></h1>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  1. Can i go on a Leave While My other Leave is Opened?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>No. You won't go unless otherwise consult your head director.</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  2. Is my leave period subjected to salary deductions?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>It depends with the kind of leave. Some leaves may not incur deductions as per the authority predefined policies.But also, some leaves
+                actually incur some deductions based on the period and type of  leave.</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  3. How do salary deductions goes when i am on a leave?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>The kind of leave does not incur salary deduction, your are entitled to full end month salary.However, there might changes arise upon notified that
+                Your initial status of leave, change due to some condition which actually might incur some deductions.There some leave types which actually incur a deductions from
+                the first day on the leaves. This deductions will be done as per the standard organisation policy.</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  4. Can i go on a Leave While My other Leave is Opened?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>No. You won't go unless otherwise, due to some exceptional circumstances. For such a case you may neeed to apply for a leave deduction and go ahead to consult your HOD, for the same.</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  5. What will happened if i come back and failed to report that my leave has ended?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>You must report back to your director that you've ended the leave. There are some instance where you need to return back before your stated date. The supervisor needs to know
+                that you've completed. If you failed to report back, the system will continue with salary deductions until you report so that your supervisor close your leave. You can utilise your payslip report here
+                to get your deductions and also you can use your leave requests to check on the status of your leave.
+              </p>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  5. What will happened if i come back and failed to report that my leave has ended?
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>You must report back to your director that you've ended the leave. There are some instance where you need to return back before your stated date. The supervisor needs to know
+                that you've completed. If you failed to report back, the system will continue with salary deductions until you report so that your supervisor close your leave. You can utilise your payslip report here
+                to get your deductions and also you can use your leave requests to check on the status of your leave.
+              </p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card>
+  
+      </div>
+      </div>
+  </div>
+  
+  

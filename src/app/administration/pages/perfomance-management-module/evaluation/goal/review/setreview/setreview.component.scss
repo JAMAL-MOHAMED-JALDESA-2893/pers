@@ -1,0 +1,22 @@
+.row{
+    padding: 5px;
+}
+.display-block{
+    display: block !important;
+    width: 100% !important;
+}
+h2{
+    color: rgb(1, 117, 212);
+    text-decoration: underline;
+    // text-align: center;
+}
+mat-card{
+    // width: 60% !important;
+    height: 100% !important;
+    height: max-content  !important;
+    margin: auto;
+    display: block;
+}
+mat-form-field{
+    width: 100%;
+}

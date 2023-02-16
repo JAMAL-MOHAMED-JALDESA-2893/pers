@@ -1,0 +1,98 @@
+<mat-card-header class="breadcrumb">
+    Leave Application Response
+</mat-card-header>
+<mat-divider></mat-divider>
+<br />
+<form [formGroup]="leaveApprovalForm">
+    <mat-label>Leave Assessment status</mat-label>
+    <mat-form-field appearance="outline">
+        <mat-label>Review status</mat-label>
+        <mat-select formControlName="leaveStatus">
+            <mat-option *ngFor="let statuses of statusData" [value]="statuses.value">
+                {{statuses.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+              leaveApprovalForm.controls['leaveStatus'].hasError(
+                  'required'
+                )
+              ">
+           Leave Assessment status required
+        </mat-error>
+    </mat-form-field>
+    <mat-label>Provide Leave asssessment remarks</mat-label>
+    <mat-form-field appearance="outline">
+        <mat-label>Leave Assessment remarks</mat-label>
+        <textarea formControlName="reason" matInput minlength="2" maxlength="200"
+            placeholder="e.g sick leave...."></textarea>
+        <mat-error *ngIf="
+          leaveApprovalForm.controls['reason'].hasError('required')
+          ">
+            Remarks required.
+        </mat-error>
+        <mat-error *ngIf="
+          leaveApprovalForm
+              .get('reason')
+              .hasError('minlength' || 'maxLength')
+          ">Remarks too short.
+        </mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <div mat-dialog-action [align]="'end'" class="example-button-row">
+        <button mat-raised-button color="primary" mat-dialog-close>CANCEL</button>
+        <button mat-raised-button color="primary" (click)="submit(id)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+            </span>SUBMIT
+        </button>
+    </div>
+</form>
+
+<!-- 
+<mat-card-header class="breadcrumb">
+    Compliance Task Assessment Response
+</mat-card-header>
+<mat-divider></mat-divider>
+<br />
+<form [formGroup]="updateTaskForm">
+    <mat-label>Assessment review status</mat-label>
+    <mat-form-field appearance="outline">
+        <mat-label>Review status</mat-label>
+        <mat-select formControlName="reviewStatus">
+            <mat-option *ngFor="let statuses of statusData" [value]="statuses.value">
+                {{statuses.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+              updateTaskForm.controls['reviewStatus'].hasError(
+                  'required'
+                )
+              ">
+            Assessment status pequired
+        </mat-error>
+    </mat-form-field>
+    <mat-label>Provide task asssessment remarks</mat-label>
+    <mat-form-field appearance="outline">
+        <mat-label>Assessment remarks</mat-label>
+        <textarea formControlName="assessmentRemarks" matInput minlength="2" maxlength="200"
+            placeholder="e.g sick leave...."></textarea>
+        <mat-error *ngIf="
+          updateTaskForm.controls['assessmentRemarks'].hasError('required')
+          ">
+            Remarks required.
+        </mat-error>
+        <mat-error *ngIf="
+          updateTaskForm
+              .get('assessmentRemarks')
+              .hasError('minlength' || 'maxLength')
+          ">Remarks too short.
+        </mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <div mat-dialog-action [align]="'end'" class="example-button-row">
+        <button mat-raised-button color="warn" mat-dialog-close>CANCEL</button>
+        <button mat-raised-button color="primary" (click)="submitTaskUpdate(id)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+            </span>SUBMIT
+        </button>
+    </div>
+</form> -->

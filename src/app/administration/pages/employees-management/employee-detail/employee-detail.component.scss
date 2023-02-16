@@ -1,0 +1,91 @@
+
+.main{
+  background-color: #5e5cff;
+  color: black;
+  }
+  .subproperty{
+  background-color: lightgreen;
+  color: black;
+  }
+  .additional{
+  background-color: rgb(255, 255, 115);
+  color: black;
+  }
+
+  hr{
+    color: white;
+    background-color:white;
+  }
+  h3{
+    font-weight: 600;
+    font-family: sans-serif;
+    color: black;
+  }
+  .respond{
+    background-color:wheat;
+    border-radius: 5px;
+  }
+  p{
+    font-family: monospace;
+    background-color:rgb(54, 72, 131);
+    padding: 5px;
+    border-radius: 2px;
+    color: white;
+  }
+  h4{
+    margin: 5px;
+  }
+
+  .action {
+    min-width: unset!important;
+    height: 35px;
+    line-height: 25px;
+    margin-top: 5px;
+
+
+    .mat-icon {
+      font-size: 25px;
+      height: 25px;
+      line-height: 25px;
+    }
+  }
+  .row{
+    width: 100%;
+  }
+  mat-tab-group{
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+  }
+  .addition{
+    margin: 10px;
+  }
+  .info{
+    color:rgb(251, 255, 0);
+    font-weight:600;
+  }
+  .documents{
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+  .operations{
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+  }
+  .pull-left{
+    text-align: left !important;
+  }
+  .table-main-action-btn {
+    margin: 2px;
+    padding: 2px;
+    height: 25px !important;
+    width: min-content !important;
+    line-height: 20px !important;
+    text-align: center !important;
+    font-size: 10px !important;
+    margin-top: 0px !important;
+    padding-left: 2px;
+    padding-right: 2px;
+  }

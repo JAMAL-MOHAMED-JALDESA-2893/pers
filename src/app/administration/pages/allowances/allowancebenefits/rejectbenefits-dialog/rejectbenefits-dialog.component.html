@@ -1,0 +1,24 @@
+<mat-card-header class="breadcrumb">
+    Reject Custom Allowance Benefits
+</mat-card-header>
+<div *ngIf="loading">
+    <p><small>Loading, please wait...</small></p>
+    <p>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+    </p>
+</div>
+<mat-divider></mat-divider>
+<br />
+<form [formGroup]="formData">
+    <mat-label>Provide a Reason For Rejecting </mat-label>
+    <mat-form-field appearance="outline">
+        <textarea matInput formControlName="rejection_reason_director" placeholder="e.g Not in our database"></textarea>
+    </mat-form-field>
+    <div mat-dialog-action [align]="'end'" class="example-button-row">
+        <button mat-raised-button color="warn" mat-dialog-close>CANCEL</button>
+        <button mat-raised-button color="primary" (click)="submitData()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+            </span>REJECT
+        </button>
+    </div>
+</form>

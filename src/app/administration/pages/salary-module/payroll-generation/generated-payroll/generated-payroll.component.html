@@ -1,0 +1,163 @@
+<mat-card>
+  <mat-card-header class="breadcrumb">
+    <div>
+      <a routerLink="" skipLocationChange>Generated Payroll for this month </a>
+    </div>
+    <div class="breadcrumb-item ml-auto"> 
+      <button (click)="commitAllPayments()"  class="table-main-action-btn " color="primary" skipLocationChange="" mat-raised-button><i class="fa fa-toggle-on"
+        aria-hidden="true"></i> &nbsp; COMMIT ALL
+    </button>
+    <button (click)="generateAllPayments()"  class="table-main-action-btn " color="primary" skipLocationChange="" mat-raised-button><i class="fa fa-sort-numeric-asc"
+      aria-hidden="true"></i> &nbsp; GENERATE PAYROLL
+  </button>
+    </div>
+  </mat-card-header>
+  <!-- <button mat-raised-button color="primary" (click)="onCommitAll()">Commit All</button> -->
+  <div class="mat-elevation-z8">
+    <div *ngIf="loading">
+      <p><small>Loading, please wait...</small></p>
+      <p>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </p> 
+    </div>
+    <div class="row table-action-row">
+      <div class="col-md-4 col-sm-12">
+        <div>
+          <button class="table-main-action-btn" color="accent" mat-raised-button
+            (click)="exporter.exportTable('csv',{fileName:'Bank_Transfer'})"><i class="fas fa-file-csv"></i> -
+            CSV</button>
+          <button class="table-main-action-btn" color="primary" mat-raised-button
+            (click)="exporter.exportTable('xlsx',{fileName:'Bank_Transfer'})"><i class="fas fa-file-excel"></i> -
+            Excel</button>
+          <button class="table-main-action-btn" color="warn" mat-raised-button
+            (click)="exporter.exportTable('json',{fileName:'Bank_Transfer'})"><i class="fas fa-file-code"></i> -
+            JSON</button>
+          <button class="table-main-action-btn" mat-raised-button
+            (click)="exporter.exportTable('txt',{fileName:'Bank_Transfer'})"><i class="fas fa-file-alt"></i> -
+            TEXT</button>
+        </div>
+      </div>
+      
+        <div class="col-md-6 col-sm-12">
+          <div class="row">
+          <mat-form-field class="table-main-action-btn" appearance="legacy">
+            <mat-label>Select Year</mat-label>
+            <mat-select (selectionChange)="onSelectedYear($event)">
+              <mat-option *ngFor="let year of  years " value="{{year}}">
+                {{ year }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="table-main-action-btn" appearance="legacy">
+            <mat-label>Select Month</mat-label>
+            <mat-select (selectionChange)="onSelectedMonth($event)">
+              <mat-option *ngFor="let month of  monthsArray " value="{{month}}">
+                {{ month }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="table-main-action-btn" appearance="legacy">
+            <mat-label>Select Status</mat-label>
+            <mat-select (selectionChange)="onSelectedCommit($event)">
+              <mat-option *ngFor="let commit of  commits " value="{{commit.value}}">
+                {{ commit.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+      </div>
+    </div>
+    <br>
+    <div class="table-row">
+      <table class="y-scrollable-table" mat-table matSort matTableExporter [dataSource]="dataSource"
+        #exporter="matTableExporter">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+        </ng-container>
+        <ng-container matColumnDef="emp_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> PF NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.emp_no}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>
+          <td mat-cell *matCellDef="let row"> {{row.first_name}} {{row.other_names}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nationalId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> National ID</th>
+          <td mat-cell *matCellDef="let row"> {{row.id_no}} </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="personalPhone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone</th>
+          <td mat-cell *matCellDef="let row"> {{row.personalPhone}} </td>
+        </ng-container> -->
+        <!-- <ng-container matColumnDef="bankName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Bank Name</th>
+          <td mat-cell *matCellDef="let row"> {{row.bank}} </td>
+        </ng-container> -->
+        <!-- <ng-container matColumnDef="bankAccount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Account NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.acct_no}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="gross_salary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gross Salary</th>
+          <td mat-cell *matCellDef="let row"> {{row.gross_pay | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="kraNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> KRA NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.pin_no}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="payeDeductions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> PAYE</th>
+          <td mat-cell *matCellDef="let row"> {{row.paye | currency : 'Ksh.'}}</td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="nssfNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>NSSF NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.nssf_no}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="nssfDeductions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> NSSF Deductions </th>
+          <td mat-cell *matCellDef="let row"> {{row.nssf | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="nhifNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> NHIF NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.nhif_no}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="nhifDeductions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> NHIF Deductions</th>
+          <td mat-cell *matCellDef="let row"> {{row.nhif | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="netPay">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Netpay </th>
+          <td mat-cell *matCellDef="let row"> {{row.net_salary | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <!-- <ng-container matColumnDef="month">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Month</th>
+          <td mat-cell *matCellDef="let row"> {{row.period_m}} </td>
+        </ng-container>
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Year</th>
+          <td mat-cell *matCellDef="let row"> {{row.period_y}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon  color="primary"  (click)="viewPayRoll(row.id)" matTooltip="View payroll">visibility</mat-icon>
+            <!-- <mat-icon *ngIf="is_salary_committed" color="primary"  (click)="onApprove(row.id)">verified_user</mat-icon>
+            <mat-icon *ngIf="is_salary_committed_edit" color="primary" (click)="updateBasicSalary(row.id)">
+              launch</mat-icon> -->
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</mat-card>

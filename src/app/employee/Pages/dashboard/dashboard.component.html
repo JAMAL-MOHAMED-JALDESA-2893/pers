@@ -1,0 +1,84 @@
+<mat-card>
+    <mat-card-header>
+      <h3 class="mat-h1">
+        <strong>Dashboard | Employee</strong>
+      </h3><br>
+    </mat-card-header>
+    <hr>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <mat-card>
+          <small>Your Last 6 month Payroll</small>
+            <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr>
+                  <th>Payroll id</th>
+                  <th>Gross Salary</th>
+                  <th>Net Pay</th>
+                  <th>Month</th>
+                  <th>Year</th>
+                  <th>Created On</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of salaryData">
+                  <td>E&M#{{item.id}}</td>
+                  <td><span class="grossPay">{{item.gross_pay | currency : 'Ksh'}}</span></td>
+                  <td><span class="net_pay">{{item.net_salary | currency : 'Ksh'}}</span></td>
+                  <td>{{item.period_m }}</td>
+                  <td>{{item.period_y }}</td>
+                  <td>{{item.updated_at | date}}</td>
+                </tr>
+                </tbody>
+                </table>
+                <a  [routerLink]="['/portal/payroll']">Read more...</a>
+            </mat-card>
+        </div>
+  <div class="col-md-6 col-sm-12 analysis">
+  <mat-card> 
+    <div id="perfomance-chart"></div>
+  </mat-card>
+  </div>
+  </div>
+  <br>
+    <div class="row">
+      <div class="col-md-6 col-sm-12 score-cards" *ngFor="let item of this.paramsData">
+        <mat-card class="score-card">
+          <div class="pull-left display-block">
+            <h4>{{item.parameter_name}}</h4>
+            <small>Total Goals: 23</small>
+          </div>
+          <div class="pull-right">
+            <!-- <h1>70%</h1>
+            <small>Average Score</small> -->
+          </div>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>KPI</th>
+                <th>Remarks</th>
+                <th>Percentage Score</th>   
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of   item.pm_reviews">
+                <td>{{data.goal}}</td>
+                <td>{{data.remarks}}</td>
+                <td>{{data.percentage_score}}</td>
+              </tr>
+              </tbody>
+              </table>
+      </mat-card>
+      </div>
+    </div>
+  </div>
+  </mat-card>
+  
+
+  
+  
+  
+  
+  
+  
+  

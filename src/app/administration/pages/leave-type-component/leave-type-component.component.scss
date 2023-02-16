@@ -1,0 +1,80 @@
+th{
+  text-align: left !important;
+}
+table{
+  // font-weight: 100px;
+  // font-size: 10px;
+  font-family: monospace;
+}
+
+.actionButton {
+  min-width: unset!important;
+  height: 25px;
+  line-height: 25px;
+  padding: auto;
+  margin: 2px;
+
+  .mat-icon {
+    font-size: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+}
+.update{
+
+  color: rgb(0, 0, 170);
+  font-weight: 800;
+  font-style: bolder;
+  padding: 5px;
+  padding-top:5px;
+  margin: 5px;
+}
+.danger{
+  color: rgb(255, 92, 92) !important;
+  font-weight: 900;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+button{
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+.grossPay{
+  background-color:darkgreen;
+  color:white;
+  font-style: italic;
+  font-weight: 600;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.title-group{
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    font-family: Aerial;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: green;
+
+  }
+  .Approved{
+    background-color:green;
+    padding: 5px;
+  }
+
+  .Pending{
+    background-color:rgb(255, 240, 36);
+    padding: 5px;
+  }
+
+  .Rejected{
+    background-color:red;
+    padding: 5px;
+    color: white;
+  }
+  .false{
+    color: rgb(255, 130, 98) !important;
+  }

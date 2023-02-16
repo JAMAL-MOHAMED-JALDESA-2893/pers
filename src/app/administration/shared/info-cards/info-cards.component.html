@@ -1,0 +1,113 @@
+<!--cards-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>Employees</b></u>
+            <br>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/employees/active">
+             {{  this.totalEmployees}}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/hr.jpg" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+
+    </div>
+    <div class="col-md-2 col-sm-12">
+
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>Gross-pay.</b></u>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/salary/employee/payslip">
+             {{  this.totalGrosspay | currency : 'Ksh '}}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/payslip-icon-3.jpg" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>Netpay.</b></u>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/employees/bank_transfer">
+             {{ this.totalNetpay  | currency : 'Ksh '}}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/netpay.png" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+
+    </div>
+    <div class="col-md-2 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>PAYE</b></u>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/employees/kra_returns">
+             {{ this.totalPaye | currency : 'Ksh ' }}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/paye.png" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>NHIF</b></u>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/employees/nhif_returns">
+             {{ this.totalNhif | currency : 'Ksh ' }}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/nhif.jpg" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <u><b>NSSF</b></u>
+            <p>Year: {{this.year}}</p>
+            <p>Month: {{this.month}}</p>
+            <a routerLink="/administration/employees/nssf_returns">
+             {{ this.totalNssf | currency : 'Ksh '}}
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <img src="../../../../assets/nssf.png" class="img-responsive pull-right" width="76" height="76">
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+</div>
+<!--Graph-->

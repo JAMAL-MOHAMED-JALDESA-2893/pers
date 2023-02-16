@@ -1,0 +1,34 @@
+  .actionButton {
+    min-width: unset!important;
+    height: 25px;
+    line-height: 25px;
+    padding: auto;
+    margin: 2px;
+
+    .mat-icon {
+      font-size: 25px;
+      height: 25px;
+      line-height: 25px;
+    }
+  }
+  mat-card{
+    width: 60%;
+    margin: auto;
+  }
+  .mat-form-field{
+    width: 100%;
+  }
+  .alert {
+    margin-top: 5p;
+  }
+  .pull-right {
+    float: right !important;
+  }
+.add-benefits-btn{
+  margin-top: 10px;
+  width: 100% !important;
+}
+.mat-card-title{
+  align-items: center;
+  text-align: center;
+}

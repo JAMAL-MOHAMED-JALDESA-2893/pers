@@ -1,0 +1,109 @@
+.row{
+    padding: 5px;
+}
+.display-block{
+    display: block !important;
+    width: 100% !important;
+}
+h2{
+    color: rgb(1, 117, 212);
+    text-decoration: underline;
+    // text-align: center;
+}
+mat-card{
+    // width: 60% !important;
+    height: 100% !important;
+    height: max-content  !important;
+    margin: auto;
+    display: block;
+}
+mat-form-field{
+    width: 100%;
+}
+.container-fluid{
+    display: block !important;
+}
+
+legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
+  }
+  .detail{
+      display: block !important;
+      border: dotted rgb(214, 214, 214) 1px;
+      padding: 5px;
+      background-color:  wheat;
+      border-radius: 2px;
+      margin-bottom: 5px;
+  }
+  .review-section{
+    display: block !important;
+    padding: 5px !important;
+    background-color:  rgb(244, 246, 255);
+
+  }
+  .review{
+    display: block !important;
+    border: dotted rgb(185, 185, 185) 1px;
+    padding: 5px;
+    // background-color:  rgb(252, 248, 248);
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+.rightside{
+    height: auto;
+    overflow-y: auto !important;
+    height: 600px !important;
+    overflow: auto !important;
+}
+.comments{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    // background-color: rgb(255, 249, 214);
+}
+mat-expansion-panel{
+    margin-bottom: 5px;
+    // background-color: rgb(122, 255, 122);
+    color: black;
+}
+.pull-right{
+    float: right !important;
+}
+.replies{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: rgb(247, 249, 255);
+    width: 80%;
+    text-align: justify;
+}
+button{
+    margin-bottom: 5px;
+}
+.name{
+    color: #008cff;
+    font-family: monospace;
+}
+.list-comments{
+    height: 200px;
+    overflow: scroll;
+}
+.warning{
+    background-color: rgb(255, 131, 100);
+    border-radius: 8px ;
+    width: 50%;
+    margin: auto;
+}
+.review-button{
+    width: 100%;
+    text-align: center !important;
+}

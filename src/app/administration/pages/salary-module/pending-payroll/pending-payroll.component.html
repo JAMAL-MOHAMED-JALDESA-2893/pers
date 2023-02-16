@@ -1,0 +1,139 @@
+<mat-card>
+  <mat-card-header class="breadcrumb">
+    <p>Home/Pending Approval</p>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+      <div class="mat-elevation-z8">
+        <div *ngIf="loading">
+          <p><small>Loading, please wait...</small></p>
+          <p>
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </p> 
+        </div>
+        <div class="row table-action-row">
+          <div class="col-md-6 col-sm-12">
+            <div>
+              <button class="table-main-action-btn" color="accent" mat-raised-button
+                (click)="exporter.exportTable('csv',{fileName:'Bank_Transfer'})"><i class="fas fa-file-csv"></i> -
+                CSV</button>
+              <button class="table-main-action-btn" color="primary" mat-raised-button
+                (click)="exporter.exportTable('xlsx',{fileName:'Bank_Transfer'})"><i class="fas fa-file-excel"></i> -
+                Excel</button>
+              <button class="table-main-action-btn" color="warn" mat-raised-button
+                (click)="exporter.exportTable('json',{fileName:'Bank_Transfer'})"><i class="fas fa-file-code"></i> -
+                JSON</button>
+              <button class="table-main-action-btn" mat-raised-button
+                (click)="exporter.exportTable('txt',{fileName:'Bank_Transfer'})"><i class="fas fa-file-alt"></i> -
+                TEXT</button>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <mat-icon class="pull-right">search</mat-icon>
+            <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+          </div>
+        </div>
+        <br>
+        <div class="table-row">
+          <table class="y-scrollable-table" mat-table matSort matTableExporter [dataSource]="dataSource"
+            #exporter="matTableExporter">
+            <ng-container matColumnDef="index">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="emp_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>PF NO.</th>
+              <td mat-cell *matCellDef="let row"> {{row.emp_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="fullname">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name</th>
+              <td mat-cell *matCellDef="let row"> {{row.first_name}} {{row.other_names}} </td>
+            </ng-container>
+            <ng-container matColumnDef="id_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let row"> {{row.id_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="acct_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Account NO.</th>
+              <td mat-cell *matCellDef="let row">{{row.acct_no}}</td>
+            </ng-container>
+            <ng-container matColumnDef="bank">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Bank</th>
+              <td mat-cell *matCellDef="let row"> {{row.bank}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nssf_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NSSF NO.</th>
+              <td mat-cell *matCellDef="let row"> {{row.nssf_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nhif_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NHIF NO.</th>
+              <td mat-cell *matCellDef="let row"> {{row.nhif_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="pin_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>KRA PIN</th>
+              <td mat-cell *matCellDef="let row"> {{row.pin_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="period_m">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>
+              <td mat-cell *matCellDef="let row"> {{row.period_m}} </td>
+            </ng-container>
+            <ng-container matColumnDef="period_y">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
+              <td mat-cell *matCellDef="let row"> {{row.period_y}} </td>
+            </ng-container>
+            <ng-container matColumnDef="salary">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary (GP)</th>
+              <td mat-cell *matCellDef="let row"> {{row.salary | currency : 'Ksh'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nssf">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NSSF Deductions</th>
+              <td mat-cell *matCellDef="let row"> {{row.nssf | currency : 'Ksh.'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nhif">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NHIF Deductions</th>
+              <td mat-cell *matCellDef="let row"> {{row.nhif | currency : 'Ksh.'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="paye">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>PAYE</th>
+              <td mat-cell *matCellDef="let row"> {{row.paye | currency : 'Ksh.'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="helb">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>HELB Deductions</th>
+              <td mat-cell *matCellDef="let row"> {{row.helb | currency : 'Ksh.'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="total_deductions_net_salary">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Deductions</th>
+              <td mat-cell *matCellDef="let row"> {{row.total_deductions_net_salary | currency : 'Ksh'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="net_salary">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Net Salary</th>
+              <td mat-cell *matCellDef="let row"> {{row.net_salary | currency : 'Ksh.'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+              <td mat-cell *matCellDef="let row; let i = index">
+                <mat-icon matTooltip="Update Payroll" color="primary"
+                  [routerLink]="['/administration/payroll/user/generation/update', row.id]">launch</mat-icon>
+                <mat-icon matTooltip="verify Payroll" class="success" (click)="onVerifyPayroll(row.id)">
+                  verified_user</mat-icon>
+                <mat-icon color="accent" matTooltip="Delete pending payroll" (click)="onDelete(row.id)">delete_forever
+                </mat-icon>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+            Row shown when there is no matching data.
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </div>
+  </div>
+</mat-card>

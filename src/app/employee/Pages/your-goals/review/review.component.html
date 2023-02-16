@@ -1,0 +1,104 @@
+<mat-card>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 leftside display-block">
+        
+              <div class="review-section">
+                <h2>Employee Goal</h2>
+                <div class="review">
+                  <h3>Review Heading</h3>
+                  <p>Delivery</p>
+                  </div>
+
+                  <div class="review">
+                    <h3>Perfomance Matrics</h3>
+                    <p>Employee is supposed to deliver the required delivarables in time.</p>
+                    </div>
+
+
+              <!-- Start of Prev Rev -->
+              <h2>Last Review</h2>
+          <div class="review">
+            <h3>Previouse Score</h3>
+            <p>{{this.percentage_score}}.</p>
+            </div>
+
+          <div class="review">
+            <h3>Previouse Remarks</h3>
+            <p>{{ this.remarks}}.</p>
+            </div>
+
+          <div class="review">
+            <h3>Previouse Recomendations</h3>
+            <p>{{this.reccomndations}}.</p>
+          </div>
+        </div>
+
+          <!-- Start of Comments -->
+          <div class="example-action-buttons">
+          </div>
+        </div>
+        <!-- end of left side -->
+        <div class="col-md-6 col-sm-12 rightside display-block">
+          <div class="row">
+            <h3>Review Employee Goals</h3>
+            </div>
+           
+            <mat-accordion class="example-headers-align" multi matBadge=" {{this.keyCount }}" matBadgePosition="after" matBadgeColor="accent" >
+              <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     Load comments...
+                     <span class="pull-right">
+                     
+                     </span>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+  
+                <button mat-raised-button color="primary"  class="action-button btn-block btn-sm" (click)="openCommentDialog(this.goal_id)" >Post a comment</button>
+                <div *ngFor="let item of this.comments" >
+                  <mat-card class="comments">
+                    <p>
+                      Commented by:
+                    <span class="name">{{this.commentedBy}}</span>
+                    </p>
+                    <p>
+                    {{item.comment}}
+                  </p>
+                  <small>{{item.updated_at | date}}</small>
+                  
+                    <a class="pull-right" color="primary" (click)="openReplyDialog(item.id)" >
+                      <mat-icon>reply</mat-icon>
+                    </a>
+                  </mat-card>
+                  <div *ngFor="let replies of item.pm_replies" class="items-pull-right">
+                    <mat-card class="replies">
+                      <p>Replied by: 
+                        <span class="name">{{data.firstName}}</span>
+                      </p>
+                      <p>
+                        {{replies.reply}}
+                        </p>
+                  <small>{{replies.updated_at | date}}</small>
+  
+                  <a class="pull-right" color="primary" (click)="openReplyDialog(item.id)" >
+                    <mat-icon>reply</mat-icon>
+                  </a>
+                  <!-- <a class="pull-right" color="primary">
+                    <mat-icon>thumb_up</mat-icon> |
+                  </a>  -->
+                    </mat-card>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+              
+            </mat-accordion>
+        
+        </div>
+      </div>   
+    </div>
+    <br>
+    <br>
+  </mat-card>
+  
+  

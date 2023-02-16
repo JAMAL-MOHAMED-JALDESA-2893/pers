@@ -1,0 +1,40 @@
+
+ <div class="main-section">
+    <h3>Set Goal: </h3>
+<form
+   class="form"
+   [formGroup]="formData"
+   (ngSubmit)="onSubmit()"
+   #resetRequestsForm="ngForm"
+   novalidate
+ >
+     <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Holiday Name</mat-label>
+            <input matInput  formControlName="holiday_name" required>
+            <mat-hint>Hint: Kindly enter the Holiday Name </mat-hint>
+          </mat-form-field>
+     </p>
+     <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input formControlName="holiday_date" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-hint>Hint:Kindly select the date of that holiday. </mat-hint>
+     </p>
+     <p>
+        <mat-checkbox formControlName="is_active" class="example-margin">Is Active</mat-checkbox>
+        </p>
+   <button class="pull-right" mat-raised-button color="primary" type="submit">
+     <span
+       *ngIf="loading"
+       class="spinner-border spinner-border-sm mr-1"
+     ></span>
+     Submit
+   </button>
+   <br />
+ </form>
+ </div>
+

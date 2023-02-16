@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-header>
+    <h3 class="mat-h1">
+      <strong>Showing Data For : Finacle Department</strong>
+    </h3>
+  </mat-card-header>
+  <hr>
+
+  <button mat-raised-button color="primary" routerLink="/administration/employee/perfomance/management/evaluation/set/goal/">+ New Goal</button>
+  
+<div class="container-fluid">
+
+  <!-- Table Part -->
+  <div class="row">
+    <div class="container-fluid">
+      <mat-card>
+       <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+         <thead>
+           <tr>
+             <th>Parameter Name</th>
+             <th>Measurement Type</th>
+             <th>Maximum Target</th>
+             <th>Average Target</th>
+             <th>Minimum Target</th>
+             <th>Created on</th>
+             <th>updated on</th>
+             <th>Operations</th>
+         </thead>
+         <tbody>
+           <tr *ngFor="let item of data">
+             <td>{{item.parameter_name}}</td>
+             <td>{{item.measurement_type}}</td>
+             <td>{{item.max_target | percent}}</td>
+             <td>{{item.ave_target | percent}}</td>
+             <td>{{item.min_target | percent}}</td>
+             <td>{{item.created_at | date }}</td>
+             <td>{{item.updated_at | date }}</td>
+             <td>
+                   <a class="update"  color="accent"  [routerLink]="['/administration/employee/perfomance/parameters/update/', item.id]" ><mat-icon>launch</mat-icon></a>
+                   <a class="danger"  color="accent"  (click)="onDelete(item.id)" routerLinkActive="list-item-active" ><mat-icon>delete_outline</mat-icon></a>
+
+             </td>
+           </tr>
+           </tbody>
+           </table>
+       </mat-card>
+
+    </div>
+  </div>
+</div>
+</mat-card>
+
+
+
+

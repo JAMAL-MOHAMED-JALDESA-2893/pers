@@ -1,0 +1,81 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <mat-card>
+        <form
+          class="form"
+          [formGroup]="formData"
+          (ngSubmit)="submitData()"
+          #resetRequestsForm="ngForm"
+          novalidate
+        >
+        <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="full-width"  appearance="fill"
+            >
+            <mat-label>Leave Request Type</mat-label>
+            <mat-select formControlName="leave_type_id">
+              <mat-option [value]="leave.id" *ngFor="let leave of this.dataArray"
+                >{{ leave.leaveType }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="handleError('leave_type_id', 'required')">
+              You must Select<strong>Leave Type </strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+
+         <mat-form-field appearance="fill">
+        <mat-label>Kindly select your leave period</mat-label>
+        <mat-date-range-input [min]="minDate" [max]="maxDate"  [formGroup]="formData" [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="formData.controls.startDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="formData.controls.endDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+         <mat-hint>Hint:Kindly click on the icon and select two dates. </mat-hint>
+      </mat-form-field>
+
+      </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+        <mat-form-field appearance="fill">
+        <mat-label>Reason for Leave</mat-label>
+        <textarea matInput formControlName="employeeReasonForLeave"></textarea>
+
+            <mat-error *ngIf="handleError('employeeReasonForLeave', 'required')">
+              Enter description please
+            </mat-error>
+      </mat-form-field>
+        </div>
+        </div>
+
+          <button class="pull-right" mat-raised-button color="primary" type="submit">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Submit
+          </button>
+
+          <br>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><mat-icon>warning</mat-icon> {{ error }}</div>
+          <br />
+        </form>
+      </mat-card>
+
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <app-leave-faqs></app-leave-faqs>
+    </div>
+    </div>
+</div>
+

@@ -1,0 +1,167 @@
+<mat-card>
+  <mat-card-header>
+    <p>Home/ / Balance Score Card</p>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 cards">
+              <mat-card>
+                <div class="row">
+                  <div class="col-md-8 col-sm-12">
+                    <u><b>Best Perfoming Employee</b></u>
+                    <br>
+                    <label>Name:</label>
+                    <p>  {{this.Firstname}}  {{this.Middlename}}   {{this.Lastname}} </p>
+                    <label>Department:</label>
+                    <p>  {{this.Departmentname}} </p>
+                    <label>Occupation:</label>
+                    <p>  {{this.Occupation}} </p>
+                  </div>
+                  <div class="col-md-4 col-sm-12">
+                    <h1 class="">{{this.Balancescore}}%</h1>
+                    <small>Avg % Score</small>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 cards">
+              <mat-card>
+                <div class="row">
+                  <div class="col-md-8 col-sm-12">
+                    <u><b>Total Enrolled Employees</b></u>
+                    <br>
+                    <h1>{{this.employeeCount }}</h1>
+                  </div>
+                  <div class="col-md-4 col-sm-12">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+        </div>
+        </div>
+  <div class="col-md-8 col-sm-12 analysis">
+  <mat-card> 
+      <a  class="action-button" mat-button [matMenuTriggerFor]="modify">
+        Select Year
+        <mat-icon>arrow_drop_down</mat-icon>
+      </a>
+      <small>{{this.year}}</small>
+<mat-menu #modify="matMenu">
+    <mat-nav-list *ngFor="let item of this.yearData"  >
+    <a mat-list-item routerLinkActive="list-item-active" (click)="getAveragePerfomanceYearly(item.year)">
+        {{item.year}}
+      </a>
+      
+    </mat-nav-list>
+</mat-menu>
+    <!-- <div id="container"></div>  -->
+    <div id="Overal-Perfomance"></div> 
+    
+  </mat-card>
+  </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 score-cards">
+        <mat-card>
+          <u><b>Top 3 Perfoming Employees</b></u>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Employee Department</th>
+                <th>Employee Ocuppation</th> 
+                <th>Perfomance Score</th>  
+                <th>Detail</th>  
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.top3EmployeeData">
+                <td>{{item.firstname}} {{item.middlename}} {{item.lastname}}</td>
+                <td>{{item.departmentname}}</td>
+                <td>{{item.occupation}}</td>
+                <td>{{item.balancescore}}</td>
+                <td><a matTooltip="View Data" class="update"  color="accent"  [routerLink]="['/administration/employee/perfomance/management/balance/score/card/individual/analysis/', item.employeeid]" ><mat-icon>launch</mat-icon></a></td>          
+              </tr>
+              </tbody>
+              </table>
+        </mat-card>
+
+        <mat-card>
+          <u><b>Last 3 Perfoming Employees</b></u>
+          <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Employee Department</th>
+                <th>Employee Ocuppation</th> 
+                <th>Perfomance Score</th>   
+                <th>Detail</th>   
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of this.last3EmployeesData">
+                <td>{{item.firstname}} {{item.middlename}} {{item.lastname}}</td>
+                <td>{{item.departmentname}}</td>
+                <td>{{item.occupation}}</td>
+                <td>{{item.balancescore}}</td>           
+                <td><a matTooltip="View Data"class="update"  color="accent"  [routerLink]="['/administration/employee/perfomance/management/balance/score/card/individual/analysis/', item.employeeid]" ><mat-icon>launch</mat-icon></a></td>  
+              </tr>
+              </tbody>
+              </table>
+        </mat-card>
+    </div>
+    <div class="col-md-6 col-sm-12 score-cards">
+      <mat-card>
+        <u><b>Ranking Employees Per Perfomance</b></u>
+        <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Employee Department</th>
+              <th>Employee Ocuppation</th> 
+              <th>Perfomance Score</th> 
+              <th>Status</th>   
+              <th>Detail</th>  
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.employeeRankingData" >
+              <td>{{item.firstname}} {{item.middlename}} {{item.lastname}}</td>
+              <td>{{item.departmentname}}</td>
+              <td>{{item.occupation}}</td>
+              <td>{{item.balancescore}}</td>  
+              <td *ngIf="item.balancescore < 40" >
+                <span class="Poor">Poor</span>
+              </td>  
+              <td *ngIf="item.balancescore >= 40 && item.balancescore < 50" >
+                <span class="Satisfactory">Satisfactory</span>
+              </td>  
+              <td *ngIf="item.balancescore >=50 && item.balancescore < 70" >
+                <span class="Good"> Good</span>              
+              </td> 
+              <td *ngIf="item.balancescore >=70 && item.balancescore <= 100">
+                <span class="Excelent">Excelent</span>                
+              </td> 
+              <td><a class="update"  matTooltip="View By Employee" color="accent"  [routerLink]="['/administration/employee/perfomance/management/balance/score/card/individual/analysis/', item.employeeid]" ><mat-icon>launch</mat-icon></a></td>    
+            </tr>
+            </tbody>
+            </table>
+            
+      </mat-card>
+    </div>
+  </div>
+  </div>
+  </mat-card>
+  
+
+  
+  
+  
+  
+  
+  
+  

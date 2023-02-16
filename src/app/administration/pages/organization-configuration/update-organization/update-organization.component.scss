@@ -1,0 +1,49 @@
+.example-stepper {
+  margin-top: 8px;
+  margin: auto;
+  width:95%;
+}
+mat-step {
+  width:100%;
+  margin: auto;
+}
+form{
+  width:100%;
+  margin: auto !important;
+}
+mat-card{
+  margin: auto;
+  margin: 10px;
+  padding:10px;
+}
+
+mat-stepper{
+  text-align: center;
+}
+button{
+  margin: 10px;
+}
+.row{
+  text-align: center;
+}
+.warning{
+  color: rgb(255, 75, 75);
+}
+.documents{
+  text-align: left !important;
+  width: 100%;
+}
+mat-form-field{
+  width: 100%;
+  margin-top: 16px;
+}
+
+.buttonSubmit{
+  text-align: center !important;
+  float: center !important;
+}
+
+.update-config-btn{
+  margin-top: 10px;
+    width: 100% !important;
+}

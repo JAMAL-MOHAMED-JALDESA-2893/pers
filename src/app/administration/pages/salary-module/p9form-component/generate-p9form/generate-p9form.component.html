@@ -1,0 +1,49 @@
+<mat-card>
+
+  <span
+          *ngIf="loading"
+          class="loader"
+        > Your report is being generated, please wait... </span>
+
+    <form
+      class="form"
+      [formGroup]="formData"
+      (ngSubmit)="getEmployeeYearlyReport()"
+      #resetRequestsForm="ngForm"
+      novalidate
+    >
+
+    <div class="row">
+    <div class="col-md-12">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Employer Name</mat-label>
+        <input matInput placeholder="Enter Employers Name" formControlName="employers_name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Employer Pin</mat-label>
+      <input matInput placeholder="Enter Employes PIN" formControlName="employers_pin" required>
+  </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter Year</mat-label>
+        <input type="number" maxlength="4" matInput placeholder="Enter Year" formControlName="year" required>
+    </mat-form-field>
+    </div>
+    </div>
+     <button class="pull-right" mat-raised-button color="primary" type="submit">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Submit
+      </button>
+
+      <br>
+      <br />
+    </form>
+
+
+
+  </mat-card>

@@ -1,0 +1,154 @@
+
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>
+    <a routerLink="/administration/configurations/kra/" skipLocationChange>KRA / </a>Update KRA Tax Band
+  </div>
+</mat-card-header>
+<mat-card>
+  <mat-card-title>UPDATE KRA TAX CONFIGURATIONS</mat-card-title>
+  <form
+    class="form"
+    [formGroup]="formData"
+    (ngSubmit)="submitData()"
+    #resetRequestsForm="ngForm"
+    novalidate>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>KRA Tax Band</mat-label>
+          <mat-select formControlName="tax_band">
+            <mat-option [value]="tax_band" *ngFor="let tax_band of kraBandArray"
+              >{{ tax_band }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf=" formData.controls['tax_band'].hasError('required')">
+            Tax band required!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Monthly Amount Taxed</mat-label>
+          <input matInput minlength="2" maxlength="7" pattern="[0-9]+" formControlName="amount_monthly"/>
+          <mat-error *ngIf=" formData.controls['amount_monthly'].hasError('required')">
+            Monthly amount taxed required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('amount_monthly').hasError('minlength' || 'maxLength' || 'pattern')">
+            Kra monthly amount taxed is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Annual Amount Taxed</mat-label>
+          <input matInput minlength="2" maxlength="7" pattern="[0-9]+" formControlName="amount_annual"/>
+          <mat-error *ngIf=" formData.controls['amount_annual'].hasError('required')">
+            Annual amount taxed required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('amount_annual').hasError('minlength' || 'maxLength' || 'pattern')">
+            Kra Annual amount taxed is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Monthly Personal Relief</mat-label>
+          <input matInput minlength="2" maxlength="4" pattern="[0-9]+" formControlName="personal_relief_monthly"/>
+          <mat-error *ngIf=" formData.controls['personal_relief_monthly'].hasError('required')">
+            Monthly personl relief required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('personal_relief_monthly').hasError('minlength' || 'maxLength' || 'pattern')">
+            Monthly personl relief is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Annual Personal Relief</mat-label>
+          <input matInput minlength="2" maxlength="6" pattern="[0-9]+" formControlName="personal_relief_annualy"/>
+          <mat-error *ngIf=" formData.controls['personal_relief_annualy'].hasError('required')">
+            Annual personl relief required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('personal_relief_annualy').hasError('minlength' || 'maxLength' || 'pattern')">
+            Annual personl relief is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Deduction Rate</mat-label>
+          <input matInput minlength="1" maxlength="2" pattern="[0-9]+" formControlName="rate"/>
+          <mat-error *ngIf=" formData.controls['rate'].hasError('required')">
+            Deduction rate required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('rate').hasError('minlength' || 'maxLength' || 'pattern')">
+            Deduction rate is invalid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div [align]="'center'">
+        <div class="col-md-4 col-sm-12">
+          <button class="update-kra-btn" mat-raised-button color="primary" type="submit">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            UPDATE
+          </button>
+        </div>
+      </div>
+
+<!-- 
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Tax Band</mat-label>
+          <mat-select formControlName="tax_band">
+            <mat-option [value]="tax_band" *ngFor="let tax_band of kraBandArray"
+              >{{ tax_band }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Amount Annual</mat-label>
+          <input matInput placeholder="Enter Annual Amount"
+            formControlName="amount_annual" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Amount Monthly</mat-label>
+          <input matInput placeholder="Enter Monthly Amount"
+            formControlName="amount_monthly" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Deduction Rate</mat-label>
+          <input matInput placeholder="Enter Deduction Rate"
+            formControlName="rate" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Personal Relief (Monthly)</mat-label>
+          <input matInput placeholder="Enter Personal Relief"
+            formControlName="personal_relief_monthly" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Personal Relief (Annualy)</mat-label>
+          <input matInput placeholder="Enter Personal Relief (Annualy)"
+            formControlName="personal_relief_annualy" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="pull-right" mat-raised-button color="primary" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"></span>
+      Submit
+    </button>
+    <br>
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><mat-icon>warning</mat-icon>
+      {{ error }}</div>
+    <br /> -->
+  </form>
+</mat-card>

@@ -1,0 +1,110 @@
+.example-stepper {
+  margin-top: 8px;
+  margin: auto;
+  width:95%;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  margin: 16px;
+  width: 30%;
+  float: center;
+}
+mat-step {
+  width:100%;
+  margin: auto;
+}
+form{
+  width:100%;
+  margin: auto !important;
+}
+mat-card{
+  margin: auto;
+  margin: 10px;
+  padding:10px;
+}
+
+mat-stepper{
+  text-align: center;
+}
+button{
+  margin: 10px;
+}
+.row{
+  text-align: center;
+}
+
+
+
+.danger{
+  color: rgb(255, 92, 92) !important;
+  font-weight: 900;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+button{
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+.grossPay{
+  background-color:darkgreen;
+  color:white;
+  font-style: italic;
+  font-weight: 600;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.Approved{
+  background-color:green;
+  padding: 5px;
+  color: white;
+}
+
+.Pending{
+  background-color:rgb(255, 240, 36);
+  padding: 5px;
+}
+
+.Rejected{
+  background-color:red;
+  padding: 5px;
+  color: white;
+}
+
+
+.Generated{
+  background-color:rgb(0, 0, 0);
+  padding: 5px;
+  color: white;
+  border-radius: 12px;
+
+
+}
+.Completed{
+  background-color:rgb(64, 153, 255);
+  padding: 5px;
+  color: white;
+  border-radius: 12px;
+
+}
+.Processing{
+  background-color:rgb(0, 255, 0);
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  border-radius: 12px;
+
+}
+.Rejected{
+  background-color:red;
+  padding: 5px;
+  color: white;
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+}

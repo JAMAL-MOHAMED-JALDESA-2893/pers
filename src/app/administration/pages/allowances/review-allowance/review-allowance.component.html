@@ -1,0 +1,22 @@
+<div class="main-section">
+  <h3>Review Allowance Request: </h3>
+  <form class="form" [formGroup]="formData" (ngSubmit)="onSubmit()" #resetRequestsForm="ngForm" novalidate>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Rejection Reason</mat-label>
+        <textarea matInput formControlName="rejection_reason_director" required></textarea>
+      </mat-form-field>
+    </p>
+    <div mat-dialog-action [align]="'end'" class="example-button-row">
+      <button mat-raised-button color="warn" mat-dialog-close>CANCEL</button>
+      <button mat-raised-button color="primary" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+          </span>REJECT
+      </button>
+  </div>
+    <!-- <button class="pull-right" mat-raised-button color="accent" type="submit">
+      REJECT
+    </button> -->
+    <br />
+  </form>
+</div>

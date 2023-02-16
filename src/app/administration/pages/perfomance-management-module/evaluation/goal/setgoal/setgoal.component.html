@@ -1,0 +1,45 @@
+
+ <div class="main-section">
+    <h3>Set Goal: </h3>
+<form
+   class="form"
+   [formGroup]="formData"
+   (ngSubmit)="onSubmit()"
+   #resetRequestsForm="ngForm"
+   novalidate
+ >
+ <p>
+    <mat-form-field appearance="outline">
+        <mat-label>Select Goal Type</mat-label>
+        <mat-select formControlName="parameter_id" required>
+          <mat-option [value]="goalPm.id" *ngFor="let goalPm of this.data"
+            required>{{ goalPm.parameter_name }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+ </p>
+   <p>
+       <mat-form-field appearance="outline">
+         <mat-label>Goal</mat-label>
+         <textarea matInput formControlName="goal" required></textarea>
+       </mat-form-field>
+     </p>
+     <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Set Review Circle(months)</mat-label>
+            <input matInput  formControlName="next_month_review_delay" required>
+            <mat-hint>Hint: Kindly enter months in numerical value i.e 2 for 2 months etc</mat-hint>
+          </mat-form-field>
+     </p>
+
+   <button class="pull-right" mat-raised-button color="primary" type="submit">
+     <span
+       *ngIf="loading"
+       class="spinner-border spinner-border-sm mr-1"
+     ></span>
+     Submit
+   </button>
+   <br />
+ </form>
+ </div>

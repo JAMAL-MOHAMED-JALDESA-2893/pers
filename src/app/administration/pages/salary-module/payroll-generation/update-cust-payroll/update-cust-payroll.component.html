@@ -1,0 +1,288 @@
+<mat-card>
+    <mat-card-header class="breadcrumb">
+      <p>Home/Manual /Payroll</p>
+    </mat-card-header>
+    <mat-card>
+        <form
+          class="form"
+          [formGroup]="formData"
+          (ngSubmit)="onAdd()"
+          #resetRequestsForm="ngForm"
+          novalidate
+        >
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee No.</mat-label>
+                    <input matInput placeholder="e.g 023 " formControlName="emp_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="e.g Peter" formControlName="first_name" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Other Names</mat-label>
+                    <input matInput placeholder="other employee names" formControlName="other_names" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>National ID</mat-label>
+                    <input matInput placeholder="Enter Employee National ID" formControlName="id_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Account No</mat-label>
+                    <input matInput placeholder="Enter Employee Account " formControlName="acct_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee Bank</mat-label>
+                    <input matInput placeholder="Enter Employee Bank" formControlName="bank" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>NSSF No.</mat-label>
+                    <input matInput placeholder="e.g 023 " formControlName="nssf_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>NHIF NO</mat-label>
+                    <input matInput placeholder="NHIF" formControlName="nhif_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>KRA PIN</mat-label>
+                    <input matInput placeholder="Enter Employee KRA PIN" formControlName="pin_no" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Period (Month)</mat-label>
+                    <input matInput placeholder="Enter Salary Period" formControlName="period_m" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Period (Year)</mat-label>
+                    <input type="number" matInput placeholder="Enter Salary Year" formControlName="period_y" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee Salary(GP)</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee Grosspay" formControlName="salary" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>NSSF Deduction</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee nssf deductions" formControlName="nssf" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>NHIF Deductions</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee NHIF Deductions" formControlName="nhif" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>PAYE Deductions</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee PAYE Deductions" formControlName="paye" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>HELB Deductions</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee HELB Deductions" formControlName="helb" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Total Deductions</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee Total Deductions" formControlName="total_deductions_net_salary" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Net Salary</mat-label>
+                    <input type="number" matInput placeholder="Enter Employee Net Salary" formControlName="net_salary" required>
+                </mat-form-field>
+            </div>
+        </div>
+          <br />
+          <button class="pull-right" mat-raised-button color="primary" type="submit">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Submit
+          </button>
+          <br />
+          <br />
+        </form>
+      </mat-card>
+<!-- 
+    <mat-divider></mat-divider>
+    <br>
+        <div class="mat-elevation-z8">
+          <div class="row table-action-row">
+            <div class="col-md-6 col-sm-12">
+          <div>
+            <button class="table-main-action-btn"  class="table-main-action-btn" mat-stroked-button color="primary" routerLink="/administration/create/new/department"  >+ Download Accepted Excel Template </button>
+            <button class="table-main-action-btn"  class="table-main-action-btn" mat-stroked-button color="primary" routerLink="/administration/create/new/department"  >+ Upload Excel </button>
+            <button class="table-main-action-btn" color="accent" mat-raised-button (click)="exporter.exportTable('csv',{fileName:'Exported Data'})"><i class="fas fa-file-csv"></i> - CSV</button>
+            <button class="table-main-action-btn" color="primary" mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'Exported Data'})"><i class="fas fa-file-excel"></i> - Excel</button>
+            <button class="table-main-action-btn" color="warn" mat-raised-button (click)="exporter.exportTable('json',{fileName:'Exported Data'})"><i class="fas fa-file-code"></i> - JSON</button>
+            <button class="table-main-action-btn"mat-raised-button (click)="exporter.exportTable('txt',{fileName:'Exported Data'})"><i class="fas fa-file-alt"></i> - TEXT</button>
+          </div>
+              </div>
+            <div class="col-md-6 col-sm-12">
+            <mat-icon class="pull-right">search</mat-icon>
+            <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+            </div>
+          </div>
+          <br>  
+          <div class="table-row">
+            
+            <table class="y-scrollable-table"mat-table matSort matTableExporter [dataSource] = "dataSource" #exporter="matTableExporter">
+            <ng-container matColumnDef="index">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="emp_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee No</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.emp_no}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="first_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="other_names">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Other Names</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.other_names}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="id_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> National ID</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.id_no}}  </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="acct_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Account Number</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row">{{row.acct_no}}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="bank">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Bank</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.bank}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="nssf_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>NSSF No</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.nssf_no}} </td>
+              </ng-container>
+              <ng-container matColumnDef="nhif_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>NHIF No</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.nhif_no}} </td>
+              </ng-container>
+              <ng-container matColumnDef="pin_no">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>KRA Pin</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.pin_no}} </td>
+              </ng-container>
+              <ng-container matColumnDef="period_m">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Period (Months)</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.bank}} </td>
+              </ng-container>
+          
+  
+              <ng-container matColumnDef="period_y">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Period (Years)</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.period_y}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="salary">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary (GP)</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.salary}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="nssf">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>NSSF Deductions</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.nssf}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="nhif">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>NHIF Deductions</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.nhif}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="paye">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Paye</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.paye}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="helb">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Helb Deductions</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.helb}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="total_deductions_net_salary">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Deductions</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.total_deductions_net_salary}} </td>
+              </ng-container>
+              <ng-container matColumnDef="net_salary">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Net Salary</th>
+                <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.net_salary}} </td>
+              </ng-container>
+              
+  
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <a class="update"  color="accent" matTooltip="Update Department" (click)="onEdit(i)" ><mat-icon>launch</mat-icon></a>
+                <a class="danger"  color="accent" matTooltip="Delete Department" (click)="onDelete(i)" routerLinkActive="list-item-active" ><mat-icon>delete_outline</mat-icon></a>
+    
+                </td>
+              </ng-container>
+  
+  
+              
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+             Row shown when there is no matching data.
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+          </table>
+          </div>
+          <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+        <br>
+        <div class="row">
+            <button class="submit-all  btn-sm" mat-raised-button color="primary" type="btn" (click)=" onSubmit()">
+                <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
+                Submit All
+              </button>
+        </div> -->
+      </mat-card>

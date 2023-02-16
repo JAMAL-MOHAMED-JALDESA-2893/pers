@@ -1,0 +1,48 @@
+mat-card
+{
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.stats-cards  mat-card{
+  // background-image: url(../../../../assets/info.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 120px;
+  width: 100%;
+  font-weight: 500;
+  color: green;
+  font-family: monospace;
+}
+.stats-cards a {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Times New Roman', Times, serif;
+  margin: auto;
+  margin-left: 5px;
+  margin-top: 50%;
+  text-decoration: underline double;
+}
+.tableStatistics{
+
+  width: 90% !important;
+}
+a{
+  font-family: Aerial;
+  color: blue;
+
+}
+mat-icon{
+  font-size: 60px;
+  font-weight: 800;
+  margin-left: 5%;
+  margin-top: 50%;
+}
+b{
+  color: black;
+}
+.container-fluid{
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100% !important;
+}
+

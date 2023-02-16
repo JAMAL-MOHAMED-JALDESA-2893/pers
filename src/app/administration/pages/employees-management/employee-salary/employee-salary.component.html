@@ -1,0 +1,56 @@
+
+<div class="row classLoader">
+<span
+        *ngIf="loading"
+        class="loader"
+      > Your report is being generated,please wait... </span>
+</div>
+<mat-card>
+
+
+  <mat-card-header>
+    <div class="breadcrumb">Home/Configuration/Employee Salary.</div>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+
+<table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead>
+    <tr>
+      <th>PAYSLIP</th>
+      <th>Employee Name</th>
+      <th>Basic Salary</th>
+      <th>PAYE deductions</th>
+      <th>NHIF deductions</th>
+      <th>NSSF deductions</th>
+      <th>Helb deductions</th>
+      <th>Net Pay</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Created On</th>
+      <th>Payslip</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of employeeSalary">
+      <td>No.{{item.id}}</td>
+      <td>{{employeeFirstName}} {{employeeMiddleName}} {{employeeLastName}}</td>
+      <td><span class="grossPay">{{item.basic_salary|currency : 'Ksh'}}</span></td>
+      <td>{{item.paye_deductions| currency : 'Ksh'}}</td>
+      <td>{{item.nssf_deductions| currency : 'Ksh'}}</td>
+      <td>{{item.nhif_deductions| currency : 'Ksh'}}</td>
+      <td>{{item.helb_deductions| currency : 'Ksh'}}</td>
+      <td><span class="netPay">{{item.net_pay| currency : 'Ksh'}}</span></td>
+      <td>{{item.month}}</td>
+      <td>{{item.year}}</td>
+      <td>{{item.createdAt | date }}</td>
+      <td>
+            <a class="update"  color="accent"  (click)="generatePayslip(item.id)" > <mat-icon>receipt</mat-icon></a>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+</mat-card>
+
+
+
+

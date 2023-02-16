@@ -1,0 +1,64 @@
+<mat-card>
+    <mat-card-header>
+        <h3 class="mat-h1">
+            <strong>Leave-Request</strong>
+        </h3>
+    </mat-card-header>
+    <hr>
+
+    <div mdbDropdown class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" routerLink="make" type="button" id="dropdownMenuButton" aria-expanded="true" mdbDropdownToggle>
+ Leave-Request</button>
+
+        <table mat-table [dataSource]="employeeLeaves" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="leave_type">
+                <th mat-header-cell *matHeaderCellDef> Leave Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.leave_type}} </td>
+            </ng-container>
+            <ng-container matColumnDef="start_date">
+                <th mat-header-cell *matHeaderCellDef> Leave From </th>
+                <td mat-cell *matCellDef="let element"> {{element.start_date}} </td>
+            </ng-container>
+            <ng-container matColumnDef="end_date">
+                <th mat-header-cell *matHeaderCellDef> Leave To </th>
+                <td mat-cell *matCellDef="let element"> {{element.end_date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> <span class="{{element.status}}">{{element.status}}</span> </td>
+            </ng-container>
+            <ng-container matColumnDef="supervisor_approval">
+                <th mat-header-cell *matHeaderCellDef> Supervisor Approval </th>
+                <td mat-cell *matCellDef="let element"> <span class="{{element.supervisor_approval}}">{{element.supervisor_approval}}</span></td>
+            </ng-container>
+            <ng-container matColumnDef="hr_approval">
+                <th mat-header-cell *matHeaderCellDef> HR Approval </th>
+                <td mat-cell *matCellDef="let element"> <span class="{{element.hr_approval}}">{{element.hr_approval}}</span> </td>
+            </ng-container>
+            <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef> Created on </th>
+                <td mat-cell *matCellDef="let element"> {{element.created_at |date}}</td>
+            </ng-container>
+            <ng-container matColumnDef="updated_at">
+                <th mat-header-cell *matHeaderCellDef> Updated on </th>
+                <td mat-cell *matCellDef="let element"> {{element.updated_at |date}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Operations </th>
+                <td mat-cell *matCellDef="let element">
+                    <a class="update" color="accent" [routerLink]="['/portal/leave/requests/update/', element.id]">
+                        <mat-icon>launch</mat-icon>
+                    </a>
+                    <a class="danger" color="accent" (click)="onDelete(element.id)" routerLinkActive="list-item-active">
+                        <mat-icon>delete_outline</mat-icon>
+                    </a>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>

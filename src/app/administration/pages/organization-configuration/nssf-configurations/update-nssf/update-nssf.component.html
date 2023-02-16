@@ -1,0 +1,166 @@
+<!-- <mat-card>
+  <form
+    class="form"
+    [formGroup]="formData"
+    (ngSubmit)="submitData()"
+    #resetRequestsForm="ngForm"
+    novalidate
+  >
+  <div class="row">
+  <div class="col-md-12">
+    <mat-form-field appearance="fill">
+      <mat-label>Tax Band</mat-label>
+      <input matInput placeholder="NSSF 2021" formControlName="tax_band" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+      <mat-label>NSSF Min Amount</mat-label>
+      <input matInput placeholder="Ksh" formControlName="min_nssf" required>
+  </mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>NSSF Max Amount</mat-label>
+  <input matInput placeholder="Ksh" formControlName="max_nssf" required>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Employee Payment Rate</mat-label>
+  <input matInput placeholder="KIndly Enter in range 0-100" formControlName="employee_payment_rate" required>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Company Payment Rate</mat-label>
+  <input matInput placeholder="Kindly Enter in range 0-100" formControlName="company_payment_rate" required>
+</mat-form-field>
+
+  </div>
+  </div>
+   <button class="pull-right" mat-raised-button color="primary" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Submit
+    </button>
+    <br />
+    <br>
+  </form>
+</mat-card> -->
+
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange="">Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange="">Configurations / </a>
+    <a routerLink="/administration/configurations/nssf/" skipLocationChange="">NSSF / </a>Update NSSF  
+  </div>
+</mat-card-header>
+<mat-card>
+<form [formGroup]="formData">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Tax Band</mat-label>
+        <input matInput placeholder="e.g NSSF 2022" minlength="4" maxlength="40" formControlName="tax_band">
+        <mat-error *ngIf=" formData.controls['tax_band'].hasError('required')">
+          Tax band required!!
+        </mat-error>
+        <mat-error *ngIf="formData.get('tax_band').hasError('minlength' || 'maxLength')">
+          Provide a valid NSSF tax band.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Earning Class</mat-label>
+        <mat-select placeholder="e.g UEL" formControlName="earning_class">
+          <mat-option *ngFor="let earningClasses of  earningClass " value="{{earningClasses.value}}">
+            {{ earningClasses.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf=" formData.controls['earning_class'].hasError('required')">
+          Earning class category required!!
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Employee Payment Rate</mat-label>
+        <input matInput minlength="1" maxlength="2" pattern="[0-9]+" placeholder="e.g 6.0"
+          formControlName="employee_payment_rate">
+        <mat-error *ngIf=" formData.controls['employee_payment_rate'].hasError('required')">
+          Payment rate required!!
+        </mat-error>
+        <mat-error *ngIf="formData.get('employee_payment_rate').hasError('minlength' || 'maxLength')">
+          Provide a valid payment tax rate.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Minimum Amount Earned</mat-label>
+        <input matInput pattern="[0-9]+" minlength="1" maxlength="7" placeholder="1,000" formControlName="min_earnings">
+        <mat-error *ngIf=" formData.controls['min_earnings'].hasError('required')">
+          Minimum amount required!!
+        </mat-error>
+        <mat-error *ngIf="formData.get('min_earnings').hasError('minlength' || 'maxLength'|| 'pattern')">
+          Minimum amount invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Maximum Amount Earned</mat-label>
+        <input matInput pattern="[0-9]+" minlength="1" maxlength="7" placeholder="e.g 100,000"
+          formControlName="max_earnings">
+        <mat-error *ngIf=" formData.controls['max_earnings'].hasError('required')">
+          Maximum amount required!!
+        </mat-error>
+        <mat-error *ngIf="formData.get('max_earnings').hasError('minlength' || 'maxLength'|| 'pattern')">
+          Maximum amount invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Company Payment Rate</mat-label>
+        <input matInput pattern="[0-9]+" minlength="1" maxlength="2" placeholder="e.g 100,000"
+          formControlName="company_payment_rate">
+        <mat-error *ngIf=" formData.controls['company_payment_rate'].hasError('required')">
+          Company payment rate required!!
+        </mat-error>
+        <mat-error *ngIf="formData.get('company_payment_rate').hasError('minlength' || 'maxLength'|| 'pattern')">
+          Company payment rate invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      <mat-form-field appearance="outline">
+        <mat-label>Pensionable Earnings</mat-label>
+        <input matInput pattern="[0-9]+" placeholder="e.g 180,000" formControlName="pensionable_earnings">
+        <mat-error *ngIf="formData.get('pensionable_earnings').hasError('pattern')">
+          Pensionable earnings invalid.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+    <div [align]="'center'">
+      <div class="col-md-4 col-sm-12">
+        <button class="update-nhif-btn" mat-raised-button color="primary" (click)="updateNSSFTax()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          UPDATE
+        </button>
+      </div>
+    </div>
+
+  <!-- <mat-divider></mat-divider>
+  <div mat-dialog-action [align]="'end'" class="example-button-row">
+    <button mat-raised-button color="warn" mat-dialog-close>CANCEL</button>
+    <button mat-raised-button color="primary" (click)="updateNSSFTax()">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+      </span>UPDATE
+    </button>
+  </div> -->
+</form>
+</mat-card>

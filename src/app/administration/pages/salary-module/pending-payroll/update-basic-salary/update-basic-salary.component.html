@@ -1,0 +1,44 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/employee/allowance-benefits/view" skipLocationChange>PayRoll / </a>
+    Update Employee Basic Salary
+  </div>
+</mat-card-header>
+<mat-card>
+  <mat-card-title>UPDATE EMPLOYEE BASIC SALARY</mat-card-title>
+  <small>Note: This update will not update the employee normal pay salary. This will only updates the current salary
+    which includes the total calculation of deductions.</small>
+  <form class="form" [formGroup]="formData" (ngSubmit)="submitData()" #resetRequestsForm="ngForm" novalidate>
+    <div class="row">
+      <mat-form-field appearance="outline" float="always">
+        <mat-label>Employee New Basic Salary</mat-label>
+        <input matInput class="right-align" placeholder="0" formControlName="newBasic_salary" required>
+
+      </mat-form-field>
+    </div>
+    <mat-divider></mat-divider>
+    <div [align]="'center'">
+      <div class="col-md-4 col-sm-12">
+        <button class="update-allowance-btn" mat-raised-button color="primary" type="submit">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          UPDATE
+        </button>
+      </div>
+    </div>
+    <!-- <button class="pull-right" mat-raised-button color="primary" type="submit">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Submit
+      </button>
+      <br>
+      <div *ngIf="error" class="alert alert-danger mt-3 mb-0"><mat-icon>warning</mat-icon> {{ error }}</div>
+      <br /> -->
+  </form>
+
+
+</mat-card>

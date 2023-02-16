@@ -1,0 +1,41 @@
+<mat-card>
+  
+  <form
+    class="form"
+    [formGroup]="formData"
+    (ngSubmit)="submitData()"
+    #resetRequestsForm="ngForm"
+    novalidate
+  >
+  <div class="row">
+   <mat-form-field appearance="fill">
+        <mat-label>Leave Type</mat-label>
+        <input matInput placeholder="Enter Leave Type" formControlName="leaveType" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Duration</mat-label>
+        <input matInput  type="number" placeholder="Enter Duration" formControlName="duration" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Deduction Percentage</mat-label>
+        <input matInput  [maxLength]="10" type="number"  placeholder="Enter Duduction Percentage" formControlName="deductionPercentage" required>
+    </mat-form-field>
+
+  </div>
+    <br />
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+    <button class="pull-right" mat-raised-button color="primary" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Submit
+    </button>
+    <br />
+    <br />
+  </form>
+</mat-card>
+
+

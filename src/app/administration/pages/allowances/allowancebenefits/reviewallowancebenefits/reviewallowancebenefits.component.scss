@@ -1,0 +1,63 @@
+th{
+    text-align: left !important;
+  }
+  table{
+    font-weight: 100px;
+    font-size: 12px;
+    font-family: monospace;
+  }
+  
+  .actionButton {
+    min-width: unset!important;
+    height: 25px;
+    line-height: 25px;
+    padding: auto;
+    margin: 2px;
+  
+    .mat-icon {
+      font-size: 25px;
+      height: 25px;
+      line-height: 25px;
+    }
+  }
+  .update{
+  
+    color: rgb(0, 0, 170);
+    font-weight: 800;
+    font-style: bolder;
+    padding: 5px;
+    padding-top:5px;
+    margin: 5px;
+  }
+  .danger{
+    color: rgb(255, 92, 92) !important;
+    font-weight: 900;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  button{
+    margin-top:5px;
+    margin-bottom: 10px;
+  }
+  mat-card{
+    width: 60%;
+    margin: auto;
+  }
+  .mat-form-field{
+    width: 100%;
+  }
+  .add-allowance-btn{
+    margin-top: 10px;
+    width: 100% !important;
+  }
+  .ul .li{
+    list-style: square;
+  }
+  .mat-card-title{
+    align-items: center;
+    text-align: center;
+  }
+  .example-button-row .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }

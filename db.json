@@ -1,0 +1,220 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "graph":[
+    {
+      "status": "completed",
+      "identity": "2",
+      "id":1
+    },
+    {
+      "status": "started",
+      "identity": "9",
+      "id":2
+    },
+    {
+      "status": "completed",
+      "identity": "1",
+      "id":3
+    },
+    {
+      "status": "started",
+      "identity": "7",
+      "id":4
+    },
+    {
+      "status": "completed",
+      "identity": "5",
+      "id":5
+    },
+    {
+      "status": "started",
+      "identity": "4",
+      "id":6
+    }
+  ],
+  "datasubjectrequest": [
+    {
+      "requestNature": "ACCESS INFORMATION",
+      "firstName": "joshua.rotich95@gmail.com",
+      "lastName": "KIPTOO",
+      "postalAddress": "76",
+      "requestEmail": "joshua.rotich95@gmail.com",
+      "telephoneNumber": "1234567890",
+      "faxNumber": "7/5/2022",
+      "personRelationship": "FATHER",
+      "requestPerson": "YES",
+      "subjectResponseType": "EMAIL",
+      "id": 1
+    },
+    {
+      "requestNature": "RECTIFICATION",
+      "firstName": "JOSHUA",
+      "lastName": "ROTICH",
+      "postalAddress": "76 Kobujoi",
+      "requestEmail": "JOSHUA.ROTICH95@GMAIL.COM",
+      "telephoneNumber": "0721845120",
+      "faxNumber": "20000",
+      "personRelationship": "BROTHER",
+      "requestPerson": "YES",
+      "subjectResponseType": "EMAIL",
+      "id": 2
+    },
+    {
+      "requestNature": "DATA PORTABILITY",
+      "firstName": "JOSHUA",
+      "lastName": "ROTICH",
+      "postalAddress": "76 Kobujoi",
+      "requestEmail": "JOSHUA.ROTICH95@GMAIL.COM",
+      "telephoneNumber": "1234567890",
+      "faxNumber": "3456",
+      "personRelationship": "FATHER",
+      "requestPerson": "YES",
+      "subjectResponseType": "FAX",
+      "id": 3
+    },
+    {
+      "requestNature": "RECTIFICATION",
+      "firstName": "JOSHUA",
+      "lastName": "ROTICH",
+      "postalAddress": "76 Kobujoi",
+      "requestEmail": "joshua.rotich95@gmail.com",
+      "telephoneNumber": "254721845120",
+      "faxNumber": "23456",
+      "personRelationship": "BROTHER",
+      "requestPerson": "NO",
+      "subjectResponseType": "SMS",
+      "id": 4
+    },
+    {
+      "requestType": "RECTIFICATION",
+      "firstName": "JOSHUA",
+      "lastName": "ROTICH",
+      "postalAddress": "76 Kobujoi",
+      "dataSubjectEmail": "joshua.rotich95@gmail.com",
+      "telephone": "54721845120",
+      "faxNumber": "111",
+      "personalRelationship": "BROTHER",
+      "subjectApplication": "NO",
+      "subjectRensponseType": "EMAIL",
+      "id": 5
+    },
+    {
+      "requestType": "DATA PORTABILITY",
+      "firstName": "JOSHUA",
+      "lastName": "ROTICH",
+      "postalAddress": "76 Kobujoi",
+      "dataSubjectEmail": "joshua.rotich95@gmail.com",
+      "telephone": "224721845120",
+      "faxNumber": "12345",
+      "personalRelationship": "MOTHER",
+      "subjectApplication": "NO",
+      "subjectRensponseType": "SMS",
+      "id": 6
+    }
+  ],
+  "mainCompliances": [
+    {
+      "complianceMainName": "IT SECURITY",
+      "personResponsible": "PAUL",
+      "mainComplianceDescription": "DESCRIBE",
+      "id": 11
+    }
+  ],
+  "subsectionCompliances": [
+    {
+      "complianceMainName": "HR",
+      "complianceSubSection": "SUB-HR",
+      "personResponsible": "KIPTOO",
+      "subSectionDescription": "DESCRIPTION",
+      "riskInformation": "VERY HIGH",
+      "id": 4
+    },
+    {
+      "complianceMainName": "IT&SECURITY",
+      "complianceSubSection": "SECURITY",
+      "personResponsible": "ROTICH",
+      "subSectionDescription": "SUB SECTION COMPLIANCE DESCRPTION",
+      "riskInformation": "RISKS INFORMATION",
+      "id": 5
+    }
+  ],
+  "submiCompliance": [
+    {
+      "complianceSection": "INFORMATION TECHNOLOGY",
+      "complianceSubSection": "INFORMATION TECHNOLOGY",
+      "employee": "EMPLOYEE B",
+      "dueDate": "2022-08-18T21:00:00.000Z",
+      "reviewDate": "2022-07-03T21:00:00.000Z",
+      "auditStatus": "IN PROGESS",
+      "riskLevel": "MEDIUM RISK",
+      "description": "FDirst Dexcription",
+      "id": 1
+    },
+    {
+      "complianceSection": "Con B",
+      "complianceSubSection": "INFORMATION TECHNOLOGY",
+      "employee": "EMPLOYEE C",
+      "dueDate": "2022-08-18T21:00:00.000Z",
+      "reviewDate": "2022-08-18T21:00:00.000Z",
+      "auditStatus": "COMPLETED",
+      "riskLevel": "HIGH RISK",
+      "description": "SEcond Description",
+      "id": 2
+    },
+    {
+      "complianceSection": "Con A",
+      "complianceSubSection": "INFORMATION TECHNOLOGY",
+      "employee": "EMPLOYEE C",
+      "dueDate": "2022-08-19T21:00:00.000Z",
+      "reviewDate": "2022-08-19T21:00:00.000Z",
+      "auditStatus": "IN PROGESS",
+      "riskLevel": "MEDIUM RISK",
+      "description": "COMPLIANCE AUDIT DESCRIPTION",
+      "id": 3
+    }
+  ],
+  "compliances": [
+    {
+      "id": 1,
+      "dcontr": "Con A",
+      "category": "HR",
+      "emp": "EMployee A",
+      "reviewdate": "",
+      "ddue": "",
+      "astatus": "started",
+      "rlevel": "low",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "dcontr": "Con B",
+      "category": "HR",
+      "emp": "EMployee A",
+      "reviewdate": "",
+      "ddue": "",
+      "astatus": "started",
+      "rlevel": "low",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "dcontr": "Con C",
+      "category": "HR",
+      "emp": "EMployee A",
+      "reviewdate": "",
+      "ddue": "",
+      "astatus": "started",
+      "rlevel": "low",
+      "description": ""
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

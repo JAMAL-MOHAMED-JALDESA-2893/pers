@@ -1,0 +1,43 @@
+<mat-card>
+<div class="container">
+  <div class="row">
+    <form
+    class="form"
+    [formGroup]="workExperienceForm"
+    (ngSubmit)="onSubmit()"
+    #resetRequestsForm="ngForm"
+    novalidate
+  >
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+         <mat-form-field appearance="fill">
+           <mat-label>Company Name</mat-label>
+           <input matInput placeholder="Enter the company Name" formControlName="companyName" required>
+         </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-12">
+         <mat-form-field appearance="fill">
+           <mat-label>Work Position</mat-label>
+           <input matInput placeholder="Enter work Position" formControlName="workPosition" required>
+         </mat-form-field>
+       </div>
+       <div class="col-md-4 col-sm-12">
+         <mat-form-field appearance="fill">
+           <mat-label>Time taken</mat-label>
+           <input matInput placeholder="Enter the time Taken" formControlName="timeTaken" required>
+         </mat-form-field>
+       </div>
+      </div>
+      <!-- end of the container -->
+    </div>
+    <button class="pull-right" mat-raised-button color="primary" type="submit">
+
+      Submit
+    </button>
+
+       </form>
+
+  </div>
+</div>
+</mat-card>

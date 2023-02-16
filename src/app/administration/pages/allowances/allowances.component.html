@@ -1,0 +1,104 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    Custom Allowances
+  </div>
+</mat-card-header>
+<mat-card>
+  <br>
+  <div class="mat-elevation-z8">
+    <div class="row table-action-row">
+      <div class="col-md-6 col-sm-12">
+        <div>
+          <button class="table-main-action-btn bg-primary text-white"
+            routerLink="/administration/employee/allowances/add" skipLocationChange="" mat-raised-button><i
+              class="fa fa-plus" aria-hidden="true"></i> &nbsp; ADD ALLOWANCE
+          </button>
+          <button class="table-main-action-btn" color="accent" mat-raised-button
+            (click)="exporter.exportTable('csv',{fileName:'Exported Data'})"><i class="fas fa-file-csv"></i> -
+            CSV</button>
+          <button class="table-main-action-btn" color="primary" mat-raised-button
+            (click)="exporter.exportTable('xlsx',{fileName:'Exported Data'})"><i class="fas fa-file-excel"></i> -
+            Excel</button>
+          <button class="table-main-action-btn" color="warn" mat-raised-button
+            (click)="exporter.exportTable('json',{fileName:'Exported Data'})"><i class="fas fa-file-code"></i> -
+            JSON</button>
+          <button class="table-main-action-btn" mat-raised-button
+            (click)="exporter.exportTable('txt',{fileName:'Exported Data'})"><i class="fas fa-file-alt"></i> -
+            TEXT</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+      </div>
+    </div>
+    <br>
+    <div class="table-row">
+      <table class="y-scrollable-table" mat-table matSort matTableExporter [dataSource]="dataSource"
+        #exporter="matTableExporter">
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+        </ng-container>
+        <ng-container matColumnDef="fullname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.first_name}} {{row.middle_name}} {{row.last_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="departmentname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Department Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.departmentname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+          <td mat-cell *matCellDef="let row"> {{row.amount | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="allowance_for">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Allowance For</th>
+          <td mat-cell *matCellDef="let row"> {{row.allowance_for }} </td>
+        </ng-container>
+        <ng-container matColumnDef="month">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Month </th>
+          <td mat-cell *matCellDef="let row"> {{row.month}} </td>
+        </ng-container>
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Year </th>
+          <td mat-cell *matCellDef="let row"> {{row.start_period_m}} </td>
+        </ng-container>
+        <ng-container matColumnDef="is_director_approved">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Director Approval</th>
+          <td mat-cell *matCellDef="let row"> <span class="{{row.is_director_approved}}">{{row.is_director_approved}}
+            </span></td>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At </th>
+          <td mat-cell *matCellDef="let row"> {{row.created_at}} </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_at">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated At </th>
+          <td mat-cell *matCellDef="let row"> {{row.updated_at | date}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <a class="update" *ngIf="!this.allowance_closed" color="accent"
+              [routerLink]="['/administration/employee/allowances/update/', row.id]">
+              <mat-icon>launch</mat-icon>
+            </a>
+            <button *ngIf="is_Director" [disabled]="this.allowance_closed" mat-raised-button color="primary"
+              class="action-button" (click)="directorApprove(row.id)">Approve</button>
+            <button *ngIf="is_Director" [disabled]="this.allowance_closed" mat-raised-button
+              class="action-button warning" (click)="rejectDialog(row.id)">Reject</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</mat-card>

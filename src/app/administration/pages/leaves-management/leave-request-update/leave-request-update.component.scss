@@ -1,0 +1,92 @@
+th{
+  text-align: left !important;
+}
+table{
+  font-weight: 100px;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.actionButton {
+  min-width: unset!important;
+  height: 25px;
+  line-height: 25px;
+  padding: auto;
+  margin: 2px;
+
+  .mat-icon {
+    font-size: 25px;
+    height: 25px;
+    line-height: 25px;
+  }
+}
+.update{
+
+  color: rgb(0, 0, 170);
+  font-weight: 800;
+  font-style: bolder;
+  padding: 5px;
+  padding-top:5px;
+  margin: 5px;
+}
+.danger{
+  color: rgb(255, 92, 92) !important;
+  font-weight: 900;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+button{
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+.grossPay{
+  background-color:darkgreen;
+  color:white;
+  font-style: italic;
+  font-weight: 600;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+mat-card{
+  margin: auto;
+}
+.mat-form-field{
+  width: 100%;
+}
+
+.respond{
+  background-color:wheat;
+  border-radius: 5px;
+}
+.respond h4{
+  padding-left: 5px;
+  padding-top: 10px;
+}
+p{
+  font-family: monospace;
+  background-color:rgb(54, 72, 131);
+  padding: 5px;
+  border-radius: 2px;
+  color: white;
+}
+.basic{
+  background-color:rgb(225, 255, 225);
+  padding: 10px;
+}
+
+.leave{
+  padding: 10px;
+}
+strong{
+  background-color:rgb(255, 98, 98);
+  padding: 10px;
+  border-radius: 5px;
+}
+// .pull-center{
+//   text-align: center;
+//   float:center;
+// }

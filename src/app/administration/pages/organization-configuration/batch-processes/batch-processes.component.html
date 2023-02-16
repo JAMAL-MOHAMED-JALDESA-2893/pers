@@ -1,0 +1,77 @@
+<mat-card>
+    <mat-card-header class="breadcrumb">
+      <h3 class="mat-h1">
+        <div >Home/Configuration/batch-processes</div>
+      </h3>
+    </mat-card-header>
+    <hr>
+  
+  <div class="container-fluid">
+  
+    <!-- Table Part -->
+    <div class="row">
+      <div class="container-fluid">
+        <mat-card class="table-data">
+          <!-- <button mat-raised-button color="primary" (click)="addBatchProcessDialog()">+ New Batch Process</button> -->
+         <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+           <thead>
+             <tr>
+               <th>Event type</th>
+               <th>Execution Circle</th>
+               <th>Executed On</th>
+               <th>Next Execution</th>
+               <th>Status</th>
+               <th>updated on</th>
+               <th>Operations</th>
+           </thead>
+           <tbody>
+             <tr *ngFor="let item of  this.batchData">
+               <td>{{item.event_type}}</td>
+               <td>{{item.execution_date}}</td>
+               <td>{{item.executed_on | date}}</td>
+               <td>{{item.next_execution | date}}</td>
+               <td *ngIf="!item.is_enabled">
+                <span class="Disabled">Disabled</span>
+              </td>
+              <td *ngIf="item.is_enabled">
+                <span class="Enabled">Enabled</span>
+              </td>
+               <td>{{item.updated_at | date }}</td>             
+
+                  <td class="item.is_enabled">  
+                    
+                    <a class="update"  color="accent"   matTooltip="Update Batch Process" (click)="updateBatchProcessDialog(item.id)" ><mat-icon>launch</mat-icon></a>
+                                    
+                    <a *ngIf="item.is_enabled == true" class="action-button " mat-button [matMenuTriggerFor]="modify">
+                      Active
+                      <mat-icon>arrow_drop_down</mat-icon>
+                    </a>
+                      <a *ngIf="item.is_enabled == false" class="action-button {{item.is_enabled}}" mat-button [matMenuTriggerFor]="modify">
+                        Disabled
+                        <mat-icon>arrow_drop_down</mat-icon>
+                      </a>
+
+                <mat-menu #modify="matMenu">
+                    <mat-nav-list>
+                    <a mat-list-item routerLinkActive="list-item-active" (click)="onEnabled(item.id)">
+                        Enable
+                      </a>
+                      <a mat-list-item routerLinkActive="list-item-active" (click)="onDisabled(item.id)">
+                        Disable
+                        </a>
+                    </mat-nav-list>
+                </mat-menu>
+              </td>
+             </tr>
+             </tbody>
+             </table>
+         </mat-card>
+      </div>
+    </div>
+  </div>
+  </mat-card>
+  
+  
+  
+  
+  

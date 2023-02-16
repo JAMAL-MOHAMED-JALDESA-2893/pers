@@ -1,0 +1,27 @@
+
+ <div class="main-section">
+     <h3>Reply to: </h3>
+ <form
+    class="form"
+    [formGroup]="formData"
+    (ngSubmit)="onSubmit()"
+    #resetRequestsForm="ngForm"
+    novalidate
+  >
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Reply</mat-label>
+          <textarea matInput formControlName="reply"></textarea>
+        </mat-form-field>
+      </p>
+
+    <button class="pull-right" mat-raised-button color="primary" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Submit
+    </button>
+    <br />
+  </form>
+  </div>

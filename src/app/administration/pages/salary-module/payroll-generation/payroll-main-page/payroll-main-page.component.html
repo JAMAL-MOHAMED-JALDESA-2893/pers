@@ -1,0 +1,25 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+    <div>
+        <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+        <a routerLink="/administration/employee/allowances/" skipLocationChange>Payroll / </a>
+        PayRoll Generation
+    </div>
+</mat-card-header>
+<mat-card>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="FAQ Section">
+            <app-payroll-generation></app-payroll-generation>
+        </mat-tab>
+        <mat-tab label="Custom PayRoll Generation">
+            <app-create-cust-payroll></app-create-cust-payroll>
+        </mat-tab>
+        <mat-tab label="Current Month PayRoll Generation">
+            <app-generated-payroll></app-generated-payroll>
+        </mat-tab>
+        <mat-tab label="PaySlip Reports(E-Mail)">
+            <app-payroll-report-emails></app-payroll-report-emails>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

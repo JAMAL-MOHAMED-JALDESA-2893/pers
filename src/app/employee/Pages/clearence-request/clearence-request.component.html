@@ -1,0 +1,48 @@
+<mat-card-header>
+    <h3 class="mat-h1">
+        <strong>Resignation</strong>
+    </h3>
+</mat-card-header>
+<hr>
+
+<mat-card>
+    <button mat-raised-button color="primary" routerLink="/portal/clearence/create">+ Clearence Request</button>
+    <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Occupation</th>
+                <th>Resignation Date</th>
+                <th>Status</th>
+                <th>Supervisor Approval</th>
+                <th>HR-Approval</th>
+                <th>Director Approval</th>
+                <th>Created on</th>
+                <th>Updated on</th>
+                <th>Operations</th>
+        </thead>
+        <tbody>
+            <tr *ngIf="clearenceData">
+                <td>{{this.clearenceData.firstname}},{{this.clearenceData.middlename}}, {{this.clearenceData.lastname}} </td>
+                <td>{{this.clearenceData.departmentname}}</td>
+                <td>{{this.clearenceData.occupation}}</td>
+                <td>{{this.clearenceData.exit_date | date}}</td>
+                <td>{{this.clearenceData.clearence_status}}</td>
+
+                <td><span class="{{this.clearenceData.is_supervisor_approved}}">{{this.clearenceData.is_supervisor_approved}}</span> </td>
+                <td><span class="{{this.clearenceData.is_hr_approved}}">{{this.clearenceData.is_hr_approved}}</span> </td>
+                <td><span class="{{this.clearenceData.is_Director_approved}}">{{this.clearenceData.is_Director_approved}}</span> </td>
+
+                <td>{{this.clearenceData.created_at | date}}</td>
+                <td>{{this.clearenceData.updated_at | date}}</td>
+                <td>
+
+                    <button mat-raised-button *ngIf="!this.approved" color="accent" class="action-button" [routerLink]="['/portal/clearence/update/', this.clearenceData.id]"><mat-icon>launch</mat-icon></button>
+                    <button mat-raised-button *ngIf="this.approved" [disabled]="this.approved" color="accent" class="action-button">Processing...</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>

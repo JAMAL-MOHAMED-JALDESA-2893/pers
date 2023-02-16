@@ -1,0 +1,49 @@
+
+ <div class="main-section">
+    <h3>Set Goal: </h3>
+<form
+   class="form"
+   [formGroup]="formData"
+   (ngSubmit)="onSubmit()"
+   #resetRequestsForm="ngForm"
+   novalidate
+ >
+ <p>
+    <mat-form-field appearance="outline">
+        <mat-label>Select Weekday</mat-label>
+        <mat-select formControlName="day" required>
+          <mat-option [value]="_weekDayaArray" *ngFor="let _weekDayaArray of weekDayaArray"
+            required>{{ _weekDayaArray }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+ </p>
+     <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Opening Hours</mat-label>
+            <input matInput  formControlName="open_hours" required>
+            <mat-hint>Hint: Kindly enter in 24 hr clock i.e 08:00 or 17:00 </mat-hint>
+          </mat-form-field>
+     </p>
+     <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Closing Hours</mat-label>
+            <input matInput  formControlName="closing_hours" required>
+            <mat-hint>Hint: Kindly enter in 24 hr clock i.e 08:00 or 17:00 </mat-hint>
+          </mat-form-field>
+     </p>
+     <p>
+     <mat-checkbox formControlName="is_open" class="example-margin">Is Open</mat-checkbox>
+     </p>
+   <button class="pull-right" mat-raised-button color="primary" type="submit">
+     <span
+       *ngIf="loading"
+       class="spinner-border spinner-border-sm mr-1"
+     ></span>
+     Submit
+   </button>
+   <br />
+ </form>
+ </div>
+

@@ -1,0 +1,48 @@
+<mat-card>
+    <mat-card-header>
+      <h3 class="mat-h1">
+      </h3>
+    </mat-card-header>
+    <hr>
+  
+  <div class="container-fluid">
+  
+    <!-- Table Part -->
+    <div class="row">
+      <div class="container-fluid">
+        <mat-card class="table-data">
+          <button mat-raised-button color="primary" (click)="setGoalDialog()">+ Set Goal</button>
+         <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+           <thead>
+             <tr>
+               <th>Goal Category</th>
+               <th>Goal</th>
+               <th>Created on</th>
+               <th>Review Cycles(Months)</th>
+               <th>Next Review Date</th>
+               <!-- <th>Status</th> -->
+               <th>Operations</th>
+           </thead>
+           <tbody>
+             <tr *ngFor="let item of this.data">
+               <td>{{item.parameter_name}}</td>
+               <td>{{item.goal}}</td>
+               <td>{{item.created_at | date}}</td>
+               <td>{{item.next_month_review_delay}}</td>
+               <td>{{item.next_review_date | date}}</td>
+               <!-- <td>{{item.status}}</td> -->
+               <td>
+                <button mat-raised-button color="accent"  class="action-button" (click)="updateGoalDialog(item.id)">Update</button>
+                <button mat-raised-button color="primary"    class="action-button" [routerLink]="['/administration/employee/perfomance/management/evaluation/goals/review/', item.id]">Check</button>
+                <button mat-raised-button class="action-button green" (click)="openCommentDialog(item.id)" >Review</button>
+               </td>
+             </tr>
+             </tbody>
+             </table>
+         </mat-card>
+  
+      </div>
+    </div>
+  </div>
+  </mat-card>
+  

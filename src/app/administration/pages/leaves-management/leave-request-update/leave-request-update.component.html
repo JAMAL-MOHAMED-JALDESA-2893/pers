@@ -1,0 +1,152 @@
+<mat-card>
+
+<div class="row">
+<div class="col-md-6 basic">
+<h3>Employee Basic Information</h3>
+<div class="row">
+<div class="col-md-6 col-sm-12 ">
+  <div class="respond">
+      <h4>First Name</h4>
+      <p>: {{ this.employeeFirstName }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Last Name</h4>
+      <p>: {{ this.employeeLastName }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Department</h4>
+      <p>: {{this.department}}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Occupation</h4>
+      <p>:{{this.occupation}} </p>
+   </div>
+
+</div>
+
+<div class="col-md-6 col-sm-12">
+
+  <div class="respond">
+      <h4>Middle Name</h4>
+      <p>: {{ this.employeeMiddleName }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Personal Phone</h4>
+      <p>: {{ this.personalPhone }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Personal Email</h4>
+      <p>: {{ this.personalEmail }}</p>
+   </div>
+
+  <div class="respond">
+   <h4>Job Group Level</h4>
+   <p>:{{this.position}} </p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6 leave">
+
+<h3>Employee Leave Request Information</h3>
+<div class="row">
+<div class="col-md-6 col-sm-12">
+
+  <div class="respond">
+      <h4>Leave Type</h4>
+      <p>: {{ this.leaveRes.leave_type }}</p>
+   </div>
+  <div class="respond">
+      <h4>Start Date</h4>
+      <p>: {{ this.leaveRes.start_date }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>End Date</h4>
+      <p>: {{ this.leaveRes.end_date }}</p>
+   </div>
+
+  <div class="respond">
+      <h4>Reason For Leave</h4>
+      <p>: {{  this.leaveRes.employee_reason_for_leave }}</p>    
+   </div>
+
+  <div class="respond">
+   <h4>Rejection Reason</h4>
+   <p>: {{  this.leaveRes.rejection_reason }}</p>    
+</div>
+</div>
+
+<div class="col-md-6 col-sm-12">
+  <div class="respond">
+      <h4>Employee Work Days</h4>
+      <p>: {{ this.leaveRes.employee_work_days }} days</p>
+   </div>
+     <div class="respond">
+      <h4>Supervisor Approval</h4>
+      <p>: {{ this.leaveRes.supervisor_approval }}</p>
+   </div>
+     <div class="respond">
+      <h4>Applied on</h4>
+      <p>: {{ this.leaveRes.created_at | date }}</p>
+   </div>
+
+   <br>      
+      <button mat-raised-button color="primary" (click)="approveLeave()" *ngIf="!this.supervisorApproval">
+         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+         </span>APPROVE
+      </button>
+      <br>
+      <button mat-raised-button color="primary" (click)="rejectLeave()" *ngIf="!this.supervisorApproval">
+         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+         </span>REJECT
+      </button>
+  
+
+<form
+    class="form"
+    [formGroup]="rejectData"
+    (ngSubmit)="onReject()"
+    #resetRequestsForm="ngForm"
+    novalidate
+    *ngIf="this.supervisorApproval "     
+  >
+  <div class="row">
+  <div class="col-md-12">
+  <mat-form-field *ngIf="!this.isOnleave" appearance="fill">
+  <mat-label>Reason for Rejection</mat-label>
+  <textarea matInput formControlName="rejection_reason"></textarea>
+      <mat-error *ngIf="handleError('rejection_reason', 'required')">
+        Enter Rejection Reason please
+      </mat-error>
+</mat-form-field>
+  </div>
+  </div>
+  
+    <br />
+    <button *ngIf="!this.isOnleave" class="pull-left" mat-raised-button color="accent" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Reject
+    </button>
+
+    <a *ngIf="!this.isOnleave" class="pull-right" mat-raised-button color="primary" (click)="onApprove()">Approved</a>
+
+    <br />
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+    <br />
+    <a  *ngIf="this.isOnleave" class="btn-block" mat-raised-button color="primary" (click)="onCompleted()">Completed Leave</a>
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+</mat-card>

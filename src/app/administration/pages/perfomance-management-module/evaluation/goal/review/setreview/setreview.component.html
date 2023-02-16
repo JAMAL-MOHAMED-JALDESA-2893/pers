@@ -1,0 +1,34 @@
+
+    <div class="row display-block">
+        <h3>Enter employee perfomance review </h3>
+        <form
+        class="form"
+        [formGroup]="formData"
+        (ngSubmit)="submitData()"
+        #resetRequestsForm="ngForm"
+        novalidate
+      >
+        <mat-form-field appearance="fill">
+            <mat-label>Percentage Score</mat-label>
+            <input matInput placeholder="Enter Percentage Score" formControlName="percentage_score" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Remarks</mat-label>
+            <textarea matInput formControlName="remarks" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Recomendations</mat-label>
+            <textarea matInput formControlName="recommendations"></textarea>
+          </mat-form-field>
+
+        <button class="pull-right" mat-raised-button color="primary" type="submit">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Submit
+          </button>
+      </form>
+    </div>  

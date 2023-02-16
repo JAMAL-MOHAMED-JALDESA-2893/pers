@@ -1,0 +1,229 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+    <div>
+        <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+        <a routerLink="/administration/employee/allowances/" skipLocationChange>Payroll / </a>
+        View Employee PayRoll
+    </div>
+</mat-card-header>
+<mat-card>
+    <div class="container-fluid">
+        <div class="example-container">
+            <form [formGroup]="formData">
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>PF Number</mat-label>
+                            <input matInput formControlName="emp_no" placeholder="e.g 10049">
+                            <mat-error *ngIf="formData.controls['emp_no'].hasError('required')">
+                                PF NO. required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>ID NO.</mat-label>
+                            <input matInput formControlName="id_no" placeholder="e.g 9707009">
+                            <mat-error *ngIf="formData.controls['id_no'].hasError('required')">
+                                Id NO. required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput formControlName="first_name" placeholder="e.g John">
+                            <mat-error *ngIf="formData.controls['first_name'].hasError('required')">
+                                First name required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Other Names</mat-label>
+                            <input matInput formControlName="other_names" placeholder="e.g 10049">
+                            <mat-error *ngIf="formData.controls['other_names'].hasError('required')">
+                                Other names required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Bank Name</mat-label>
+                            <mat-select formControlName="bank" placeholder="e.g 01 - Kenya Commercial Bank Limited"
+                                (selectionChange)="onSelectedBank($event)">
+                                <mat-option *ngFor="let bankname of bank" [value]="bankname.name">{{ bankname.name }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formData.controls['bank'].hasError('required')">
+                                Bank name required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Branch Code</mat-label>
+                            <mat-select placeholder="e.g 091-Eastleigh Branch" formControlName="bankbranchCode">
+                                <mat-option *ngFor="let branches of branch" [value]="branches.brachName ">{{
+                                    branches.branchCode
+                                    }}--{{ branches.brachName }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formData.controls['bankbranchCode'].hasError('required')">
+                                Bank branch code required!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Bank Account Number</mat-label>
+                            <input matInput placeholder="e.g 011111111" minlength="4" maxlength="20" pattern="[0-9]+"
+                                formControlName="acct_no">
+                            <mat-error *ngIf="formData.controls['acct_no'].hasError('required')">
+                                Bank Account NO. required!!
+                            </mat-error>
+                            <mat-error *ngIf="formData.get('acct_no').hasError( 'minlength' ||'maxlength'||'pattern')
+             ">Bank Account Number invalid!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>KRA NO.</mat-label>
+                            <input matInput placeholder="e.g A01111111B" minlength="4" maxlength="20"
+                                formControlName="pin_no">
+                            <mat-error *ngIf="formData.controls['pin_no'].hasError('required')">
+                                KRA field required!!
+                            </mat-error>
+                            <mat-error *ngIf="formData.get('pin_no').hasError( 'minlength' ||'maxlength')
+             ">KRA NO. invalid!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>NHIF N0.</mat-label>
+                            <input matInput placeholder="e.g NHIF001" minlength="4" maxlength="20"
+                                formControlName="nhif_no">
+                            <mat-error *ngIf="formData.controls['nhif_no'].hasError('required')">
+                                NHIF field required!!
+                            </mat-error>
+                            <mat-error *ngIf="formData.get('nhif_no').hasError( 'minlength' ||'maxlength')
+             ">NHIF NO. invalid!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>NSSF NO</mat-label>
+                            <input matInput placeholder="e.g NSSF001" minlength="4" maxlength="20"
+                                formControlName="nssf_no">
+                            <mat-error *ngIf="formData.controls['nssf_no'].hasError('required')">
+                                NSSF field required!!
+                            </mat-error>
+                            <mat-error *ngIf="formData.get('nssf_no').hasError( 'minlength' ||'maxlength')
+             ">NSSF NO. invalid!!
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <mat-label> <strong>TOTAL REMITTANCE</strong></mat-label>
+                <div class="example-container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <span matPrefix><strong>Basic Salary: Ksh.</strong>&nbsp;</span>
+                                <span matSuffix> <input matInput class="right-align" formControlName="gross_pay"></span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="total_relief">
+                                <span matPrefix><strong>Personal Relief: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="nhif">
+                                <span matPrefix><strong>NHIF: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="nssf">
+                                <span matPrefix><strong>NSSF: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="helb">
+                                <span matPrefix><strong>HELB: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="dcrs_actual_e2">
+                                <span matPrefix> <strong>Retirement Scheme: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <span matPrefix><strong>Non Cash Benefits: Ksh.</strong>&nbsp;</span>
+                                <input matInput class="right-align" formControlName="total_non_cash_benefit">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="value_of_quarters">
+                                <span matPrefix> <strong>Value of Quarters: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <input matInput class="right-align" formControlName="owner_occupied_interests">
+                                <span matPrefix> <strong>Occupied Interests: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <mat-label></mat-label>
+                                <input matInput class="right-align" formControlName="insurance_relief">
+                                <span matPrefix><strong>Insurance Relief: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field appearance="legacy" floatLabel="always">
+                                <mat-label></mat-label>
+                                <input matInput class="right-align" formControlName="net_salary">
+                                <span matPrefix><strong>NET SALARY: Ksh.</strong>&nbsp;</span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div [align]="'center'">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <button class="update-payroll-btn bg-success text-white" mat-raised-button
+                                    (click)="onPayRollUpdate()">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    UPDATE
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <button class="update-payroll-btn" mat-raised-button color="primary"
+                                    (click)="onPayRollApproval(this.salary_id)">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    APPROVE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</mat-card>

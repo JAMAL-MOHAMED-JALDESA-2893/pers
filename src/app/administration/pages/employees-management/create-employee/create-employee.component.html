@@ -1,0 +1,802 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/" skipLocationChange>Employees / </a>
+    Create Employee
+  </div>
+</mat-card-header>
+<mat-card>
+  <div class="row">
+    <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+      <mat-step [stepControl]="firstFormGroup" label="Basic Information">
+        <form [formGroup]="firstFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>PF Number</mat-label>
+                  <input type="number" maxlength="6" minlength="3" pattern="[0-9]+" matInput formControlName="emp_no">
+                  <mat-error *ngIf="
+                  firstFormGroup.controls['emp_no'].hasError('required')">
+                    PF number required!!
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('emp_no').hasError('minlength' || 'maxLength' ||'pattern')
+                   ">Please enter a valid PF number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input type="name" matInput minlength="3" maxlength="40" placeholder="e.g Doe"
+                    formControlName="firstName">
+                  <mat-error *ngIf="
+                  firstFormGroup.controls['firstName'].hasError('required')">
+                    First name required!!
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('firstName').hasError('minlength' || 'maxLength')
+                   ">Please enter a valid name.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Middle Name</mat-label>
+                  <input type="name" matInput placeholder="e.g Smith" minlength="3" maxlength="40"
+                    formControlName="middleName">
+                  <mat-error *ngIf="firstFormGroup.get('middleName').hasError('minlength' || 'maxLength')
+                   ">Middle name invalid!!.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input type="name" matInput placeholder="e.g John" minlength="3" maxlength="40"
+                    formControlName="lastName">
+                  <mat-error *ngIf="
+                  firstFormGroup.controls['lastName'].hasError('required')">
+                    Last name required!!
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('lastName').hasError('minlength' || 'maxLength')
+                   ">Please enter a valid name.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender">
+                    <mat-option [value]="gender" *ngFor="let gender of genderArray">{{ gender }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.controls['gender'].hasError('required')">
+                    Gender field required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Religion</mat-label>
+                  <mat-select formControlName="religion">
+                    <mat-option [value]="religion" *ngFor="let religion of religionArray">{{ religion }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="firstFormGroup.controls['religion'].hasError('required')">
+                    Religion field required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>National ID/Passport No</mat-label>
+                  <input type="number" matInput placeholder="e.g 12345678" minlength="7" maxlength="20"
+                    formControlName="nationalId">
+                  <mat-error *ngIf="
+                  firstFormGroup.controls['nationalId'].hasError('required')">
+                    Id/Passport no required!!
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('nationalId').hasError('minlength' || 'maxLength')
+                   ">Please enter a valid id/passport no.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" label="Home address">
+        <form [formGroup]="secondFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nationality</mat-label>
+                  <mat-select formControlName="nationality">
+                    <mat-option *ngFor="let countries of countriesData" [value]="countries.name">{{ countries.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['nationality'].hasError('required')">
+                    Nationality required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>County/Province of Birth</mat-label>
+                  <mat-select formControlName="county" placeholder="e.g Mombas"
+                    (selectionChange)="onSelectedHome($event)">
+                    <mat-option *ngFor="let counties of county" [value]="counties.name">{{ counties.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['county'].hasError('required')">
+                    County/Province required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Sub County</mat-label>
+                  <mat-select placeholder="e.g Westlands" formControlName="subCounty">
+                    <mat-option *ngFor="let sub of subCountiesHome" [value]="sub.name">{{ sub.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['subCounty'].hasError('required')">
+                    Sub-county required!!
+                  </mat-error>
+                </mat-form-field>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Current Residential Country</mat-label>
+                  <mat-select placeholder="e.g Kenya" formControlName="residentialCountry">
+                    <mat-option *ngFor="let countries of countriesData" [value]="countries.name">{{ countries.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['residentialCountry'].hasError('required')">
+                    Current residential country required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Current Residential County</mat-label>
+                  <mat-select placeholder="e.g Nairobi county" formControlName="residentialCounty"
+                    (selectionChange)="onSelectedCurrent($event)">
+                    <mat-option *ngFor="let counties of county" [value]="counties.name">{{ counties.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['residentialCounty'].hasError('required')">
+                    Current residential county required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Current Residential Sub county</mat-label>
+                  <mat-select placeholder="E.g Langatta" formControlName="residentialSubCounty">
+                    <mat-option *ngFor="let sub of subCountiesCurrent" [value]="sub.name">{{ sub.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.controls['residentialSubCounty'].hasError('required')">
+                    Current residential sub-county required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Postal Address</mat-label>
+                  <input type="text" matInput placeholder="e.g P. Box 1" formControlName="postalAddress">
+                  <mat-error *ngIf="secondFormGroup.controls['postalAddress'].hasError('required')">
+                    Postal Address required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Postal Code</mat-label>
+                  <input type="number" matInput placeholder="e.g 00100" pattern="[0-9]+" formControlName="postalCode">
+                  <mat-error *ngIf="secondFormGroup.controls['postalCode'].hasError('required')">
+                    Postal code required!!
+                  </mat-error>
+                  <mat-error *ngIf="secondFormGroup.get('postalCode').hasError('pattern')
+                   ">Please enter a valid postal code.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>City/Town</mat-label>
+                  <input type="text" matInput placeholder="e.g Nairobi City" formControlName="city">
+                  <mat-error *ngIf="secondFormGroup.controls['city'].hasError('required')">
+                    City/Town required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup" label="Contact Information">
+        <form [formGroup]="thirdFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Personal Phone Number</mat-label>
+                  <input type="phone" matInput minlength="10" maxlength="12" pattern="[0-9]+"
+                    placeholder="e.g 0712345678" formControlName="personalPhone">
+                  <mat-error *ngIf="thirdFormGroup.controls['personalPhone'].hasError('required')">
+                    Personal phone number required!!
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('personalPhone').hasError('minlength' || 'maxlength' || 'pattern')
+                     ">Please enter a valid phone number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Alternative Phone</mat-label>
+                  <input type="phone" matInput minlength="10" maxlength="12" pattern="[0-9]+"
+                    placeholder="e.g 0712345678" formControlName="alternativePhone">
+                  <mat-error *ngIf="thirdFormGroup.get('alternativePhone').hasError('minlength' || 'maxlength' || 'pattern')
+                     ">Alternative phone number invalid!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Personal Email Address</mat-label>
+                  <input type="text" matInput pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                    placeholder="e.g abc123@gmailcom" formControlName="personalEmail">
+                  <mat-error *ngIf="thirdFormGroup.controls['personalEmail'].hasError('required')">
+                    Personal e-mail address required!!
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('personalEmail').hasError('pattern')
+                     ">Personal e-mail address invalid!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Alternative Email</mat-label>
+                  <input type="email" matInput pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                    placeholder="e.g abc123@gmailcom" formControlName="alternativeEmail">
+                  <mat-error *ngIf="thirdFormGroup.get('alternativeEmail').hasError('pattern')
+                     ">Alternative e-mail address invalid!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Person Email</mat-label>
+                  <input matInput placeholder="Enter employees email" formControlName="personalEmail">
+                  <mat-hint>Hint: Like name@***.***</mat-hint>
+                </mat-form-field>
+
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Work Mail</mat-label>
+                  <input matInput placeholder="Enter employee Work Mail" formControlName="workMail">
+                  <mat-hint>Hint:Must be a email format</mat-hint>
+                </mat-form-field>
+
+              </div>
+              <div class="col-md-4 col-sm-12">
+                 <mat-form-field appearance="outline">
+                  <mat-label>Alternative Email</mat-label>
+                  <input matInput placeholder="Enter the ALt Email" formControlName="alternativeEmail">
+                  <mat-hint>Hint:Must be a email format</mat-hint>
+                </mat-form-field>
+              </div>
+            </div> -->
+            <!-- End of container -->
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fourthFormGroup" label="Education Information">
+        <form [formGroup]="fourthFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Higher Level of education</mat-label>
+                  <mat-select formControlName="highestEducation">
+                    <mat-option [value]="highestEducation" *ngFor="let highestEducation of educationLevelArray">{{
+                      highestEducation }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="fourthFormGroup.controls['highestEducation'].hasError('required')">
+                    Higher Level of education required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Course Program</mat-label>
+                  <input type="text" matInput placeholder="Enter the course Program" formControlName="courseProgram">
+                  <mat-error *ngIf="fourthFormGroup.controls['courseProgram'].hasError('required')">
+                    Course program required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Enrollment Status</mat-label>
+                  <mat-select formControlName="enrollmentStatus">
+                    <mat-option [value]="enrollmentStatus" *ngFor="let enrollmentStatus of enrollmentStatusArray">{{
+                      enrollmentStatus }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="fourthFormGroup.controls['enrollmentStatus'].hasError('required')">
+                    Enrollment status required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <h1>Document Uploads</h1>
+                <p>Note: Upload all necessary documents/certificates associated with the employee</p>
+                <p>This are as follows, but not limited to:Accademic Certificates,Other Profeessional Certifications and
+                  Indentification Certificates </p>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <label> Documents (Kindly PDF format</label>
+                <br>
+                <input type="file" multiple (change)="selectedFiles($event)" />
+              </div>
+            </div> -->
+          </div>
+          <div class="mb-3">
+            <button type="button" class="btn btn-sm btn-success mb-3 btn-block" (click)="onAddField()">Add Completed
+              Education(s)</button>
+            <ol>
+              <li *ngFor="let edForm of m.controls; let i = index">
+                <div [formGroup]="edForm">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Institution Level</mat-label>
+                          <mat-select formControlName="institutionLevel">
+                            <mat-option [value]="institutionLevel"
+                              *ngFor="let institutionLevel of curentEducationLevelArray">{{ institutionLevel }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Institution Name</mat-label>
+                          <input type="text" matInput placeholder="Enter institution Name"
+                            formControlName="institutionName">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Certification for</mat-label>
+                          <input type="text" matInput placeholder="Enter the certification name"
+                            formControlName="awardCertificate">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>GPA/Class Score</mat-label>
+                          <mat-select formControlName="gpaScore">
+                            <mat-option [value]="gpaScore" *ngFor="let gpaScore of gpaScoreArray">{{ gpaScore }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Year Enroll ON</mat-label>
+                          <input type="number" matInput placeholder="e.g 2015" formControlName="enrollOn">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Year Graduated</mat-label>
+                          <input type="number" matInput placeholder="e.g 2020" formControlName="graduatedOn">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <mat-form-field>
+                          <input matInput readonly name="name" />  
+                          <!-- Fetch selected filed on change -->
+                          <input type="file" #fileInput id="uploadFile" formControlName="fileAttr" (change)="uploadFileEvt($event)"
+                            name="uploadFile" multiple="multiple" accept=".pdf,.doc, image/*" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-icon class="pull-left" (click)="onAddField()">add_circle</mat-icon>
+                    <mat-icon class="warning pull-right" (click)="onRemoveField(i)">remove_circle</mat-icon>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fifthFormGroup" label="Exprience Information">
+        <form [formGroup]="fifthFormGroup">
+          Work experience?
+          <div class="mb-3">
+            <button type="button" class="btn btn-sm btn-success mb-3 btn-block" (click)="onAddExperienceField()">Add
+              Employee Work Experience(s)</button>
+            <ol>
+              <li *ngFor="let expForm of exm.controls; let i = index">
+                <div [formGroup]="expForm">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Company Name</mat-label>
+                          <input type="text" matInput placeholder="e.g Kenya Meat Commission"
+                            formControlName="companyName">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Work Position</mat-label>
+                          <mat-select formControlName="workPosition">
+                            <mat-option [value]="workPosition" *ngFor="let workPosition of jobOccupationArray">{{
+                              workPosition }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Time taken</mat-label>
+                          <mat-select formControlName="timeTaken">
+                            <mat-option [value]="timeTaken" *ngFor="let timeTaken of experienceTimeTakenArray">{{
+                              timeTaken }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <mat-icon class="pull-left success" (click)="onAddExperienceField()">add_circle</mat-icon>
+                    <mat-icon class="warning pull-right" (click)="onRemoveExperienceField(i)">remove_circle</mat-icon>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="sixthFormGroup" label="Reference Information">
+        <form [formGroup]="sixthFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Reference Name</mat-label>
+                  <input type="text" matInput placeholder="e.g John Smith" formControlName="firstRefName">
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Reference Company/Institution</mat-label>
+                  <input type="text" matInput placeholder="e.g E&M Tech" formControlName="firstRefCompany">
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Reference Phone</mat-label>
+                  <input type="phone" matInput minlength="10" maxlength="20" placeholder="e.g 0712345678"
+                    formControlName="firstRefPhone">
+                  <mat-error *ngIf="sixthFormGroup.get('firstRefPhone').hasError('minlength' || 'maxlength')
+                     ">Please enter a valid phone number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Reference Email</mat-label>
+                  <input type="email" matInput pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                    placeholder="e.g abc123@gmailcom" formControlName="firstRefEmail">
+                  <mat-error *ngIf="sixthFormGroup.get('firstRefEmail').hasError('pattern')
+                     ">Personal e-mail address invalid!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Second Reference Name</mat-label>
+                  <input type="name" matInput placeholder="e.g John Smith" formControlName="secondRefName">
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label> Second Reference Company/Institution</mat-label>
+                  <input type="text" matInput placeholder="e.g E&M Tech" formControlName="secondRefCompany">
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Second Referee Phone</mat-label>
+                  <input type="mobile" matInput minlength="10" maxlength="20" placeholder="e.g 0712345678"
+                    formControlName="secondRefPhone">
+                  <mat-error *ngIf="sixthFormGroup.get('secondRefPhone').hasError('minlength' || 'maxlength')
+                     ">Please enter a valid phone number.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Second Referee Email</mat-label>
+                  <input matInput pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                    placeholder="e.g abc123@gmailcom" formControlName="secondRefEmail">
+                  <mat-error *ngIf="sixthFormGroup.get('secondRefEmail').hasError('pattern')
+                     ">Personal e-mail address invalid!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="seventhFormGroup" label="Job Information">
+        <form [formGroup]="seventhFormGroup">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Department</mat-label>
+                  <mat-select formControlName="departmentId">
+                    <mat-option *ngFor="let departments of department" [value]="departments.id">{{
+                      departments.departmentName }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="seventhFormGroup.get('departmentId').hasError('required')">
+                    Department field required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Occupation</mat-label>
+                  <input type="text" matInput placeholder="e.g Software Engineer" formControlName="occupation">
+                  <mat-error *ngIf="seventhFormGroup.get('occupation').hasError('required')">
+                    Occupation field required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Designated Position</mat-label>
+                  <mat-select formControlName="jobGroup">
+                    <mat-option [value]="jobGroup" *ngFor="let jobGroup of jobOccupationArray">{{jobGroup }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="seventhFormGroup.get('jobGroup').hasError('required')">
+                    Job Position field required!!
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div [align]="'end'">
+            <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="eighthFormGroup" label="Salary Information">
+        <form [formGroup]="eighthFormGroup">
+          <div class="container-fluid">
+            <div class="example-container">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Bank Name</mat-label>
+                    <mat-select formControlName="bankName" placeholder="e.g 01 - Kenya Commercial Bank Limited"
+                      (selectionChange)="onSelectedBank($event)">
+                      <mat-option *ngFor="let bankname of bank" [value]="bankname.name">{{ bankname.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="eighthFormGroup.controls['bankName'].hasError('required')">
+                      Bank name required!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Branch Code</mat-label>
+                    <mat-select placeholder="e.g 091-Eastleigh Branch" formControlName="branch_code">
+                      <mat-option *ngFor="let branches of branch" [value]="branches.branchCode ">{{ branches.branchCode
+                        }}--{{ branches.brachName }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="eighthFormGroup.controls['branch_code'].hasError('required')">
+                      Bank branch code required!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Bank Account Number</mat-label>
+                    <input matInput placeholder="e.g 011111111" minlength="4" maxlength="20" pattern="[0-9]+"
+                      formControlName="bankAccount">
+                    <mat-error *ngIf="eighthFormGroup.controls['bankAccount'].hasError('required')">
+                      Bank Account NO. required!!
+                    </mat-error>
+                    <mat-error *ngIf="eighthFormGroup.get('bankAccount').hasError( 'minlength' ||'maxlength'||'pattern')
+                     ">Bank Account Number invalid!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Confirm Bank Account Number</mat-label>
+                    <input matInput placeholder="e.g 011111111" minlength="4" maxlength="20" pattern="[0-9]+"
+                      formControlName="confirmBankAccount">
+                    <mat-error *ngIf="eighthFormGroup.controls['confirmBankAccount'].hasError('required')">
+                      Bank Account NO. required!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Employee KRA NO.</mat-label>
+                    <input matInput placeholder="e.g A01111111B" minlength="4" maxlength="20" formControlName="kraNo">
+                    <mat-error *ngIf="eighthFormGroup.controls['kraNo'].hasError('required')">
+                      KRA field required!!
+                    </mat-error>
+                    <mat-error *ngIf="eighthFormGroup.get('kraNo').hasError( 'minlength' ||'maxlength')
+                     ">KRA NO. invalid!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>NHIF N0.</mat-label>
+                    <input matInput placeholder="e.g NHIF001" minlength="4" maxlength="20" formControlName="nhifNo">
+                    <mat-error *ngIf="eighthFormGroup.controls['nhifNo'].hasError('required')">
+                      NHIF field required!!
+                    </mat-error>
+                    <mat-error *ngIf="eighthFormGroup.get('nhifNo').hasError( 'minlength' ||'maxlength')
+                     ">NHIF NO. invalid!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>NSSF NO</mat-label>
+                    <input matInput placeholder="e.g NSSF001" minlength="4" maxlength="20" formControlName="nssfNo">
+                    <mat-error *ngIf="eighthFormGroup.controls['nssfNo'].hasError('required')">
+                      NSSF field required!!
+                    </mat-error>
+                    <mat-error *ngIf="eighthFormGroup.get('nssfNo').hasError( 'minlength' ||'maxlength')
+                     ">NSSF NO. invalid!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-label> <strong>TOTAL REMITTANCE</strong></mat-label>
+            <div class="example-container">
+              <div class="row">
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Employee Basic Salary</mat-label>
+                    <input matInput class="example-right-align" formControlName="basic_salary">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Actual Retirement Scheme</mat-label>
+                    <input matInput class="example-right-align" formControlName="dcrs_actual_e2">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Total Non Cash Benefits</mat-label>
+                    <input matInput class="right-align" placeholder="0" formControlName="total_non_cash_benefit">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Value of Quarters</mat-label>
+                    <input matInput class="right-align" placeholder="0" formControlName="value_of_quarters">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Owner Occupied Interests</mat-label>
+                    <input matInput class="right-align" placeholder="0" formControlName="owner_occupied_interests">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Personal Relief</mat-label>
+                    <input matInput class="right-align" placeholder="0" formControlName="personal_relief">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Insurance Relief</mat-label>
+                    <input matInput class="right-align" placeholder="0" formControlName="insurance_relief">
+                    <span matPrefix>KSH.&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div [align]="'end'">
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Submit</ng-template>
+        <mat-card>
+          <h2>Submission:</h2>
+          <p>You have reach the final end of outlineing data, ready to Submit Employee data?</p>
+        </mat-card>
+        <div [align]="'end'">
+          <button mat-raised-button matStepperPrevious color="accent">Back</button>
+          <button mat-raised-button color="primary" (click)="Submit()">Submit </button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</mat-card>

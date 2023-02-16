@@ -1,0 +1,184 @@
+<mat-card>
+  <mat-card-header class="breadcrumb">
+    <p>Home/KRA Returns</p>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+  
+    <div class="row">
+    <div class="col-md-2 col-sm-12 col-xs-12 mt-5">
+    <mat-card>
+      <form
+        class="form"
+        [formGroup]="formData"
+        (ngSubmit)="submitData()"
+        #resetRequestsForm="ngForm"
+        novalidate
+      >
+    <h3>Filter</h3>
+    <mat-form-field class="full-width">
+          <input matInput placeholder="Year" formControlName="year" />
+          <mat-error *ngIf="handleError('year', 'required')">
+            You must provide the<strong>Year!</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Filter by Month</mat-label>
+          <mat-select formControlName="selectedMonth">
+            <mat-option
+              [value]="month"
+              *ngFor="let month of monthsArray"
+              >{{ month }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('selectedMonth', 'required')">
+           <strong>Month</strong> is required
+          </mat-error>
+        </mat-form-field>
+
+
+        <br />
+        <button class="pull-right" mat-raised-button color="primary" type="submit">
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
+          Submit
+        </button>
+
+        <br />
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+        <br />
+      </form>
+      <br>
+
+    <mat-divider></mat-divider>
+    <br>
+    <!-- Monthly Payments
+    <div class="row results">
+    <h4>To PAYE</h4>
+    <p>{{payeDeductions| currency : 'Ksh'}}</p>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="row results">
+    <h4>To NSSF</h4>
+    <p>{{nssfDeductions| currency : 'Ksh'}}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row results">
+    <h4>TO NHIF</h4>
+    <p>{{nhifDeductions| currency : 'Ksh'}}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row results">
+    <h4>TO HELB </h4>
+    <p>{{helbDeductions| currency : 'Ksh'}}</p>
+    </div> -->
+    <mat-divider></mat-divider>
+    </mat-card>
+    </div>
+    <div class="col-md-10 col-sm-12 col-xs-12 mt-5">
+      <div class="mat-elevation-z8">
+        <div class="row table-action-row">
+          <div class="col-md-6 col-sm-12">
+    
+        <div>
+          <button class="table-main-action-btn" color="accent" mat-raised-button (click)="exporter.exportTable('csv',{fileName:'KRA_Returns'})"><i class="fas fa-file-csv"></i> - CSV</button>
+          <button class="table-main-action-btn" color="primary" mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'KRA_Returns'})"><i class="fas fa-file-excel"></i> - Excel</button>
+          <button class="table-main-action-btn" color="warn" mat-raised-button (click)="exporter.exportTable('json',{fileName:'KRA_Returns'})"><i class="fas fa-file-code"></i> - JSON</button>
+          <button class="table-main-action-btn"mat-raised-button (click)="exporter.exportTable('txt',{fileName:'KRA_Returns'})"><i class="fas fa-file-alt"></i> - TEXT</button>
+        </div>
+    
+            </div>
+          <div class="col-md-6 col-sm-12">
+          <mat-icon class="pull-right">search</mat-icon>
+          <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+          </div>
+        </div>
+        <br>  
+        <div class="table-row">
+          <table class="y-scrollable-table"mat-table matSort matTableExporter [dataSource] = "dataSource" #exporter="matTableExporter">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+            <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+            <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+          </ng-container>
+          <ng-container matColumnDef="emp_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee No</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.emp_no}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="first_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="other_names">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Other Names</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.other_names}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> National ID</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.id_no}}  </td>
+            </ng-container>
+
+
+          
+    
+            <ng-container matColumnDef="pin_no">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>KRA Pin</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.pin_no}} </td>
+            </ng-container>
+            <ng-container matColumnDef="period_m">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Period (Months)</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.period_m}} </td>
+            </ng-container>
+        
+
+            <ng-container matColumnDef="period_y">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Period (Years)</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.period_y}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="salary">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary (GP)</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.salary | currency : 'Ksh'}} </td>
+            </ng-container>
+
+           
+
+            <ng-container matColumnDef="paye">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Paye</th>
+              <td (click)="onSelect(row)" mat-cell *matCellDef="let row"> {{row.paye | currency : 'Ksh'}} </td>
+            </ng-container>
+
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+     
+ 
+    </div>
+    </div>
+    </mat-card>
+
+
+
+

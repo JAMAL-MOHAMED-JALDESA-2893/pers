@@ -1,0 +1,13 @@
+
+<p>
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>  <img src="../../../../assets/logo2 (1).png" style="height:50% ; width:140px" class="md-card-image" alt="logo"> </span>
+      <span class="example-spacer"></span>
+           <mat-icon class="left-icons"  (click)="logout()">exit_to_app</mat-icon>
+           <mat-icon class="screen left-icons" *ngIf="!isFullScreen" (click)="openFullscreen()">fullscreen</mat-icon>
+          <mat-icon class="screen left-icons" *ngIf="isFullScreen" (click)="closeFullscreen()">fullscreen_exit</mat-icon>
+    </mat-toolbar>
+  </p>

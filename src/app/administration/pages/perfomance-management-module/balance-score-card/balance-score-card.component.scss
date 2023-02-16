@@ -1,0 +1,163 @@
+
+.profile-section{
+    width: 95% !important;
+    text-align: center !important;
+    background-color: red;;
+}
+img {
+    text-align: center;
+}
+.profile-card {
+    text-align: center !important;
+    padding: 0 20px 20px 20px;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: auto;
+    }
+}
+.score-card{
+    margin: 5px;
+    margin: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.progress-bar{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-radius: 8px;
+}
+.progress-data{
+    background-color: rgb(240, 240, 240);
+    height: 200px;
+    width: 80% !important;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+}
+.main-row{
+    padding: 5px !important;
+}
+.display-flex{
+    display: flex;
+    text-align: justify;
+}
+.pull-left{
+    text-align: left;
+    float: left;
+}
+.pull-right{
+    text-align: right;
+    float: right;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.raisedbox { 
+    padding: 10px;
+    border: 1px solid #77aaff;
+    box-shadow:  -1px 1px #77aaff,
+         -2px 2px #77aaff,
+         -3px 3px #77aaff,
+         -4px 4px #77aaff,
+         -5px 5px #77aaff;
+}
+h4{
+    font-family: monospace;
+    color: rgb(0, 152, 212);
+    text-decoration: underline;
+}
+.display-flex{
+    display: flex !important;
+}
+.display-block{
+    display: block !important;
+    padding-bottom: 0px;
+}
+.float-right{
+    float: right !important;
+    text-align: right !important;
+}
+.float-left{
+    float: left !important;
+    text-align: left !important;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    margin-bottom: 0 px !important;
+    padding-bottom:  0px !important;
+    font-weight: 900;
+    color: rgb(62, 109, 0);
+    // border-radius: 100% !important;
+    // background-color: rgb(0, 255, 64);
+    // padding: 5px;
+    // width: 50x;
+    
+}
+th{
+    font-size: 10px;
+}
+td{
+    font-size: 10px;
+}
+.info-table{
+    height: 450px !important;
+    overflow: auto;
+  }
+  small{
+    font-family: monospace;
+    font-style: italic;
+  }
+  .analysis{
+    margin-bottom: 5px;
+  }
+  .cards{
+      padding-bottom: 10px;
+      height: max-content !important;
+  }
+  .details{
+      display: block;
+  }
+
+
+  p{
+      text-decoration: underline dotted;
+      color: rgb(56, 149, 255);
+  }
+
+  .Poor{
+      background-color: red;
+      color: white;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 6px;
+      padding-right: 6px;
+      border-radius: 22px;
+  }
+  .Satisfactory{
+      background-color: rgb(255, 196, 0);
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 6px;
+      padding-right: 6px;
+      border-radius: 22px;
+  }
+  .Good{
+    background-color: rgb(0, 255, 221);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 22px;
+  }
+  .Excelent{
+      background-color: rgb(0, 255, 0);
+      padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: 6px;
+      padding-right: 6px;
+      border-radius: 22px;
+  }

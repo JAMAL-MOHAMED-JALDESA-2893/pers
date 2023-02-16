@@ -1,0 +1,39 @@
+<mat-card>
+    <form
+      class="form"
+      [formGroup]="formData"
+      (ngSubmit)="submitData()"
+      #resetRequestsForm="ngForm"
+      novalidate
+    >
+    <div class="row">
+        <h3>Create Advance Salary Parameters</h3>
+    <div class="col-md-12 col-sm-12">
+     <mat-form-field appearance="fill">
+          <mat-label>Maximum Percentage</mat-label>
+          <input matInput placeholder="Enter Maximum Percentage" formControlName="max_salary_percentage" required>
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12">
+     <mat-form-field appearance="fill">
+          <mat-label>Minimum Percentage</mat-label>
+          <input matInput placeholder="Enter Minimum Percentage" formControlName="min_salary_percentage" required>
+      </mat-form-field>
+    </div>  
+    </div>
+      <br />
+      <button class="pull-right" mat-raised-button color="primary" type="submit">
+        <span
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm mr-1"
+        ></span>
+        Submit
+      </button>
+      <br />
+      <br />
+    </form>
+  </mat-card>
+  
+  

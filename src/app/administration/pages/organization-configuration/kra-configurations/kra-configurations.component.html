@@ -1,0 +1,89 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>
+    <a routerLink="/administration/configurations/kra/" skipLocationChange>KRA / </a>KRA Configured
+  </div>
+</mat-card-header>
+<div class="container-fluid">
+  <!-- Table Part -->
+  <div class="row">
+    <div class="container-fluid">
+      <mat-card>
+        <div *ngIf="loading">
+          <p><small>Loading, please wait...</small></p>
+          <p>
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </p>
+        </div>
+        <div class="row table-action-row">
+          <div class="on-mobile-hide col-md-6 col-sm-12">
+            <div>
+              <button class="table-main-action-btn bg-primary text-white"
+                routerLink="/administration/configurations/kra/add/" skipLocationChange="" mat-raised-button><i
+                  class="fa fa-plus" aria-hidden="true"></i> &nbsp; ADD KRA TAX
+              </button>
+              <button class="table-main-action-btn" color="accent" mat-raised-button>
+                <i class="fas fa-file-csv"></i> CSV
+              </button>
+              <button class="table-main-action-btn" color="primary" mat-raised-button>
+                <i class="fas fa-file-excel"></i>EXCEL
+              </button>
+              <button class="table-main-action-btn" color="warn" mat-raised-button>
+                <i class="fas fa-file-code"></i> JSON
+              </button>
+              <button class="table-main-action-btn bg-secondary text-white" mat-raised-button>
+                <i class="fas fa-file-alt"></i> TEXT
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..."
+              #input />
+          </div>
+        </div>
+        <br>
+       <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+         <thead>
+           <tr>
+             <th>Id</th>
+             <th>Tax Band</th>
+             <th>Amount Monthly</th>
+             <th>Amount Annualy</th>
+             <th>Deduction Rate</th>
+             <th>Personal Relief (Monthly)</th>
+             <th>Personal Relief (Annualy)</th>
+             <th>Created On</th>
+             <th>updated on</th>
+             <th>Operations</th>
+         </thead>
+         <tbody>
+           <tr *ngFor="let item of this.data">
+             <td>No.{{item.id}}</td>
+             <td>{{item.tax_band}}</td>
+             <td>{{item.amount_monthly | currency : 'Ksh.'}}</td>
+             <td>{{item.amount_annual | currency : 'Ksh.'}}</td>
+             <td>{{item.rate}}.00%</td>
+             <td>{{item.personal_relief_monthly | currency : 'Ksh.'}}</td>
+             <td>{{item.personal_relief_annualy | currency : 'Ksh.'}}</td>
+             <td>{{item.created_at | date}}</td>
+             <td>{{item.updated_at | date}}</td>
+             <td>
+                   <a class="update"  color="accent"   matTooltip="Update Configuration" [routerLink]="['/administration/configurations/kra/update/', item.id]" ><mat-icon>launch</mat-icon></a>
+                   <a class="danger"  color="accent"  matTooltip="Delete Configuration" (click)="onDelete(item.id)" routerLinkActive="list-item-active" ><mat-icon>delete_forever</mat-icon></a>
+
+             </td>
+           </tr>
+           </tbody>
+           </table>
+       </mat-card>
+
+    </div>
+  </div>
+</div>
+
+
+
+

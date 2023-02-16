@@ -1,0 +1,223 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>Organization Information
+    Update
+  </div>
+</mat-card-header>
+
+<mat-card>
+  <!-- <div class="title-group">
+    <h3 class="mat-h1">
+     <strong>Update organization Metadata</strong>
+   </h3>
+    <mat-divider></mat-divider>
+  </div> -->
+
+  <form [formGroup]="ConfigurationsFormGroup">
+    <div class="container-fluid">
+      <br>
+      <label> Basic information</label>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Business Name</mat-label>
+            <input matInput placeholder="Enter organization Name" formControlName="organization_name">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Company KRA PIN</mat-label>
+            <input matInput placeholder="Enter KRA Pin" formControlName="organization_kra_pin" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Business Certificate NO.</mat-label>
+            <input matInput placeholder="Enter organization Certificate" formControlName="organization_business_no"
+              required>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Enter organization building" formControlName="organization_location" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of row -->
+      <label> Location information</label>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Country of Operation</mat-label>
+            <mat-select formControlName="organization_country">
+              <mat-option *ngFor="let countries of countriesData" [value]="countries.name">{{ countries.name }}
+              </mat-option>
+            </mat-select>
+            <!-- <input matInput placeholder="Enter Last Name" formControlName="organization_country" required> -->
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="Enter organization street" formControlName="organization_street" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Building </mat-label>
+            <input matInput placeholder="Enter organization building" formControlName="organization_building" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Room/Floor</mat-label>
+            <input matInput placeholder="Enter organization floor" formControlName="organization_floor">
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of row -->
+      <label> Bank information</label>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Bank 1 Name</mat-label>
+            <mat-select formControlName="organization_bank1_name" placeholder="e.g 01 - Kenya Commercial Bank Limited"
+            (selectionChange)="onSelectedBank($event)">
+            <mat-option *ngFor="let bankname of bank" [value]="bankname.name">{{ bankname.name }}
+            </mat-option>
+          </mat-select>
+            <!-- <input matInput placeholder="Enter organization Bank 1" formControlName="organization_bank1_name"> -->
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Branch Code</mat-label>
+            <mat-select placeholder="e.g 091-Eastleigh Branch" formControlName="bankbranchCode1">
+              <mat-option *ngFor="let branches of branch" [value]="branches.brachName ">{{ branches.branchCode
+                }}--{{ branches.brachName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label> Bank 1 account</mat-label>
+            <input matInput placeholder="e.g 010101010101" formControlName="organization_bank1_account" required>
+          </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Bank 2 Name </mat-label>
+            <mat-select formControlName="organization_bank2_name" placeholder="e.g 01 - Kenya Commercial Bank Limited"
+            (selectionChange)="onSelectedBank2($event)">
+            <mat-option *ngFor="let bankname of bank" [value]="bankname.name">{{ bankname.name }}
+            </mat-option>
+            </mat-select>
+            <!-- <input matInput placeholder="Enter organization Bank 2 Name" formControlName="organization_bank2_name"> -->
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Branch Code</mat-label>
+            <mat-select placeholder="e.g 091-Eastleigh Branch" formControlName="bankbranchCode2">
+              <mat-option *ngFor="let branches of branch2" [value]="branches.brachName ">{{ branches.branchCode
+                }}--{{ branches.brachName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Bank 2 Account </mat-label>
+            <input matInput placeholder="e.g 010101010101"
+              formControlName="organization_bank2_account">
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of row -->
+      <label> Contact information</label>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Website</mat-label>
+            <input matInput placeholder="Enter organization Website" formControlName="organization_website">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Mail</mat-label>
+            <input matInput placeholder="Enter Organization Mail" formControlName="organization_email" required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Telephone </mat-label>
+            <input matInput placeholder="Enter organization Telephones" formControlName="organization_telephone"
+              required>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Postal Address </mat-label>
+            <input matInput placeholder="Enter organization postal address" formControlName="organization_address"
+              required>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of row -->
+      <label> Other Information</label>
+      <div class="row">
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Map link </mat-label>
+            <input matInput placeholder="Enter organization map  link" formControlName="organization_map_link">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organisation Paybill</mat-label>
+            <input matInput placeholder="Enter organization paybill" formControlName="organization_pay_bill">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>Organization Till</mat-label>
+            <input matInput placeholder="Enter Last Name" formControlName="organization_till">
+          </mat-form-field>
+        </div>
+        <div class="col-md-3 col-sm-12">
+          <mat-form-field appearance="outline">
+            <mat-label>County Located</mat-label>
+            <mat-select placeholder="e.g Nairobi county" formControlName="organization_county">
+              <mat-option *ngFor="let counties of county" [value]="counties.name">{{ counties.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div [align]="'center'">
+        <div class="col-md-6 col-sm-12">
+          <button class="update-config-btn" mat-raised-button color="primary" (click)="onSubmit()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            UPDATE
+          </button>
+        </div>
+      </div>
+      <!-- <div class="row buttonSubmit">
+        <button class="btn btn-block" mat-raised-button color="primary" (click)="onSubmit()">Submit </button>
+      </div> -->
+    </div>
+    <div>
+    </div>
+  </form>
+  <!-- end of form -->
+</mat-card>

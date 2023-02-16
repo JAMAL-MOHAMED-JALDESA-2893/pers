@@ -1,0 +1,17 @@
+form{
+    width: 400px;
+    margin: auto !important;
+  }
+mat-form-field{
+    width: 100% !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .main-section{
+        width: 100% !important;
+    }
+    form{
+        width:100% !important;
+        margin: 0px !important;
+      }
+  }

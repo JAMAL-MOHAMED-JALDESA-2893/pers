@@ -1,0 +1,106 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>
+    <a routerLink="/administration/configurations/set/email" skipLocationChange>E-Mail / </a>E-Mails Details
+  </div>
+</mat-card-header>
+<mat-card>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Organization Name</h3>
+        <p>{{this.email_organization_name}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Email Type</h3>
+        <p>{{this.email_type}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Organization Email Address</h3>
+        <p>{{this.email_organization_address}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Organization Phone</h3>
+        <p>{{this.email_organization_phone}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Email Salutaion</h3>
+        <p>{{this.email_salutation}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Email Subject</h3>
+        <p>{{this.email_subject}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Email Heading</h3>
+        <p>{{this.email_heading}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Email Regards</h3>
+        <p>{{this.email_regards_from}}</p>
+      </div>
+      <div class="col-md-4 col-sm-12 ">
+        <h3>Organization Email Location</h3>
+        <p>{{this.email_organization_location}}</p>
+      </div>
+      <div class="col-md-6 col-sm-12 ">
+        <h3>Email Message Body</h3>
+        <p>{{this.email_message}}</p>
+      </div>
+      <div class="col-md-6 col-sm-12 ">
+        <h3>Email Remarks</h3>
+        <p>{{this.email_remarks}}</p>
+      </div>
+      <!-- <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 prev-data">
+            <div class="row">
+              <h3>Email Subject</h3>
+              <p>{{this.email_subject}}</p>
+            </div>
+            <div class="row">
+              <h3>Email Header</h3>
+              <p>{{this.email_heading}}</p>
+            </div>
+            <div class="row">
+              <h3>Email Salutation</h3>
+              <p>{{this.email_salutation}}</p>
+            </div>
+            <div class="row">
+              <h3>Email Message</h3>
+              <p>{{this.email_message}}</p>
+            </div>
+            <div class="row">
+              <h3>Email Remarks</h3>
+              <p>{{this.email_remarks}}</p>
+              <p>{{this.email_regards_from}}</p>
+              <p>{{this.email_organization_name}}</p>
+              <p>{{this.email_organization_phone}}</p>
+              <p>{{this.email_organization_mail}}</p>
+              <p>{{this.email_organization_address}}</p>
+              <p>{{this.email_organization_location}}</p>
+              <p>{{this.email_organization_website}}</p>
+            </div>
+            <div class="row">
+              <button class="btn-sm btn-block" mat-raised-button color="primary"
+                [routerLink]="['/administration/configurations/set/email/update/', this.id]">
+                Update E-Mail Configurations</button>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12"></div>
+        </div>
+      </div> -->
+    </div>
+    <mat-divider></mat-divider>
+      <div [align]="'center'">
+        <div class="col-md-4 col-sm-12">
+          <button class="preview-mail-btn" [routerLink]="['/administration/configurations/set/email/update/', this.id]" skipLocationChange="" mat-raised-button color="primary" type="submit">
+            Update E-Mail Configurations
+          </button>
+        </div>
+      </div>
+  </div>
+  </mat-card>

@@ -1,0 +1,267 @@
+<mat-nav-list>
+  <div class="profile-card">
+    <img src="../../../../assets/user.jpg" alt="System Admin">
+    <div class="header">
+      <h4>{{this.email}}</h4>
+      <p><span class="online">Online</span></p>
+      <p routerLink="/administration/profile"><span>Profile</span></p>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Pages</h2>
+  <a mat-list-item class="link-title" routerLinkActive="list-item-active" routerLink="/administration">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard
+  </a>
+
+  <!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion"> 
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>settings</mat-icon>Configurations
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/swifts"
+          skipLocationChange="">Swifts
+          Info</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations"
+          skipLocationChange="">Organisation
+          Info</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/batch"
+          skipLocationChange="">Batch
+          Processes Configurations</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/set/email"
+          skipLocationChange="">Email
+          Configurations</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/nhif"
+          skipLocationChange="">NHIF
+          Configurations</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/nssf"
+          skipLocationChange="">NSSF
+          Configurations</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/kra"
+          skipLocationChange="">KRA
+          Configurations</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/configurations/set/absentism"
+          skipLocationChange="">Absentism Configurations</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+<!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>store</mat-icon>Departments Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/departments"
+        skipLocationChange="">
+        Departments</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+<!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>supervised_user_circle</mat-icon>Employee Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/create/new/employee"
+          skipLocationChange="">+ New
+          Employee</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/unapproved/employees"
+          skipLocationChange="">Pending
+          Employee</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/active"
+          skipLocationChange="">Active
+          Employees</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/inactive"
+          skipLocationChange="">Inactive
+          Employees</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/promotions"
+          skipLocationChange="">Employees
+          Promotions</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/trashed"
+          skipLocationChange="">Employees
+          Removed</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>import_contacts</mat-icon>Advance loan Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+<!-- *ngIf="is_Second_Level_prev" -->
+      <mat-nav-list>
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/advance/salary/params" skipLocationChange="">Advance Parameters</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employee/advance/salary"
+          skipLocationChange="">All
+          Advance Salary</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+<!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>event_note</mat-icon>Allowances Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employee/allowances"
+          skipLocationChange="">Custom
+          Allowances</a>
+        <a mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/allowance-benefits/view" skipLocationChange="">Custom Benefits</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>next_week</mat-icon>Payroll Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- *ngIf="is_authorised_gen_salary " -->
+      <mat-nav-list>
+        <a mat-list-item  routerLinkActive="list-item-active"
+          routerLink="/administration/payroll/home" skipLocationChange="">Generate Payroll</a>
+<!-- *ngIf="is_Director" -->
+        <a mat-list-item  routerLinkActive="list-item-active"
+          routerLink="/administration/pending/salary" skipLocationChange="">Modifiable Salary</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/bank_transfer"
+          skipLocationChange="">Bank
+          Transfer</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/kra_returns"
+          skipLocationChange="">KRA
+          Returns</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/nssf_returns"
+          skipLocationChange="">NSSF
+          Returns</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/nhif_returns"
+          skipLocationChange="">NHIF
+          Returns</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/salary/employee/payslip"
+          skipLocationChange="">Employee Payslips</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employees/p9form"
+          skipLocationChange="">Employees P9
+          Form</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon> directions_walk</mat-icon> Leaves Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+<!-- *ngIf="is_Second_Level_prev" -->
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/leaves/type" skipLocationChange="">Leave Types</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/leaves"
+          skipLocationChange="">All Leave Requests</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/my/leave/requests"
+          skipLocationChange="">My Leave
+          Requests</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>access_alarm</mat-icon> Time & Attendance
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+<!-- *ngIf="is_Second_Level_prev" -->
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/attendance/configurations" skipLocationChange="">Attendance
+          Configurations</a>
+<!-- *ngIf="is_Second_Level_prev" -->
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/attendance/holiday/configurations" skipLocationChange="">Holiday
+          Configurations</a>
+<!-- *ngIf="is_Second_Level_prev" -->
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/attendance" skipLocationChange="">Attendance Register</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/employee/timesheet"
+          skipLocationChange="">Time
+          Sheet</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon> bar_chart</mat-icon>Perfomance Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+<!-- *ngIf="is_Second_Level_prev" -->
+      <mat-nav-list>
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/perfomance/management/parameters" skipLocationChange="">Perfomance
+          Parameters</a>
+        <a mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/perfomance/management/evaluation" skipLocationChange="">Evaluation</a>
+<!-- *ngIf="is_Second_Level_prev" -->
+        <a  mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/employee/perfomance/management/balance/score/card" skipLocationChange="">Balance
+          Score Card</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-accordion class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>delete_sweep</mat-icon> Resignation Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/resignation"
+          skipLocationChange="">Resignation
+          Requests</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/resignation/payroll"
+          skipLocationChange="">Resignation Payroll</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+<!-- *ngIf="is_Second_Level_prev" -->
+  <mat-accordion  class="app-nav-accordion">
+    <mat-expansion-panel class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="nav-title">
+          <mat-icon>account_box</mat-icon> Accounts Module
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/accounts"
+          skipLocationChange="">All Accounts</a>
+        <a mat-list-item routerLinkActive="list-item-active"
+          routerLink="/administration/all/approved/employees/accounts" skipLocationChange="">Approved Employee
+          Accounts</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/administration/all/revoked/employees/accounts"
+          skipLocationChange="">Revoked Employee Accounts</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>

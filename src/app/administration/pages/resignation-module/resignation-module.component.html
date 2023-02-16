@@ -1,0 +1,87 @@
+<mat-card-header>
+    <h3 class="mat-h1">
+        <strong>Resignation</strong>
+    </h3>
+</mat-card-header>
+<hr>
+
+<mat-card>
+    <mat-card-header>
+        <p>Home / Resignation Requests</p>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br>
+    <button mat-raised-button color="primary" routerLink="/administration/clearence/create">+ Clearence Request</button>
+    <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Occupation</th>
+                <th>Resignation Date</th>
+                <th>Status</th>
+                <th>Supervisor Approval</th>
+                <th>HR-Approval</th>
+                <th>Director Approval</th>
+                <th>Created on</th>
+                <th>Updated on</th>
+                <th>Operations</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of this.respData">
+
+                <td>{{this.item.firstname}},{{this.item.middlename}}, {{this.item.lastname}} </td>
+                <td>{{this.item.departmentname}}</td>
+                <td>{{this.item.occupation}}</td>
+                <td>{{item.exit_date | date}}</td>
+                <td>{{item.clearence_status}}</td>
+                <td><span class="{{item.supervisor_approved}}">{{item.is_supervisor_approved}}</span> </td>
+                <td><span class="{{item.hr_approved}}">{{item.is_hr_approved}}</span> </td>
+                <td><span class="{{item.director_approved}}">{{item.is_Director_approved}}</span> </td>
+                <td>{{item.created_at | date}}</td>
+                <td>{{item.updated_at | date}}</td>
+                <td>
+                    <button mat-raised-button [disabled]="this.disabled" color="primary" class="action-button" (click)="onApprove(item.id)">Approve</button>
+                    <button mat-raised-button [disabled]="this.disabled" color="accent" class="action-button" (click)="onReject(item.id)">Reject</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>
+
+<!-- <td>{{this.clearenceData.firstname}},{{this.clearenceData.middlename}}, {{this.clearenceData.lastname}} </td>
+       <td>{{this.clearenceData.departmentname}}</td>
+       <td>{{this.clearenceData.occupation}}</td>
+       <td>{{this.clearenceData.exit_date | date}}</td>
+       <td>{{this.clearenceData.clearence_status}}</td>
+
+       <td><span class="{{this.clearenceData.is_supervisor_approved}}">{{this.clearenceData.is_supervisor_approved}}</span> </td>
+       <td><span class="{{this.clearenceData.is_hr_approved}}">{{this.clearenceData.is_hr_approved}}</span> </td>
+       <td><span class="{{this.clearenceData.is_Director_approved}}">{{this.clearenceData.is_Director_approved}}</span> </td>
+
+       <td>{{this.clearenceData.created_at | date}}</td>
+       <td>{{this.clearenceData.updated_at | date}}</td> -->
+
+<!-- clearence_status: "Approved"
+created_at: "2022-01-23 10:44:08.0"
+deleted_at: "2022-01-23 10:44:08.0"
+department_id: 3
+departmentname: "Administration Department"
+director_rejection_reason: "Contractual Terms not allowed"
+employee_id: 2
+exit_date: "2022-03-18"
+firstname: "Dennis"
+hr_rejection_reason: "Contractual Terms not allowed"
+id: 1
+is_Director_approved: "true"
+is_cleared: "false"
+is_hr_approved: "true"
+is_supervisor_approved: "true"
+lastname: "Kimani"
+middlename: "K."
+monitor_from_date: "2022-02-01"
+occupation: "Human Resource Manager"
+reason: "End of contract"
+salary: "0.0"
+supervisor_rejection_reason: "Contractual Terms not allowed"
+updated_at: "2022-01-23 10:44:08.0" -->

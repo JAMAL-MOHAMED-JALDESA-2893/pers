@@ -1,0 +1,98 @@
+.example-stepper {
+  margin-top: 8px;
+  margin: auto;
+  width:95%;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  margin: 16px;
+  width: 30%;
+  float: center;
+}
+mat-step {
+  width:100%;
+  margin: auto;
+}
+form{
+  width:100%;
+  margin: auto !important;
+}
+mat-card{
+  margin: auto;
+  margin: 10px;
+  padding:10px;
+}
+
+mat-stepper{
+  text-align: center;
+}
+button{
+  margin: 10px;
+}
+.row{
+  text-align: center;
+}
+
+
+
+.danger{
+  color: rgb(255, 92, 92) !important;
+  font-weight: 900;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+button{
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+.grossPay{
+  background-color:darkgreen;
+  color:white;
+  font-style: italic;
+  font-weight: 600;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.Approved{
+  background-color:green;
+  padding: 5px;
+  color: white;
+}
+
+.Pending{
+  background-color:rgb(255, 240, 36);
+  padding: 5px;
+}
+
+.Rejected{
+  background-color:red;
+  padding: 5px;
+  color: white;
+}
+.False{
+    color: rgb(255, 92, 92) !important;
+  padding: 5px;
+  color: white;
+}
+.True{
+  color: rgb(105, 255, 86) !important;
+  font-weight: 900;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+.action-button{
+  height: 20px !important;
+  width:40px !important;
+  line-height: 20px !important;
+  text-align: center !important;
+  padding: 0 !important;
+  font-size: 10px !important;
+  margin-top: 0px !important;
+}
+

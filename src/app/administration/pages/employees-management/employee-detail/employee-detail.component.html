@@ -1,0 +1,427 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Employee / </a>Employee Details
+  </div>
+  <div class="breadcrumb-item ml-auto">
+    <button class="table-main-action-btn " color="primary" routerLink="/administration/create/new/employee/"
+      skipLocationChange="" mat-raised-button><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; CREATE EMPLOYEE
+    </button>
+    <button class="table-main-action-btn" color="primary"
+      [routerLink]="['/administration/employee/update/', this.employeeId]" routerLink="/home/update/{{this.employeeId}}"
+      skipLocationChange="" mat-raised-button><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; UPDATE EMPLOYEE
+    </button>
+  </div>
+</mat-card-header>
+<mat-label>
+  <p>To update employee or create employee account, kindly go through all the employee data to validate, then do
+    necessary changes on the last tab </p>
+</mat-label>
+<mat-card>
+  <div *ngIf="loading">
+    <p><small>Loading, please wait...</small></p>
+    <p>
+      <mat-progress-bar mode="query"></mat-progress-bar>
+    </p> 
+  </div>
+  <div class="row">
+    <mat-tab-group>
+      <mat-tab label="Basic Information">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>First Name</h4>
+              <p>: {{ this.firstName }}</p>
+            </div>
+            <div class="respond">
+              <h4>Gender</h4>
+              <p>: {{ this.gender }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Middle Name</h4>
+              <p>: {{ this.middleName }}</p>
+            </div>
+            <div class="respond">
+              <h4>Religion</h4>
+              <p>: {{ this.religion }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Last Name</h4>
+              <p>: {{ this.lastName }}</p>
+            </div>
+            <div class="respond">
+              <h4>National Id</h4>
+              <p>: {{ this.nationalId }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Home Information">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Nationality</h4>
+              <p>: {{ this.nationality }}</p>
+            </div>
+            <div class="respond">
+              <h4>Current Residential County</h4>
+              <p>: {{ this.residentialCountry }}</p>
+            </div>
+            <div class="respond">
+              <h4>Postal Address</h4>
+              <p>: {{ this.postalAddress }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>County/Province</h4>
+              <p>: {{ this.county }}</p>
+            </div>
+            <div class="respond">
+              <h4>Current Residential County</h4>
+              <p>: {{ this.residentialCounty }}</p>
+            </div>
+            <div class="respond">
+              <h4>Postal Code</h4>
+              <p>: {{ this.postalCode }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Subcounty</h4>
+              <p>: {{ this.subCounty }}</p>
+            </div>
+            <div class="respond">
+              <h4>Current Residential Sub County</h4>
+              <p>: {{ this.residentialSubCounty }}</p>
+            </div>
+            <div class="respond">
+              <h4>City/Town</h4>
+              <p>: {{ this.city }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Contact Information">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Personal Phone</h4>
+              <p>: {{ this.personalPhone }}</p>
+            </div>
+            <div class="respond">
+              <h4>Personal Email</h4>
+              <p>: {{ this.personalEmail }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>ALternative Phone</h4>
+              <p>: {{ this.alternativePhone }}</p>
+            </div>
+            <div class="respond">
+              <h4>Work Mail</h4>
+              <p>: {{ this.workMail }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Home/Telephone</h4>
+              <p>: {{ this.homeNumber }}</p>
+            </div>
+            <div class="respond">
+              <h4>Organisation mail</h4>
+              <p>: {{ this.alternativeEmail }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Education Information">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Higher education</h4>
+              <p>: {{ this.highestEducation }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Course Program</h4>
+              <p>: {{ this.courseProgram }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12 col-xs-12 mt-5">
+            <div class="respond">
+              <h4>Enrollment Status</h4>
+              <p>: {{ this.enrollmentStatus}}</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Completed Education</h3>
+        <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable
+          [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th>Institution Level</th>
+              <th>Institution Name</th>
+              <th>Certification For</th>
+              <th>GPA/Class</th>
+              <th>Enrolled on</th>
+              <th>Graduated On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.employeeEducation">
+              <td>{{ item.institutionLevel}}</td>
+              <td>{{ item.institutionName }}</td>
+              <td>{{ item.awardCertificate }}</td>
+              <td>{{ item.gpa }}</td>
+              <td>{{ item.enrollOn }}</td>
+              <td>{{ item.graduatedOn }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Experience Information">
+        <br>
+        <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable
+          [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Work Position</th>
+              <th>Time taken</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.employeeWorkExperience">
+
+              <td>{{ item.companyName}}</td>
+              <td>{{ item.workPosition }}</td>
+              <td>{{ item.timeTaken }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Reference Information ">
+        <div class="row">
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>First Referee Name</h4>
+              <p>: {{ this.firstRefName }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>First Referee Institution/Organization</h4>
+              <p>: {{ this.firstRefCompany }}</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>First Referee Email</h4>
+              <p>: {{ this.firstRefEmail }}</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>First Referee Phone</h4>
+              <p>: {{ this.firstRefPhone }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>Second Referee Name</h4>
+              <p>: {{ this.secondRefName }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>Second Referee Institution/Organization</h4>
+              <p>: {{ this.secondRefCompany }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>Second Referee Email</h4>
+              <p>: {{ this.firstRefEmail }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-12">
+            <div class="respond">
+              <h4>Second Referee Phone</h4>
+              <p>: {{ this.firstRefPhone }}</p>
+            </div>
+          </div>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Salary Information">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Bank Name</h4>
+              <p>: {{ this.bankName }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Bank a/c</h4>
+              <p>: {{ this.bankAccount }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Basic Salary</h4>
+              <p>: {{ this.basic_salary | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>KRA No</h4>
+              <p>: {{ this.kraNo}}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>NSSF No.</h4>
+              <p>: {{ this.nssfNo }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>NHIF No.</h4>
+              <p>: {{ this.nhifNo }}</p>
+            </div>
+
+          </div>
+        </div>
+        <!--  -->
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Total Non Cash benefits</h4>
+              <p>: {{ this.total_non_cash_benefit | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Value of Quarters</h4>
+              <p>: {{ this.value_of_quarters | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Owner Occupation Interests</h4>
+              <p>: {{ this.owner_occupied_interests | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Personal Relief</h4>
+              <p>: {{ this.personal_relief | currency : 'Ksh'}}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Insurance Relief</h4>
+              <p>: {{ this.insurance_relief | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="respond">
+              <h4>Actual Retirement Scheme</h4>
+              <p>: {{ this.dcrs_actual_e2 | currency : 'Ksh' }}</p>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Documents">
+        <div class="container documents">
+          <div class="row">
+
+            <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%">
+
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Created On</th>
+                  <th>Updated on </th>
+                  <th>Operations</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of this.files">
+                  <td>{{ item.filename}}</td>
+                  <td>{{ item.created_at | date }}</td>
+                  <td>{{ item.updated_at | date }}</td>
+                  <td>
+                    <a (click)="onView(item.id)">
+                      <mat-icon>visibility</mat-icon>
+                    </a>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Employee Operations">
+        <div [align]="'end'" class="example-button-row">
+          <button class="addition" mat-raised-button color="primary"
+            [routerLink]="['/administration/employee/update/', this.employeeId]"
+            routerLink="/home/update/{{this.employeeId}}">+ Update Employee</button>
+          <button class="addition" *ngIf="is_Director" mat-raised-button color="accent"
+            [routerLink]="['/administration/employee/promote/', this.employeeId]">Promote Employee</button>
+        </div>
+        <!-- <div class="container operations">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+             <button class="addition" mat-raised-button color="primary" [routerLink]="['/administration/employee/update/', this.employeeId]" routerLink="/home/update/{{this.employeeId}}">+ Update Employee</button>
+            </div>
+            <div class="col-md-6 col-sm-12">
+            <button class="addition" *ngIf="is_Director" mat-raised-button color="accent" [routerLink]="['/administration/employee/promote/', this.employeeId]">Promote Employee</button>
+            </div>
+          </div>
+        </div> -->
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</mat-card>

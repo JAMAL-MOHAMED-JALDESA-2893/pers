@@ -1,0 +1,123 @@
+<!-- 
+<div class="row classLoader">
+  <span
+          *ngIf="loading"
+          class="loader"
+        > Your report is being generated,please wait... </span>
+  </div>
+<mat-card>
+ <table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+   <thead>
+     <tr>
+       <th>First Name</th>
+       <th>Other Names</th>
+       <th>National ID</th>
+       <th>Employee Occupation</th> -->
+       <!-- <th>Employee Basic Salary</th> -->
+       <!-- <th>Status?</th> -->
+       <!-- <th>Account?</th> -->
+       <!-- <th>Operations</th>
+   </thead>
+   <tbody>
+     <tr *ngFor="let item of employeeData; let i = index">
+       <td>{{item.first_name}}</td>
+       <td>{{item.other_names}}</td>
+       <td>{{item.id_no}}</td> -->
+       <!-- <td>Customer Service</td> -->
+       <!-- <td><span class="grossPay">{{item.basic_salary | currency : 'Ksh'}}</span></td> -->
+       <!-- <td><span class="Verified">Verified</span></td> -->
+       <!-- <td><span class="Yes">Yes</span></td> -->
+       <!-- <td> -->
+
+        <!-- <a class="update"  color="black" (click)="genEmployeeP9(item)" ><mat-icon>receipt</mat-icon></a>
+       </td>
+     </tr>
+     </tbody>
+     </table>
+ </mat-card> -->
+ <mat-divider></mat-divider>
+ <br>
+ <mat-card-header class="breadcrumb">
+     <div>
+         <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+         <a routerLink="/administration/employee/allowances/" skipLocationChange>Payroll / </a>
+         P-9 FORM
+     </div>
+ </mat-card-header>
+  <div class="mat-elevation-z8">
+    <div *ngIf="loading">
+      <p><small>Loading, please wait...</small></p>
+      <p>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </p> 
+    </div>
+    <div class="row table-action-row">
+      <div class="col-md-6 col-sm-12">
+        <div>
+          <button class="table-main-action-btn" color="accent" mat-raised-button
+            (click)="exporter.exportTable('csv',{fileName:'Bank_Transfer'})"><i class="fas fa-file-csv"></i> -
+            CSV</button>
+          <button class="table-main-action-btn" color="primary" mat-raised-button
+            (click)="exporter.exportTable('xlsx',{fileName:'Bank_Transfer'})"><i class="fas fa-file-excel"></i> -
+            Excel</button>
+          <button class="table-main-action-btn" color="warn" mat-raised-button
+            (click)="exporter.exportTable('json',{fileName:'Bank_Transfer'})"><i class="fas fa-file-code"></i> -
+            JSON</button>
+          <button class="table-main-action-btn" mat-raised-button
+            (click)="exporter.exportTable('txt',{fileName:'Bank_Transfer'})"><i class="fas fa-file-alt"></i> -
+            TEXT</button>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <input class="pull-right search form-control" (keyup)="applyFilter($event)" placeholder="Filter..." #input>
+      </div>
+    </div>
+    <br>
+    <div class="table-row">
+      <table class="y-scrollable-table" mat-table matSort matTableExporter [dataSource]="dataSource"
+        #exporter="matTableExporter">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header># </th>
+          <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+        </ng-container>
+        <ng-container matColumnDef="emp_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>PF NO.</th>
+          <td mat-cell *matCellDef="let row"> {{row.emp_no}} </td>
+        </ng-container>
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>First Names</th>
+          <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="other_names">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Other Names</th>
+          <td mat-cell *matCellDef="let row"> {{row.other_names}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nationalId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>National ID</th>
+          <td mat-cell *matCellDef="let row"> {{row.id_no}} </td>
+        </ng-container>
+        <ng-container matColumnDef="gross_salary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gross Salary</th>
+          <td mat-cell *matCellDef="let row"> {{row.gross_pay | currency : 'Ksh.'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="netPay">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Netpay </th>
+          <td mat-cell *matCellDef="let row"> {{row.net_salary | currency : 'Ksh.'}} </td>
+        </ng-container>=
+        <ng-container matColumnDef="services">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Service</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon  color="primary"  (click)="generatePNineForm(row.id)" matTooltip="View P-9-FORM">receipt</mat-icon>&nbsp;
+            <mat-icon class="text-secondary" (click)="downloadPNineForm(row.id)" matTooltip="Download P-9-FORM">cloud_download</mat-icon> &nbsp;
+            <mat-icon class="text-success" matTooltip="Manage P-9-FORMS" (click)="managePNineForm()">launch</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[7, 20, 30, 40, 50, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>

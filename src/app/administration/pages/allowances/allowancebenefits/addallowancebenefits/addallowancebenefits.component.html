@@ -1,0 +1,97 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/employee/allowance-benefits/view" skipLocationChange>Allowances / </a>
+    Custom Allowance Benefits
+  </div>
+</mat-card-header>
+<mat-card>
+  <mat-card-title>PAY EMPLOYEE ALLOWANCE BENEFITS</mat-card-title>
+  <form [formGroup]="benefitsForm">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Employee</mat-label>
+          <mat-select formControlName="employee_id">
+            <mat-option *ngFor="let item of employeesData" [value]="item.id">
+              {{ item.firstName}} {{ item.midleName}} {{ item.lastName}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf=" benefitsForm.controls['employee_id'].hasError('required')">
+            Employee required!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Monthly Benefit Value</mat-label>
+          <input matInput minlength="4" maxlength="40" pattern="[0-9]+" placeholder="e.g 50000.00"
+            formControlName="monthly_valuation">
+          <mat-error *ngIf=" benefitsForm.controls['monthly_valuation'].hasError('required')">
+            Monthly benefit valuation required!!
+          </mat-error>
+          <mat-error *ngIf="benefitsForm.get('monthly_valuation').hasError('minlength' || 'maxLength' || 'pattern')">
+            Provide a valid monthly benefit valuation.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Reason for Allowance Benefit</mat-label>
+          <input matInput minlength="2" maxlength="40" placeholder="e.g House Benefits" formControlName="benefit_for">
+          <mat-error *ngIf=" benefitsForm.controls['benefit_for'].hasError('required')">
+            Reason for Allowance benefit required!!
+          </mat-error>
+          <mat-error *ngIf="benefitsForm.get('benefit_for').hasError('minlength' || 'maxLength')">
+            Provide a valid Reason for Allowance benefit.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Start Date</mat-label>
+          <input formControlName="start_date" maxlength="10" minlength="2" matInput [matDatepicker]="start_date" />
+          <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+          <mat-datepicker #start_date color="primary"></mat-datepicker>
+          <mat-error *ngIf=" benefitsForm.controls['start_date'].hasError('required')">Date Field Required.
+          </mat-error>
+          <mat-error *ngIf="benefitsForm.get('start_date').hasError('minlength'||'maxLength')">Please enter a valid
+            Date Calender.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose End Date</mat-label>
+          <input formControlName="end_date" maxlength="10" minlength="2" matInput [matDatepicker]="end_date" />
+          <mat-datepicker-toggle matSuffix [for]="end_date"></mat-datepicker-toggle>
+          <mat-datepicker #end_date color="primary"></mat-datepicker>
+          <mat-error *ngIf=" benefitsForm.controls['end_date'].hasError('required' )">Date Field Required.
+          </mat-error>
+          <mat-error *ngIf="benefitsForm.get('end_date').hasError('minlength'||'maxLength')">Please enter a valid
+            Date Calender.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-5 col-sm-12">
+        <ul>
+          <li>
+            Is Allowance benefits Taxable?
+            <mat-checkbox formControlName="is_taxable" class="example-margin pull-right" color="primary"></mat-checkbox>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div [align]="'center'">
+      <div class="col-md-4 col-sm-12">
+        <button class="add-benefits-btn" mat-raised-button color="primary" (click)="submitData()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>

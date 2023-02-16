@@ -1,0 +1,144 @@
+<mat-card>
+    <mat-card>
+        <form class="form" [formGroup]="formData" (ngSubmit)="onAdd()" #resetRequestsForm="ngForm" novalidate>
+            <!-- <div class="row">
+                <label>Employee Lookup</label>
+                <mat-icon matSuffix (click)="employeeLookup()">search</mat-icon>
+            </div> -->
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Select Existing Employee</mat-label>
+                        <mat-select (selectionChange)="onSelectEmployee($event)" formControlName="departmentId">
+                            <mat-option [value]="employee" *ngFor="let employee of this.employeesArray">
+                                {{employee.firstName }} {{employee.middleName }} {{employee.lastName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Employee No.</mat-label>
+                        <input matInput placeholder="e.g 10012 " formControlName="emp_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="e.g Peter" formControlName="first_name" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Other Names</mat-label>
+                        <input matInput placeholder="e.g Smith" formControlName="other_names" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>National ID</mat-label>
+                        <input matInput placeholder="Enter Employee National ID" formControlName="id_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Account No</mat-label>
+                        <input matInput placeholder="e.g 0490123456" formControlName="acct_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Employee Bank</mat-label>
+                        <input matInput placeholder="e.g Vicktoria Bank" formControlName="bank" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>NSSF No.</mat-label>
+                        <input matInput placeholder="e.g 02345678 " formControlName="nssf_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>NHIF NO</mat-label>
+                        <input matInput placeholder="e.g 987654321" formControlName="nhif_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>KRA PIN</mat-label>
+                        <input matInput placeholder="e.g A01111111B" formControlName="pin_no" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Period (Month)</mat-label>
+                        <input matInput placeholder="e.g Janunary" formControlName="period_m" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Period (Year)</mat-label>
+                        <input type="number" matInput placeholder="2022" formControlName="period_y" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Employee Salary(GP)</mat-label>
+                        <input type="number" matInput placeholder="e.g 100,000" formControlName="salary" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>NSSF Deductions</mat-label>
+                        <input type="number" matInput placeholder="e.g 600" formControlName="nssf" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>NHIF Deductions</mat-label>
+                        <input type="number" matInput placeholder="e.g 850" formControlName="nhif" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>PAYE Deductions</mat-label>
+                        <input type="number" matInput placeholder="e.g 1024" formControlName="paye" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>HELB Deductions</mat-label>
+                        <input type="number" matInput placeholder="e.g 500" formControlName="helb" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Total Deductions</mat-label>
+                        <input type="number" matInput placeholder="e.g 500"
+                            formControlName="total_deductions_net_salary" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Net Salary</mat-label>
+                        <input type="number" matInput placeholder="e.g 1000" formControlName="net_salary" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br />
+            <button class="pull-right" mat-raised-button color="primary" type="submit">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Submit
+            </button>
+            <br />
+            <br />
+        </form>
+    </mat-card>
+</mat-card>

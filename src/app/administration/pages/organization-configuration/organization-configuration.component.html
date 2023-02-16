@@ -1,0 +1,183 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>Organization Information
+    Configured
+  </div>
+  <div class="breadcrumb-item ml-auto"> 
+    <button *ngIf="showCreateButton" class="table-main-action-btn " color="primary"
+    routerLink="/administration/configurations/create" skipLocationChange="" mat-raised-button><i class="fa fa-plus"
+      aria-hidden="true"></i> &nbsp; CREATE CONFIGURATION
+  </button>
+  <button *ngIf="showUpdateButton" class="table-main-action-btn" color="primary"
+    routerLink="/administration/configurations/update" skipLocationChange="" mat-raised-button><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp; UPDATE CONFIGURATION
+  </button>
+  </div>
+</mat-card-header>
+<mat-card>
+  <div class="container-fluid">
+    <!-- <div class="row">
+  <span *ngIf="showCreateButton"> <button mat-raised-button color="primary" routerLink="/administration/configurations/create">+ Create Organization <i class="fa fa-creative-commons" aria-hidden="true"></i></button>  </span>
+  <span *ngIf="showUpdateButton"> <button mat-raised-button color="accent" routerLink="/administration/configurations/update">+ Update Organization <i class="fa fa-creative-commons" aria-hidden="true"></i></button>  </span>
+    </div> -->
+    <label> Basic information</label>
+    <div class="row">
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Name</h4>
+          <p>: {{ this.organization_name }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization KRA Pin</h4>
+          <p>: {{ this.organization_kra_pin }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Business Certificate No</h4>
+          <p>: {{ this.organization_business_no }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Location</h4>
+          <p>: {{ this.organization_location }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of 1st row -->
+    <label> Location information</label>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Site Country</h4>
+          <p>: {{ this.organization_country }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Street Name</h4>
+          <p>: {{ this.organization_street }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Building</h4>
+          <p>: {{ this.organization_building }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Floor</h4>
+          <p>: {{ this.organization_floor }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of 2nd row -->
+    <label> Bank information</label>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Bank 1 Name</h4>
+          <p>: {{ this.organization_bank1_name }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Bank 1 Account</h4>
+          <p>: {{ this.organization_bank1_account }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Bank 2 Name</h4>
+          <p>: {{ this.organization_bank2_name }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Bank 2 Account</h4>
+          <p>: {{ this.organization_bank2_account }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of 3rd row -->
+    <label> Contact information</label>
+    <div class="row">
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Website</h4>
+          <p>:<a href="https://{{this.organization_website }}" target="_blank">{{ this.organization_website }}</a> </p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Mail</h4>
+          <p>: {{ this.organization_email }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Telephone</h4>
+          <p>: {{ this.organization_telephone }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Address</h4>
+          <p>: {{ this.organization_address }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- end of 4th row -->
+    <label> Others</label>
+    <div class="row">
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Map</h4>
+          <p>:<a href="{{this.organization_map_link}}" target="_blank">{{ this.organization_map_link }}</a> </p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Paybill</h4>
+          <p>: {{ this.organization_pay_bill }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization Till</h4>
+          <p>: {{ this.organization_till }}</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12 ">
+        <div class="respond">
+          <h4>Organization County</h4>
+          <p>: {{ this.organization_county }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of container -->
+
+</mat-card>

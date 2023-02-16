@@ -1,0 +1,76 @@
+<mat-divider></mat-divider>
+<br>
+<mat-card-header class="breadcrumb">
+  <div>
+    <a routerLink="/administration/" skipLocationChange>Dashboard / </a>
+    <a routerLink="/administration/configurations/" skipLocationChange>Configurations / </a>
+    <a routerLink="/administration/configurations/nhif/" skipLocationChange>NHIF / </a>Create NHIF
+  </div>
+</mat-card-header>
+<mat-card>
+  <mat-card-title>ADD NHIF CONFIGURATIONS</mat-card-title>
+  <form [formGroup]="formData">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Tax Band</mat-label>
+          <input matInput minlength="4" maxlength="40" placeholder="e.g NHIF 2022" formControlName="tax_band" required>
+          <mat-error *ngIf=" formData.controls['tax_band'].hasError('required')">
+            Tax band required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('tax_band').hasError('minlength' || 'maxLength')">
+            Provide a valid NHIF tax band.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>NHIF Minimum Value</mat-label>
+          <input matInput minlength="3" maxlength="9" pattern="[0-9]+" placeholder="e.g 500.00"
+            formControlName="min_threshold">
+          <mat-error *ngIf=" formData.controls['min_threshold'].hasError('required')">
+            NHIF minimum value required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('min_threshold').hasError('minlength' || 'maxLength' || 'pattern')">
+            Provide a valid NHIF minimum value.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>NHIF Maximum Value</mat-label>
+          <input matInput minlength="3" maxlength="9" pattern="[0-9]+" placeholder="e.g 6000.00"
+            formControlName="max_threshold">
+          <mat-error *ngIf=" formData.controls['max_threshold'].hasError('required')">
+            NHIF maximum value required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('max_threshold').hasError('minlength' || 'maxLength' || 'pattern')">
+            Provide a valid NHIF maximum value.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <mat-form-field appearance="outline">
+          <mat-label>NHIF Deduction</mat-label>
+          <input matInput minlength="3" maxlength="9" pattern="[0-9]+" placeholder="e.g 500"
+            formControlName="nhif_deduction">
+          <mat-error *ngIf=" formData.controls['nhif_deduction'].hasError('required')">
+            NHIF Deduction required!!
+          </mat-error>
+          <mat-error *ngIf="formData.get('nhif_deduction').hasError('minlength' || 'maxLength' || 'pattern')">
+            Provide a valid NHIF deduction.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div [align]="'center'">
+      <div class="col-md-4 col-sm-12">
+        <button class="add-nhif-btn" mat-raised-button color="primary" (click)="submitData()">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </form>
+</mat-card>

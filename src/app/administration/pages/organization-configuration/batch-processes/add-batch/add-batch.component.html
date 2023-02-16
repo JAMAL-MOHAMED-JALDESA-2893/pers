@@ -1,0 +1,37 @@
+
+ <div class="main-section">
+    <h3>Set Goal: </h3>
+<form
+   class="form"
+   [formGroup]="formData"
+   (ngSubmit)="onSubmit()"
+   #resetRequestsForm="ngForm"
+   novalidate
+ >
+ <p>
+    <mat-form-field appearance="outline">
+        <mat-label>Select Batch Event</mat-label>
+        <mat-select formControlName="event_type" required>
+          <mat-option [value]="event" *ngFor="let event of eventTypeArray"
+            required>{{ event }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+ </p>
+     <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Set Event Trigger Date(Date)</mat-label>
+            <input matInput  formControlName="execution_date" required>
+            <mat-hint>Hint: Kindly enter date in numerical value i.e 2 for 2/**/**** etc</mat-hint>
+          </mat-form-field>
+     </p>
+   <button class="pull-right" mat-raised-button color="primary" type="submit">
+     <span
+       *ngIf="loading"
+       class="spinner-border spinner-border-sm mr-1"
+     ></span>
+     Submit
+   </button>
+   <br />
+ </form>
+ </div>

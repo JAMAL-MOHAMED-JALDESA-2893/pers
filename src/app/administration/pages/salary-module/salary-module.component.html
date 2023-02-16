@@ -1,0 +1,184 @@
+<mat-card>
+<div class="row">
+<div class="col-md-2 col-sm-12 col-xs-12 mt-5">
+<mat-card>
+  <form
+    class="form"
+    [formGroup]="formData"
+    (ngSubmit)="submitData()"
+    #resetRequestsForm="ngForm"
+    novalidate
+  >
+<h3>Filter</h3>
+<mat-form-field class="full-width">
+      <input matInput placeholder="Year" formControlName="year" />
+      <mat-error *ngIf="handleError('year', 'required')">
+        You must provide the<strong>Year!</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Filter by Month</mat-label>
+      <mat-select formControlName="selectedMonth">
+        <mat-option
+          [value]="month"
+          *ngFor="let month of monthsArray"
+          >{{ month }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="handleError('selectedMonth', 'required')">
+       <strong>Month</strong> is required
+      </mat-error>
+    </mat-form-field>
+
+
+    <br />
+    <button class="pull-right" mat-raised-button color="primary" type="submit">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Submit
+    </button>
+
+    <br />
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error }}</div>
+    <br />
+  </form>
+  <br>
+
+<mat-divider></mat-divider>
+<br>
+Monthly Payments
+<div class="row results">
+<h4>To PAYE</h4>
+<p>{{payeDeductions| currency : 'Ksh'}}</p>
+</div>
+<mat-divider></mat-divider>
+
+<div class="row results">
+<h4>To NSSF</h4>
+<p>{{nssfDeductions| currency : 'Ksh'}}</p>
+</div>
+<mat-divider></mat-divider>
+<div class="row results">
+<h4>TO NHIF</h4>
+<p>{{nhifDeductions| currency : 'Ksh'}}</p>
+</div>
+<mat-divider></mat-divider>
+<div class="row results">
+<h4>TO HELB </h4>
+<p>{{helbDeductions| currency : 'Ksh'}}</p>
+</div>
+<mat-divider></mat-divider>
+</mat-card>
+</div>
+<div class="col-md-10 col-sm-12 col-xs-12 mt-5 ">
+<table class="table table-striped table-bordered table-sm row-border hover" style="width:100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead>
+    <tr>
+      <th>EIN code</th>
+      <th>Employee Name</th>
+      <th class="hidden">National ID.</th>
+      <th class="hidden">Personal Phone.</th>
+      <th class="hidden">Job Group.</th>
+      <th>Bank Name</th>
+      <th>Bank Account</th>
+      <th>Basic Salary</th>
+      <th class="hidden">KRA No.</th>
+      <th>PAYE deductions</th>
+      <th class="hidden">NSSF No.</th>
+      <th>NSSF deductions</th>
+      <th class="hidden">NHIF No.</th>
+      <th>NHIF deductions</th>
+      <th>Helb deductions</th>
+      <th>Net Pay</th>
+      <th>Month</th>
+      <th>Year</th>
+      <th class="hidden">Created On</th>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of salaryData">
+      <td>{{item.employeeId}}</td>
+      <td>{{item.firstName}} {{item.middleName}} {{item.lastName}}</td>
+      <td class="hidden">{{item.nationalId}}</td>
+      <td class="hidden">{{item.personalPhone}}</td>
+      <td class="hidden">{{item.jobGroup}}</td>
+      <td>{{item.bankName}}</td>
+      <td>{{item.bankAccount}}</td>
+      <td >{{item.grossPay| currency : 'Ksh'}}</td>
+      <td class="hidden">{{item.kraNo}}</td>
+      <td>{{item.payeDeductions| currency : 'Ksh'}}</td>
+      <td class="hidden">{{item.nssfNo}}</td>
+      <td>{{item.nssfDeductions| currency : 'Ksh'}}</td>
+      <td class="hidden">{{item.nhifNo}}</td>
+      <td>{{item.nhifDeductions| currency : 'Ksh'}}</td>
+      <td>{{item.helbDeductions| currency : 'Ksh'}}</td>
+
+      <td >{{item.netPay| currency : 'Ksh'}}</td>
+      <td>{{item.month}}</td>
+      <td>{{item.year}}</td>
+      <td class="hidden">{{item.createdAt | date }}</td>
+
+
+    </tr>
+    </tbody>
+    <!-- <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th class="hidden"></th>
+        <th class="hidden"></th>
+        <th class="hidden"></th>
+        <th></th>
+        <th></th>
+        <th>Gross Pay</th>
+        <th class="hidden"></th>
+        <th>PAYE deductions</th>
+        <th class="hidden"></th>
+        <th>NSSF deductions</th>
+        <th class="hidden"></th>
+        <th>NHIF deductions</th>
+        <th>Helb deductions</th>
+        <th>Net Pay</th>
+        <th>Month</th>
+        <th>Year</th>
+        <th class="hidden">Paid?</th>
+        <th class="hidden">Created On</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="hidden"></td>
+        <td class="hidden"></td>
+        <td class="hidden"></td>
+        <td></td>
+        <td></td>
+        <td >Ksh 202020</td>
+        <td class="hidden"></td>
+        <td>Ksh 202020</td>
+        <td class="hidden"></td>
+        <td>Ksh 202020</td>
+        <td class="hidden"></td>
+        <td>Ksh 202020</td>
+        <td>Ksh 202020</td>
+
+        <td >Ksh 202020</td>
+        <td></td>
+        <td></td>
+        <td class="hidden"></td>
+        <td class="hidden"></td>
+
+
+      </tr>
+
+    </tfoot> -->
+    </table>
+</div>
+</div>
+</mat-card>
+
+
+
+

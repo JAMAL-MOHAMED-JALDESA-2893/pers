@@ -1,0 +1,73 @@
+<mat-card>
+    <mat-card-header>
+      <h3 class="mat-h1">
+        <strong>Your Task</strong>
+      </h3>
+    </mat-card-header>
+    <hr>
+  <div class="container-fluid">
+    <!-- Table Part -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12 descriptions">
+            <h3>Task Description</h3>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Project Name</h4>
+                    <p>: {{this.project_name }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Components</h4>
+                    <p>: {{ this.component_name }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Project Participation</h4>
+                    <p>: {{ this.project_participation }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Expected Start Date</h4>
+                    <p>: {{ this.started_on | date }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Expected Completion Date</h4>
+                    <p>: {{ this.deadline | date }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="respond">
+                    <h4>Documentation/System Requirements file</h4>
+                    <p *ngFor="let item of  this.results">
+                        {{item.filename}}
+                        <button mat-raised-button color="primary"  class="action-button" [routerLink]="['/portal/assigned/tasks/explore/']">+ Download</button>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12 timelines">
+            <h3>Set your timelines & Deliverables</h3>
+            {{this.data.project_name}}
+        </div>
+
+    </div>
+  </div>
+  </mat-card>
+  
+  
+  
+  
+  
